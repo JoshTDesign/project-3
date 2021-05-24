@@ -1,4 +1,4 @@
-\const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 const moment = require('moment');
 
@@ -7,7 +7,7 @@ class Trip extends Model {}
 Trip.init(
     {
         id: {
-            type: DataTypes.INTEGER ,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
