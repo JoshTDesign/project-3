@@ -32,6 +32,22 @@ Activity.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    start_time: {
+        type: DataTypes.TIME,
+        get: function() {
+            return moment(this.getDataValue('start_time'), "hh:mm:ss").format('hh:mm A');
+          }
+    },
+    end_time: {
+        type: DataTypes.TIME,
+        get: function() {
+            return moment(this.getDataValue('end_time'), "hh:mm:ss").format('hh:mm A');
+          }
+    },
+    category: {
+        type: DataTeypes.STRING,
+        allowNull: true
+    },
     trip_id: {
       type: DataTypes.INTEGER,
       references: {
