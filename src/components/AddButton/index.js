@@ -1,11 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-=======
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
->>>>>>> develop
 
 export default function AddButton() {
   return (
@@ -15,8 +10,4 @@ export default function AddButton() {
       </Fab>
     </div>
   );
-<<<<<<< HEAD
-}
-=======
 };
->>>>>>> develop
