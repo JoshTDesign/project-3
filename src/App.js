@@ -1,20 +1,27 @@
+import React from "react";
+import  { browserRouter as Router, Route } from "react-router-dom";
 import './App.css';
-import Button from '@material-ui/core/Button'; // imports css framework
 import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global reset for css styling
 import Container from '@material-ui/core/Container';
-import Dashboard from '../src/pages/Dashboard';
+import SplashLogo from './components/SplashLogo';
+import SignupForm from './components/SignupForm';
 
 
 
 function App() {
   return (
-    <div>
-      <CssBaseline />
-      <Container maxWidth="sm">
-        <h1>Home Page</h1>
-        <Dashboard />
-      </Container>
-    </div>
+
+    <Router>
+      <div>
+        <Navbar />
+        <Wrapper>
+          <Route exact path="/" component={Search} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/search" component={Search} />
+        </Wrapper>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
