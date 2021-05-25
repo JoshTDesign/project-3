@@ -10,6 +10,7 @@ import SignupForm from './components/SignupForm';
 
 function App() {
   return (
+
     <Router>
       <div>
         <Navbar />
