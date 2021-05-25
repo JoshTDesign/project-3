@@ -3,12 +3,12 @@ import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global res
 import Container from '@material-ui/core/Container';
 
 export default function Trip() {
-    return (
-        <div>
-            <CssBaseline />
-            <Container maxWidth="sm">
-                <h1>Trip Page</h1>
-            </Container>
-        </div>
-    )
-}
+  return (
+    <div>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <h1>Trip Page</h1>
+      </Container>
+    </div>
+  );
+};

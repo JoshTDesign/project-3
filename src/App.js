@@ -12,6 +12,7 @@ import Trip from "./pages/Trip";
 
 function App() {
   return (
+
     <Router>
         <div>
           <Route exact path="/" component={Login} />
