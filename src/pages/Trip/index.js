@@ -1,5 +1,5 @@
-import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline"; // imports a global reset for css styling
+import React from 'react'
+import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global reset for css styling
 import Container from '@material-ui/core/Container';
 
 export default function Trip() {
