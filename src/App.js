@@ -1,25 +1,25 @@
 import React from "react";
-import  { browserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global reset for css styling
-import Container from '@material-ui/core/Container';
-import SplashLogo from './components/SplashLogo';
-import SignupForm from './components/SignupForm';
+import CreateTrip from "./pages/CreateTrip";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Trip from "./pages/Trip";
 
 
 
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar />
-        <Wrapper>
-          <Route exact path="/" component={Search} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/search" component={Search} />
-        </Wrapper>
-        <Footer />
-      </div>
+        <div>
+          <Route exact path="/" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/createtrip" component={CreateTrip} />
+          <Route path="/Dashboard" component={Dashboard} />
+          <Route path="/Trip/:id" component={Trip} />
+        </div>
     </Router>
   );
 }
