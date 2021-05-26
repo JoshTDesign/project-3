@@ -6,7 +6,7 @@ export default function Login() {
     return (
         <div>
             <CssBaseline />
-            <Container maxWidth="sm">
+            <Container maxWidth="sm" direction="column">
                 <h1>Login Page</h1>
             </Container>
         </div>

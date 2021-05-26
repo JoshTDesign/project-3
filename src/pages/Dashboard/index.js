@@ -3,7 +3,7 @@ import CssBaseline from "@material-ui/core/CssBaseline"; // imports a global res
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
-import AddButton from "../components/AddButton";
+// import AddButton from "../../components/AddButton";
 
 export default function Dashboard() {
     return (
@@ -28,7 +28,7 @@ export default function Dashboard() {
         </Button>
       </Container>
       <Container>
-        <AddButton />
+        {/* <AddButton /> */}
       </Container>
     </div>
     )
