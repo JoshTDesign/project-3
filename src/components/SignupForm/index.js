@@ -2,8 +2,6 @@ import React from 'react'
 import { Link, useLocation } from "react-router-dom";
 import SplashLogo from '../../components/SplashLogo';
 import Grid from '@material-ui/core/Grid';
-
-
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
