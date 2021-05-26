@@ -10,6 +10,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { Link, useLocation } from "react-router-dom";
+
 
 const useStyles = makeStyles({
     list: {
@@ -47,9 +49,8 @@ const useStyles = makeStyles({
         onKeyDown={toggleDrawer(anchor, false)}
       >
         <List>
-          {['Profile', 'My Trips', 'My Friends'].map((text, index) => (
+          {['Profile', 'My Trips', 'My Friends', 'Log Out'].map((text, index) => (
             <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
