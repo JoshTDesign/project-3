@@ -12,6 +12,7 @@ import NewTripForm from "./components/NewTripForm";
 
 
 
+
 function App() {
   const [formState,setFormState] = useState({
     email:"",
@@ -69,6 +70,7 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
 
