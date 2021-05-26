@@ -7,12 +7,14 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Trip from "./pages/Trip";
+import SidebarMenu from "./components/SidebarMenu";
 
 
 
 function App() {
   return (
-
+    <div>
+      {/* <SidebarMenu /> */}
     <Router>
         <div>
           <Route exact path="/" component={Login} />
@@ -22,6 +24,7 @@ function App() {
           <Route path="/Trip/:id" component={Trip} />
         </div>
     </Router>
+    </div>
   );
 }
 

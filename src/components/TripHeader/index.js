@@ -10,7 +10,7 @@ export default function TripHeader() {
           display="flex"
           style={{ justifyContent: "space-between", padding: 10 }}
         >
-          <h1>Dashboard Page</h1>
+          <h1>My Trips</h1>
           <Box>
             <p>start date</p>
             <p>end date</p>
