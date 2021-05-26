@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TripBasic() {
+
+  // TODO: click handle function for trip cards here
+
   const classes = useStyles();
   return (
     <div>

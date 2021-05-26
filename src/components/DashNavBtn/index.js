@@ -2,8 +2,11 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
-export default function DashNavBtn() {
+function DashNavBtn() {
+
+    
   return (
     <div>
       <Container maxWidth="sm">
@@ -12,16 +15,18 @@ export default function DashNavBtn() {
           style={{ justifyContent: "space-between", padding: 10 }}
         >
           <Button variant="outlined" color="primary">
-            Agenda
+            <Link to="/Dashboard/trips">Trips</Link>
           </Button>
           <Button variant="outlined" color="primary">
-            Discover
+            <Link to="/Dasboard/discover">Discover</Link>
           </Button>
           <Button variant="outlined" color="primary">
-            Expenses
+            <Link to="/Dashboard/expenses">Expenses</Link>
           </Button>
         </Box>
       </Container>
     </div>
   );
 }
+
+export default DashNavBtn;
