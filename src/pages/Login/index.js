@@ -30,6 +30,7 @@ function Login() {
       return (
         <div>
             <CssBaseline />
+<<<<<<< HEAD
             <Grid
                 container
                 direction="column"
@@ -41,6 +42,20 @@ function Login() {
                         handleSubmit={handleSubmit}
                         handleCreateAccount={handleCreateAccount} />
             </Grid>
+=======
+<<<<<<< HEAD
+            <Container maxWidth="sm" direction="column">
+                <h1>Login Page</h1>
+=======
+            <Container maxWidth="sm">
+                <SplashLogo />
+                <LoginForm 
+                    handleInputChange={handleInputChange}
+                    handleSubmit={handleSubmit}
+                    handleCreateAccount={handleCreateAccount} />
+>>>>>>> 9b3c78e4fa36d69839f2bf43bbe045e9fd0dd64b
+            </Container>
+>>>>>>> develop
         </div>
       )
 }

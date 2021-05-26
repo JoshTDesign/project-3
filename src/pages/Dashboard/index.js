@@ -1,35 +1,27 @@
 import React from "react";
-import CssBaseline from "@material-ui/core/CssBaseline"; // imports a global reset for css styling
 import Container from "@material-ui/core/Container";
+<<<<<<< HEAD
 import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
-import AddButton from "../../components/AddButton";
+// import AddButton from "../../components/AddButton";
+=======
+import DashNavBtn from "../../components/DashNavBtn";
+import TripHeader from "../../components/TripHeader";
+import MultiContainer from "../../components/MultiContainer";
+>>>>>>> 9b3c78e4fa36d69839f2bf43bbe045e9fd0dd64b
 
 export default function Dashboard() {
-    return (
-        <div>
-      <CssBaseline />
-      <Container maxWidth="sm">
-        <Box display="flex">
-          <h1>Trip Page</h1>
-          <Box justifyContent="flex-end">
-          <p>start date</p>
-          <p>end date</p>
-          </Box>
-        </Box>
-        <Button variant="outlined" color="primary">
-          Agenda
-        </Button>
-        <Button variant="outlined" color="primary">
-          Discover
-        </Button>
-        <Button variant="outlined" color="primary">
-          Expenses
-        </Button>
-      </Container>
+  return (
+    <div>
       <Container>
-        <AddButton />
+<<<<<<< HEAD
+        {/* <AddButton /> */}
+=======
+        <TripHeader />
+        <DashNavBtn />
+        <MultiContainer />
+>>>>>>> 9b3c78e4fa36d69839f2bf43bbe045e9fd0dd64b
       </Container>
     </div>
-    )
+  );
 }
