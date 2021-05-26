@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global reset for css styling
 import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import LoginForm from '../../components/LoginForm';
 import SplashLogo from '../../components/SplashLogo';
 
@@ -29,13 +30,17 @@ function Login() {
       return (
         <div>
             <CssBaseline />
-            <Container maxWidth="sm">
-                <SplashLogo />
-                <LoginForm 
-                    handleInputChange={handleInputChange}
-                    handleSubmit={handleSubmit}
-                    handleCreateAccount={handleCreateAccount} />
-            </Container>
+            <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="center">
+                    <SplashLogo />
+                    <LoginForm 
+                        handleInputChange={handleInputChange}
+                        handleSubmit={handleSubmit}
+                        handleCreateAccount={handleCreateAccount} />
+            </Grid>
         </div>
       )
 }
