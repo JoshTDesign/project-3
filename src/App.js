@@ -57,7 +57,8 @@ function App() {
   }
 
   return (
-
+    <div>
+      {/* <SidebarMenu /> */}
     <Router>
         <div>
           <Route exact path="/" component={Login} />
@@ -68,6 +69,7 @@ function App() {
           <Route path="/newtripform" component={NewTripForm} />
         </div>
     </Router>
+    </div>
   );
 }
 
