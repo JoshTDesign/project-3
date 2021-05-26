@@ -18,7 +18,7 @@ export default function DashNavBtn(props) {
             <Link to="/Dashboard/Trips">Trips</Link>
           </Button>
           <Button variant="outlined" color="primary" onClick={() => props.handlePageChange("Discover")}>
-            <Link to="/Dasboard/Discover">Discover</Link>
+            <Link to="/Dashboard/Discover">Discover</Link>
           </Button>
           <Button variant="outlined" color="primary" onClick={() => props.handlePageChange("Expenses")}>
             <Link to="/Dashboard/Expenses">Expenses</Link>
