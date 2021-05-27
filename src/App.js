@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Trip from "./pages/Trip";
 import NewTripForm from "./components/NewTripForm";
+import MenuBar from "./components/MenuBar";
+import SidebarMenu from "./components/SidebarMenu";
 
 
 
