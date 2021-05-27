@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import API from "./utils/API"
 // import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global reset for css styling
-import CreateTrip from "./pages/CreateTrip";
+// import CreateTrip from "./pages/CreateTrip";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -63,7 +63,7 @@ function App() {
         <div>
           <Route exact path="/" component={Login} />
           <Route path="/signup" component={Signup} />
-          <Route path="/createtrip" component={CreateTrip} />
+          {/* <Route path="/createtrip" component={CreateTrip} /> */}
           <Route path="/Dashboard" component={Dashboard} />
           <Route path="/Trip/:id" component={Trip} />
           <Route path="/newtripform" component={NewTripForm} />

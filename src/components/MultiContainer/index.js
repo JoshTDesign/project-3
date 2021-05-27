@@ -10,6 +10,7 @@ export default function MultiContainer() {
       <Container maxWidth="sm">
         <Paper elevation={3} variant="outlined" style={{ padding: 10 }}>
             <TripBasic />
+            <TripBasic />
           <AddButton style={{ justifyContent: "flex-end" }} />
         </Paper>
       </Container>

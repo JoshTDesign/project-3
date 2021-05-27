@@ -1,11 +1,12 @@
 import React from 'react';
 import MultiContainer from "../../components/MultiContainer";
+import TripBasic from "../../components/TripBasic"
 
 export default function Discover() {
     return (
         <div>
             <MultiContainer>
-                <h3>Trip Advisor things here?</h3>
+                <TripBasic />
             </MultiContainer>
         </div>
     )

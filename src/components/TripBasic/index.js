@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/box";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, withStyles  } from "@material-ui/core/styles";
 import { deepOrange } from "@material-ui/core/colors";
 // import ProfileTile from "../../components/ProfileTile";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = theme => createStyles({
   root: {
     display: "flex",
     "& > *": {
@@ -18,20 +18,35 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepOrange[500]),
     backgroundColor: deepOrange[500],
   },
-}));
+});
 
-export default function TripBasic() {
+class TripBasic extends Component {
+  state = {
+    trips: [],
+    tripsFiltered: []
+  }
 
   // TODO: click handle function for trip cards here
+  handleClick = event => {
+    event.preventDefault();
+    
+  }
 
-  const classes = useStyles();
-  return (
-    <div>
+  // TODO: fitler and render detailed trip card 
+
+  // showDetailed = ()
+
+
+  render() {
+    const { classes } = this.props
+
+    return (
+      <div>
       <Box p={2}>
-        <Card>
+        <Card handleClick={this.handleClick}>
           <Typography variant={"h6"} display="inline">
             Trip Name Here!
-            {/* <Typography align="right">start date</Typography> */}
+            <Typography align="right">start date</Typography>
           </Typography>
 
           <div className={classes.root}>
@@ -39,52 +54,21 @@ export default function TripBasic() {
               alt="Remy Sharp"
               src="/broken-image.jpg"
               className={classes.orange}
-            >
+              >
               J
             </Avatar>
             <Avatar
               alt="Remy Sharp"
               src="/broken-image.jpg"
               className={classes.orange}
-            />
+              />
             <Avatar src="/broken-image.jpg" />
-          </div>
-        </Card>
-      </Box>
-
-      <Box p={2}>
-        <Card>
-          <Typography variant={"h6"} display="inline">
-            Seattle, WA
-            {/* <Typography align="right">start date</Typography> */}
-          </Typography>
-
-          <div className={classes.root}>
-            <Avatar
-              alt="Remy Sharp"
-              src="/broken-image.jpg"
-              className={classes.orange}
-            >
-              T
-            </Avatar>
-
-            <Avatar
-              alt="Remy Sharp"
-              src="/broken-image.jpg"
-              className={classes.orange}
-            >
-              A
-            </Avatar>
-            <Avatar
-              alt="Remy Sharp"
-              src="/broken-image.jpg"
-              className={classes.orange}
-            >
-              J
-            </Avatar>
           </div>
         </Card>
       </Box>
     </div>
   );
 }
+}
+
+export default withStyles(useStyles)(TripBasic);
