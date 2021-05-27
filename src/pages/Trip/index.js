@@ -12,7 +12,7 @@ export default function Trip() {
       <SidebarMenu />
       <DashNavBtn />
       <Container maxWidth="sm">
-        <h1>Trip Page</h1>
+        <h2>Get excited for your trip!</h2>
         <TripDetailedContainer />
       </Container>
     </div>
