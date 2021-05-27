@@ -26,10 +26,13 @@ function Login() {
         console.log("password is " + password);
       };
 
+      const splashStyle = {
+        backgroundColor: '#0c1d33'
+      }
+
       return (
         <div>
-            <CssBaseline />
-            <Container maxWidth="sm">
+            <Container maxWidth="sm" style={splashStyle}>
                 <SplashLogo />
                 <LoginForm 
                     handleInputChange={handleInputChange}
