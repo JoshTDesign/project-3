@@ -73,6 +73,7 @@ function App() {
           <Route path="/newtripform" component={NewTripForm} />
         </div>
     </Router>
+    {console.log(API.getLatLon("Seattle"))};
     </div>
   );
 }

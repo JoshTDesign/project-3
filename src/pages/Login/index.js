@@ -33,7 +33,7 @@ function Login() {
       const { name, value } = event.target;
   
       // Updating the input's state
-      this.setState({
+      setFormState({
         [name]: value
       });
     };
