@@ -22,14 +22,16 @@ class Dashboard extends Component {
   };
 
   renderPage = () => {
-    if (this.state.currentPage === "Dashboard") {
-      return <Trips />;
-    } else if (this.state.currentPage === "Trips") {
+    console.log('state:', this.state)
+    
+    if (this.state.currentPage === "Trips") {
       return <Trips />;
     } else if (this.state.currentPage === "Discover") {
       return <Discover />;
     } else if (this.state.currentPage === "Expenses") {
       return <Expenses />;
+    } else {
+      return <Trips />
     }
   };
 
@@ -43,6 +45,7 @@ class Dashboard extends Component {
           handlePageChange={this.handlePageChange}
         />
         {this.renderPage()}
+        {this.state.currentPage === "Discover" ? <Discover /> : <div></div>}
       </div>
     );
   }

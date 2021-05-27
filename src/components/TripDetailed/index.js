@@ -11,7 +11,7 @@ export default function TripDetailed(props) {
     <div>
       <TripHeader />
       <Box p={2}>
-        <Card handleClick={this.handleClick}>
+        <Card handleClick={props.handleClick}>
           <Typography variant={"h6"} display="inline">
             Trip Name Here!
           </Typography>

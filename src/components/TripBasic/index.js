@@ -1,49 +1,57 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/box";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
-import { createStyles, withStyles  } from "@material-ui/core/styles";
-import { deepOrange } from "@material-ui/core/colors";
+import { makeStyles } from "@material-ui/core/styles";
+import { deepOrange, deepPurple } from "@material-ui/core/colors";
 // import ProfileTile from "../../components/ProfileTile";
 
-const useStyles = theme => createStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     "& > *": {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
     },
   },
   orange: {
     color: theme.palette.getContrastText(deepOrange[500]),
     backgroundColor: deepOrange[500],
   },
-});
+  purple: {
+    color: theme.palette.getContrastText(deepPurple[500]),
+    backgroundColor: deepPurple[500],
+  },
+}));
 
-class TripBasic extends Component {
-  state = {
+export default function TripBasic() {
+  const [state, setState] = useState({
     trips: [],
-    tripsFiltered: []
-  }
+    tripsFiltered: [],
+  });
 
-  // TODO: click handle function for trip cards here
-  handleClick = event => {
+  const history = useHistory();
+  const classes = useStyles();
+
+  const handleClick = (event) => {
     event.preventDefault();
-    
-  }
+    console.log(event.target.id);
+    history.push(`/Trips/${event.target.id}`);
+  };
 
-  // TODO: fitler and render detailed trip card 
+  // TODO: fitler on click and render detailed trip card
+  //
 
   // showDetailed = ()
 
+  // render() {
+  // const { classes } = this.props;
 
-  render() {
-    const { classes } = this.props
-
-    return (
-      <div>
+  return (
+    <div>
       <Box p={2}>
-        <Card handleClick={this.handleClick}>
+        <Card>
           <Typography variant={"h6"} display="inline">
             Trip Name Here!
             <Typography align="right">start date</Typography>
@@ -54,21 +62,24 @@ class TripBasic extends Component {
               alt="Remy Sharp"
               src="/broken-image.jpg"
               className={classes.orange}
-              >
+            >
               J
             </Avatar>
             <Avatar
               alt="Remy Sharp"
               src="/broken-image.jpg"
               className={classes.orange}
-              />
+            />
             <Avatar src="/broken-image.jpg" />
           </div>
+          <button onClick={handleClick} id="1">
+            show more
+          </button>
         </Card>
       </Box>
     </div>
   );
-}
+  // }
 }
 
-export default withStyles(useStyles)(TripBasic);
+// export default withStyles(useStyles)(TripBasic);
