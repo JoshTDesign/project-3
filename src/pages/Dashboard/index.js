@@ -7,6 +7,7 @@ import SidebarMenu from "../../components/SidebarMenu";
 import Trips from "../../pages/Trips";
 import Discover from "../../pages/Discover";
 import Expenses from "../../pages/Expenses";
+import DiscoverContainer from "../../components/DiscoverContainer";
 
 class Dashboard extends Component {
   state = {
