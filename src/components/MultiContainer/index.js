@@ -9,8 +9,9 @@ export default function MultiContainer() {
     <div>
       <Container maxWidth="sm">
         <Paper elevation={3} variant="outlined" style={{ padding: 10 }}>
+            {/* <TripBasic /> */}
             <TripBasic />
-            <TripBasic />
+            {/* {props.children} */}
           <AddButton style={{ justifyContent: "flex-end" }} />
         </Paper>
       </Container>

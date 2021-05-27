@@ -6,7 +6,7 @@ export default function Discover() {
     return (
         <div>
             <MultiContainer>
-                <TripBasic />
+                {/* <TripBasic /> */}
             </MultiContainer>
         </div>
     )

@@ -65,7 +65,7 @@ function App() {
           <Route path="/signup" component={Signup} />
           {/* <Route path="/createtrip" component={CreateTrip} /> */}
           <Route path="/Dashboard" component={Dashboard} />
-          <Route path="/Trip/:id" component={Trip} />
+          <Route path="/Trips" component={Trip} />
           <Route path="/newtripform" component={NewTripForm} />
         </div>
     </Router>
