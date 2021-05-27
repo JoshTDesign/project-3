@@ -5,34 +5,42 @@ import LoginForm from '../../components/LoginForm';
 import SplashLogo from '../../components/SplashLogo';
 
 function Login() {
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
 
+
+    const [formState,setFormState] = useState({
+      username:"",
+      password:""
+    })
+
+
+
+
+    const handleCreateAccount = event => {
+        // console.log('create account click');
+      //need code
+    };
+
+    const handleSubmit = e =>{
+      e.preventDefault();
+      setFormState({
+        email:"",
+        password:""
+      })
+    }
 
     const handleInputChange = event => {
-        setUsername(event.target.value);
-      };
-
-      const handleCreateAccount = event => {
-          console.log('create account click');
-        //need code
-      };
-
-
-    const handleSubmit = e => {
-        e.preventDefault();
-        //need code
-        console.log("username is " + username);
-        console.log("password is " + password);
-      };
-
-      const splashStyle = {
-        backgroundColor: '#0c1d33'
-      }
+      // Getting the value and name of the input which triggered the change
+      const { name, value } = event.target;
+  
+      // Updating the input's state
+      this.setState({
+        [name]: value
+      });
+    };
 
       return (
         <div>
-            <Container maxWidth="sm" style={splashStyle}>
+            <Container maxWidth="sm">
                 <SplashLogo />
                 <LoginForm 
                     handleInputChange={handleInputChange}
