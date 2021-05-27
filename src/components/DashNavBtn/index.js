@@ -2,10 +2,9 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function DashNavBtn(props) {
-    const location = useLocation();
 
   return (
     <div>
