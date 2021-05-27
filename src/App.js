@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Trip from "./pages/Trip";
 import NewTripForm from "./components/NewTripForm";
+import MenuBar from "./components/MenuBar";
+import SidebarMenu from "./components/SidebarMenu";
 
 
 
@@ -57,13 +59,12 @@ function App() {
   }
 
   return (
-
     <Router>
         <div>
           <Route exact path="/" component={Login} />
           <Route path="/signup" component={Signup} />
           <Route path="/createtrip" component={CreateTrip} />
-          <Route path="/Dashboard" component={Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/Trip/:id" component={Trip} />
           <Route path="/newtripform" component={NewTripForm} />
         </div>

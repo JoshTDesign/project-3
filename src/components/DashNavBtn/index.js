@@ -18,7 +18,7 @@ function DashNavBtn() {
             <Link to="/Dashboard/trips">Trips</Link>
           </Button>
           <Button variant="outlined" color="primary">
-            <Link to="/Dasboard/discover">Discover</Link>
+            <Link to="/Dashboard/discover">Discover</Link>
           </Button>
           <Button variant="outlined" color="primary">
             <Link to="/Dashboard/expenses">Expenses</Link>

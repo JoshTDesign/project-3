@@ -6,10 +6,8 @@ import Button from "@material-ui/core/Button";
 
 
 
-// TODO: Need to create POST request in form submit handler
 
-
-export default function NewTripForm(props) {
+export default function NewExpenseForm(props) {
     return (
         <div>
             <form className="test" noValidate autoComplete="off">
@@ -17,25 +15,19 @@ export default function NewTripForm(props) {
                 container direction="column"
                 justify="center"
                 alignItems="center">
-
-                    <TextField className="location" id="outlined-basic" label="Trip Name" variant="outlined" onClick={props.handleInputChange} />
-                    <TextField className="date" id="outlined-basic" label="Trip Location" variant="outlined" onClick={props.handleInputChange} />
+                    <h2>Add new expense</h2>
+                    <TextField className="expenseName" id="outlined-basic" label="Expense Name" variant="outlined" onClick={props.handleInputChange} />
+                    <TextField className="expenseAmount" id="outlined-basic" label="Expense Amount" variant="outlined" onClick={props.handleInputChange} />
                     
                     <Button variant="contained" color="primary" onSubmit={props.handleSubmit}>
                             <Link to="#">
-                                Add team members
+                                Add cost to your ledger
                             </Link>
                     </Button>
 
                     <Button variant="contained" color="primary" onSubmit={props.handleSubmit}>
                             <Link to="#">
-                                Add photo
-                            </Link>
-                    </Button>
-                    
-                    <Button variant="contained" color="primary" onSubmit={props.handleSubmit}>
-                            <Link to="/dashboard">
-                                Create Trip
+                                Split cost among group
                             </Link>
                     </Button>
 
