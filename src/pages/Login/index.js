@@ -5,25 +5,29 @@ import LoginForm from '../../components/LoginForm';
 import SplashLogo from '../../components/SplashLogo';
 
 function Login() {
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
+
+
+    const [formState,setFormState] = useState({
+      username:"",
+      password:""
+    })
 
 
     const handleInputChange = event => {
-        setUsername(event.target.value);
+        // setFormState(event.target.value);
       };
 
       const handleCreateAccount = event => {
-          console.log('create account click');
+          // console.log('create account click');
         //need code
       };
 
 
     const handleSubmit = e => {
         e.preventDefault();
-        //need code
-        console.log("username is " + username);
-        console.log("password is " + password);
+        // //need code
+        // console.log("username is " + username);
+        // console.log("password is " + password);
       };
 
       return (
