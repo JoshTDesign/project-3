@@ -16,7 +16,22 @@ export default function TripDetailed(props) {
             Trip Name Here!
           </Typography>
 
-          <Typography>How do we want to organize and show the details?
+          <Typography>
+              How do we want to organize and show the details?
+              <ul>
+                 <li>
+                     things here
+                 </li>
+                 <li>
+                     things here
+                 </li>
+                 <li>
+                     things here
+                 </li>
+                 <li>
+                     things here
+                 </li>
+              </ul>
           </Typography>
         
         </Card>
