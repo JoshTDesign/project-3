@@ -4,9 +4,8 @@ import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
-function DashNavBtn() {
+export default function DashNavBtn(props) {
 
-    
   return (
     <div>
       <Container maxWidth="sm">
@@ -14,19 +13,17 @@ function DashNavBtn() {
           display="flex"
           style={{ justifyContent: "space-between", padding: 10 }}
         >
-          <Button variant="outlined" color="primary">
-            <Link to="/Dashboard/trips">Trips</Link>
+          <Button variant="outlined" color="primary" onClick={() => props.handlePageChange("Trips")}>
+            <Link to="/Dashboard/Trips">Trips</Link>
           </Button>
-          <Button variant="outlined" color="primary">
-            <Link to="/Dashboard/discover">Discover</Link>
+          <Button variant="outlined" color="primary" onClick={() => props.handlePageChange("Discover")}>
+            <Link to="/Dashboard/Discover">Discover</Link>
           </Button>
-          <Button variant="outlined" color="primary">
-            <Link to="/Dashboard/expenses">Expenses</Link>
+          <Button variant="outlined" color="primary" onClick={() => props.handlePageChange("Expenses")}>
+            <Link to="/Dashboard/Expenses">Expenses</Link>
           </Button>
         </Box>
       </Container>
     </div>
   );
 }
-
-export default DashNavBtn;
