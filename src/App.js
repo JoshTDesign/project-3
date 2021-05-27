@@ -4,6 +4,7 @@ import './App.css';
 import API from "./utils/API"
 // import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global reset for css styling
 // import CreateTrip from "./pages/CreateTrip";
+import LoggedInHome from "./pages/LoggedInHome";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -63,6 +64,7 @@ function App() {
         <div>
           <Route exact path="/" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/home" component={LoggedInHome} />
           {/* <Route path="/createtrip" component={CreateTrip} /> */}
           <Route path="/Dashboard" component={Dashboard} />
           <Route path="/Trips" component={Trip} />
