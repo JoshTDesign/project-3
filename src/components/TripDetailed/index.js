@@ -12,10 +12,10 @@ export default function TripDetailed(props) {
       <Box p={2}>
         <Card handleClick={props.handleClick}>
           <Typography variant={"h6"} display="inline">
-            Trip Name Here!
-          </Typography>
+            Trip Name Here...
+          {/* </Typography> */}
 
-          <Typography>
+          {/* <Typography> */}
               How do we want to organize and show the details?
               <ul>
                  <li>
