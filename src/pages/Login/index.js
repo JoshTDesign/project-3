@@ -15,12 +15,12 @@ function Login() {
     })
 
 
-      // const handleCreateAccount = event => {
-      //     // console.log('create account click');
-      //   //need code
-      // };
 
 
+    const handleCreateAccount = event => {
+        // console.log('create account click');
+      //need code
+    };
 
 
       const handleInputChange = event => {

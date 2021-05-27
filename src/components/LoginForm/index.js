@@ -32,7 +32,7 @@ export default function LoginForm(props) {
                     <TextField className="userName" id="outlined-basic" label="User Name" variant="outlined" value={props.value} name={props.name} onChange={props.handleInputChange} />
                     <TextField className="password" id="outlined-basic" label="Password" variant="outlined" value={props.value} name={props.name} onChange={props.handleInputChange} />
                     
-                    <Button variant="contained" color="primary" onSubmit={props.handleSubmit}>
+                    <Button variant="contained" onSubmit={props.handleSubmit}>
                             <Link to="/dashboard">
                                 Login
                             </Link>
