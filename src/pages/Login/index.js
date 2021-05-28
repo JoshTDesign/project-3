@@ -14,26 +14,22 @@ function Login() {
       password:""
     })
 
-
-
-
     const handleCreateAccount = event => {
         // console.log('create account click');
       //need code
     };
 
-
-      const handleInputChange = event => {
-        // Getting the value and name of the input which triggered the change
-        const value = event.target.value;
-        const name = event.target.name;
-    
-        // Updating the input's state
-        setFormState({
-          ... formState,
-          [name]: value
-        });
-      };
+    const handleInputChange = event => {
+      // Getting the value and name of the input which triggered the change
+      const value = event.target.value;
+      const name = event.target.name;
+  
+      // Updating the input's state
+      setFormState({
+        ... formState,
+        [name]: value
+      });
+    };
 
     
       const handleFormSubmit = event => {
@@ -48,7 +44,6 @@ function Login() {
           firstName: "",
           lastName: ""
         }, [])
-        location.reload();
       }
 
       return (
