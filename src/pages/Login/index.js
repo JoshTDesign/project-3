@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Container from '@material-ui/core/Container';
-import {Button} from '@material-ui/core/';
-import {Grid} from '@material-ui/core/';
-import {TextField} from '@material-ui/core/';
+import { TextField, Box, makeStyles, Button, Container, Typography, TableBody } from '@material-ui/core/';
 import { Link, Route } from "react-router-dom";
 import SplashLogo from '../../components/SplashLogo';
 import API from '../../utils/API';
@@ -86,61 +83,104 @@ function Login() {
     }, [])
   }
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& .MuiTextField-root': {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        width: '100%',
+        display: "flex",
+        flexDirection: "column"
+      },
+    },
+    input: {
+      // marginLeft: theme.spacing(1),
+      // marginRight: theme.spacing(1),
+      // width: '25ch',
+      backgroundColor: "white",
+      height: "50px"
+    },
+    Button: {
+      // marginLeft: theme.spacing(1),
+      // marginRight: theme.spacing(1),
+      maxWidth: '500px',
+    }
+
+  }));
+
+  const classes = useStyles();
+
+  const bgColor = () => {
+    document.body.style.backgroundColor = "#4E4E4E";
+  }
+
+  bgColor();
+
   return (
     <div>
         <Container maxWidth="sm">
-            <SplashLogo />
-            <div>
-        <form className="test" onSubmit={handleFormSubmit}>
-            <Grid 
-            container direction="column"
-            justify="center"
-            alignItems="center">
+          <Box
+            paddingTop={15}
+            display="flex"
+            width="auto"
+            height={500}
+            justifyContent="center"
+          >
+          
 
-                <TextField 
-                  className="userName" 
-                  id="outlined-basic" 
-                  label="User Name" 
-                  variant="outlined" 
-                  value={formState.username}
-                  name="username"
-                  onChange={handleInputChange}
-                  placeholder="User Name"
-                  />
+          <form className={classes.root} onSubmit={handleFormSubmit} fullWidth={true}>
+          <SplashLogo />
+                  
+            <TextField 
+              className={classes.root}
+              InputProps={{className: classes.input}}
+              className="userName" 
+              id="outlined-basic" 
+              label="User Name" 
+              variant="outlined" 
+              value={formState.username}
+              name="username"
+              onChange={handleInputChange}
+              placeholder="User Name"
+            />
 
-                <TextField 
-                  className="password" 
-                  id="outlined-basic" 
-                  label="Password" 
-                  variant="outlined" 
-                  value={formState.password}
-                  name="password"
-                  onChange={handleInputChange}
-                  placeholder="Password"
-                  />
+            <TextField 
+              className={classes.root}
+              InputProps={{className: classes.input}}
+              className="password" 
+              id="outlined-basic" 
+              label="Password" 
+              variant="outlined" 
+              value={formState.password}
+              name="password"
+              onChange={handleInputChange}
+              placeholder="Password"
+            />
 
-                <Button 
-                  type="submit"
-                  variant="contained" 
-                  color="primary" 
-                  >
-                    <Link to="/dashboard">
-                    Login
-                    </Link>
-                </Button>
+            <Button 
+              type="submit"
+              variant="contained" 
+              color="primary" 
+              style={{minWidth: "100%", height:"50px"}}
+            >
+              <Link to="/dashboard">
+                Login
+              </Link>
+            </Button>
+            <Typography align="center">
+            <p>or</p>
+              <Link to="/signup">
+                  Create Account
+              </Link>
+            </Typography>
 
-            </Grid>
-        </form>
 
-                  <p>or</p>
+            </form>
 
-                <Button variant="outlined" color="primary">
-                    <Link to="/signup">
-                        Create Account
-                    </Link>
-                </Button>
-    </div>
+            </Box>
+
         </Container>
+        
     </div>
   )
 }

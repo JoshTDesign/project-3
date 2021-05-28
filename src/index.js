@@ -11,9 +11,20 @@ import { blueGrey } from "@material-ui/core/colors";
 //Custom theme for Material UI
 const theme = createMuiTheme({
   palette: {
+    primary: {
+      main: '#1EDBF5',
+      dark: '#0C1D33'
+    },
+    background: {
+      default: "#F3F3F3",
+      paper: "#F3F3F3"
+    }
   },
   shape: {
     borderRadius:10
+  }
+  textField: {
+    
   }
 });
 
@@ -39,3 +50,5 @@ ReactDOM.render(
     </MuiThemeProvider>,
   document.getElementById('root')
 );
+
+

@@ -8,6 +8,14 @@ import Trips from "../../pages/Trips";
 import Discover from "../../pages/Discover";
 import Expenses from "../../pages/Expenses";
 import DiscoverContainer from "../../components/DiscoverContainer";
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { AppBar, Tabs, Tab, Typography, Zoom, Fab } from '@material-ui/core/AppBar';
+import { AddIcon, EditIcon, UpIcon } from '@material-ui/icons/Add';
+import { green } from '@material-ui/core/colors';
+import Box from '@material-ui/core/Box';
 
 class Dashboard extends Component {
   state = {
@@ -53,3 +61,6 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
+
+
+
