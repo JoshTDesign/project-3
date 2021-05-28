@@ -6,14 +6,15 @@ import API from "./utils/API"
 // import CreateTrip from "./pages/CreateTrip";
 import LoggedInHome from "./pages/LoggedInHome";
 import Dashboard from "./pages/Dashboard";
+import Discover from "./pages/Discover";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Agenda from "./pages/Agenda";
+// import Agenda from "./pages/Agenda";
 import Expenses from "./pages/Expenses";
 import NewTripForm from "./components/NewTripForm";
-import MenuBar from "./components/MenuBar";
+// import MenuBar from "./components/MenuBar";
 import SidebarMenu from "./components/SidebarMenu";
-import DashNavBtn from "./components/DashNavBtn";
+// import DashNavBtn from "./components/DashNavBtn";
 
 
 
@@ -30,9 +31,6 @@ function App() {
 
     }
   })
-
-  // const { id } = useParams();
-  // console.log('id from App: ', id)
 
   useEffect(()=>{
     const token = localStorage.getItem("token")
@@ -88,6 +86,9 @@ function App() {
           {/* TODO: do we want this to be same as dashboard or have a different view? */}
           <Route exact path={`/Trip/:id/Dashboard/Agenda`}>
             <Dashboard />
+          </Route>
+          <Route exact path="/Trip/:id/Dashboard/Discover/">
+            <Discover />
           </Route>
           <Route exact path="/Trip/:id/Dashboard/Expenses/">
             <Expenses />

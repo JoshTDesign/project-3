@@ -26,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TripBasic() {
-  const [state, setState] = useState({
-    trips: [],
-    tripsFiltered: [],
-  });
+  // const [state, setState] = useState({
+  //   trips: [],
+  //   tripsFiltered: [],
+  // });
 
   const history = useHistory();
   const classes = useStyles();

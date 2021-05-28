@@ -9,8 +9,8 @@ class TripHeader extends Component {
   }
 
   render() {
-    const path = this.props.location.pathname.slice(11);
-    console.log('path: ', path);
+    const path = this.props.location.pathname.slice(18);
+    console.log("path: ", path);
     return (
       <div>
         <Container maxWidth="sm">
@@ -18,7 +18,9 @@ class TripHeader extends Component {
             display="flex"
             style={{ justifyContent: "space-between", padding: 10 }}
           >
-            <h1>{path.length > 0 ? <div>{path}</div> : <div>Trip Name</div>}</h1>
+            <h1>
+              {path.length > 0 ? <div>{path}</div> : <div>Trip Name</div>}
+            </h1>
             <Box>
               <p>start date</p>
               <p>end date</p>

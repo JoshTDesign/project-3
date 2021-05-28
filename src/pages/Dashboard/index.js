@@ -12,16 +12,16 @@ import Expenses from "../../pages/Expenses";
 export default function Dashboard() {
   const [state, setState] = useState({
     currentPage: "Dashboard",
-    header: "My Trips",
+    // header: "",
   });
 
   let { id } = useParams();
 
-  const handlePageChange = (page, header) => {
+  const handlePageChange = (event, page) => {
     setState({
       ...state,
       currentPage: page,
-      currentHeader: header,
+      // currentHeader: header,
     });
   };
 
@@ -29,6 +29,7 @@ export default function Dashboard() {
     console.log("state:", state);
 
     if (state.currentPage === "Agenda") {
+      // console.log('state.currentPage: ', state.currentPage);
       return <Agenda />;
     } else if (state.currentPage === "Discover") {
       return <Discover />;
@@ -41,12 +42,21 @@ export default function Dashboard() {
 
   return (
     <div>
-      {/* <SidebarMenu /> */}
-      <TripHeader />
-      {/* <DashNavBtn
-        currentPage={state.currentPage}
-        handlePageChange={handlePageChange}
-      /> */}
+
+      <div>
+        <Container maxWidth="sm">
+          <Box
+            display="flex"
+            style={{ justifyContent: "space-between", padding: 10 }}
+          >
+            <h1>{state.currentPage}</h1>
+            <Box>
+              <p>start date</p>
+              <p>end date</p>
+            </Box>
+          </Box>
+        </Container>
+      </div>
 
       <div>
         <Container maxWidth="sm">
@@ -57,9 +67,8 @@ export default function Dashboard() {
             <Button
               variant="outlined"
               color="primary"
-              onClick={() => handlePageChange("Trips")}
+              onClick={() => handlePageChange("Agenda")}
             >
-              {/* TODO: get id in path */}
               <Link to={`/Trip/${id}/Dashboard/Agenda`}>Agenda</Link>
             </Button>
             <Button
@@ -67,23 +76,24 @@ export default function Dashboard() {
               color="primary"
               onClick={() => handlePageChange("Discover")}
             >
-              <Link to={`/Trip/${id}/Dashboard/Discover/`}>Discover</Link>
+              <Link to={`/Trip/${id}/Dashboard/Discover`}>Discover</Link>
             </Button>
             <Button
               variant="outlined"
               color="primary"
               onClick={() => handlePageChange("Expenses")}
             >
-              <Link to={`/Trip/${id}/Dashboard/Expenses/`}>Expenses</Link>
+              <Link to={`/Trip/${id}/Dashboard/Expenses`}>Expenses</Link>
             </Button>
           </Box>
         </Container>
       </div>
-
+      <div>
       {renderPage()}
-      {state.currentPage === "Agenda" ? <Agenda /> : <div></div>}
-      {state.currentPage === "Discover" ? <Discover /> : <div></div>}
-      {state.currentPage === "Expenses" ? <Expenses /> : <div></div>}
+      </div>
+      {/* {state.currentPage === "Agenda" ? <Agenda /> : <div></div>} */}
+      {/* {state.currentPage === "Discover" ? <Discover /> : <div></div>} */}
+      {/* {state.currentPage === "Expenses" ? <Expenses /> : <div></div>} */}
     </div>
   );
 }
