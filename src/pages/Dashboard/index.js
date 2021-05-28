@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
+import API from '../../utils/API';
+
 import TripHeader from "../../components/TripHeader";
 // import Trips from "../../pages/Trips";
 import Agenda from "../Agenda";
 import Discover from "../../pages/Discover";
 import Expenses from "../../pages/Expenses";
-<<<<<<< HEAD
 import DiscoverContainer from "../../components/DiscoverContainer";
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -17,15 +18,44 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { AppBar, Tabs, Tab, Typography, Zoom, Fab } from '@material-ui/core/AppBar';
 import { AddIcon, EditIcon, UpIcon } from '@material-ui/icons/Add';
 import { green } from '@material-ui/core/colors';
-import Box from '@material-ui/core/Box';
-=======
->>>>>>> develop
 
 export default function Dashboard() {
   const [state, setState] = useState({
     currentPage: "Dashboard",
     // header: "",
   });
+
+  const [userState,setUserState] = useState({
+    token:"",
+    user:{
+
+    }
+  })
+
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+    if(token){
+      API.getProfile(token).then(res=>{
+        console.log(res.data);
+        setUserState({
+          token:token,
+          user:{
+            email:res.data.email,
+            id:res.data.id,
+            username:res.data.username
+          }
+        })
+    }).catch(err=>{
+      console.log("no logged in user")
+      setUserState({
+        token:"",
+        user:{}
+      })
+    })
+  } else {
+    console.log("no token provided")
+  }
+  },[])
 
   let { id } = useParams();
 
@@ -36,6 +66,12 @@ export default function Dashboard() {
       // currentHeader: header,
     });
   };
+
+  console.log(userState.token);
+
+  // API.getAllTrips = () => {
+  //   console.log(res.data);
+  // }
 
   return (
     <div>
@@ -55,12 +91,6 @@ export default function Dashboard() {
         </Container>
       </div>
 
-<<<<<<< HEAD
-export default Dashboard;
-
-
-
-=======
       <div>
         <Container maxWidth="sm">
           <Box
@@ -91,4 +121,3 @@ export default Dashboard;
     </div>
   );
 }
->>>>>>> develop

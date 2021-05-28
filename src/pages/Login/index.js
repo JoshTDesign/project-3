@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useParams } from 'react'
 import { TextField, Box, makeStyles, Button, Container, Typography, TableBody } from '@material-ui/core/';
 import { Link, Route } from "react-router-dom";
 import SplashLogo from '../../components/SplashLogo';
@@ -18,6 +18,8 @@ function Login() {
 
     }
   })
+
+ let id = useParams;
     
   useEffect(()=>{
     const token = localStorage.getItem("token")
@@ -43,6 +45,11 @@ function Login() {
     console.log("no token provided")
   }
   },[])
+
+    console.log(userState.token)
+  //   API.getAllTrips = (useState.token) => {
+  //   console.log(res.data);
+  // }
 
 
   const handleInputChange = event => {
@@ -163,7 +170,7 @@ function Login() {
               color="primary" 
               style={{minWidth: "100%", height:"50px"}}
             >
-              <Link to="/dashboard">
+              <Link to="/home">
                 Login
               </Link>
             </Button>

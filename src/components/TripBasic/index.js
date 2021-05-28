@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TripBasic() {
+export default function TripBasic(props) {
   // const [state, setState] = useState({
   //   trips: [],
   //   tripsFiltered: [],
@@ -53,8 +53,8 @@ export default function TripBasic() {
       <Box p={2}>
         <Card>
           <Typography variant={"h6"} display="inline">
-            Trip Name Here!
-            <Typography align="right">start date</Typography>
+            {props.title}
+            <Typography align="right">{props.start}</Typography>
           </Typography>
 
           <div className={classes.root}>
