@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 // import SidebarMenu from '../../components/SidebarMenu';
 // import DashNavBtn from '../../components/DashNavBtn';
 import TripDetailedContainer from '../../components/TripDetailedContainer';
+import AddButton from "../../components/AddButton";
 
 export default function Agenda() {
   return (

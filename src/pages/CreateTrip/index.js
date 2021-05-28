@@ -13,20 +13,21 @@ class CreateTrip extends Component {
     currentPage: "Dashboard"
   };
 
-  addNewTrip = (event, page) => {
-    console.log("clickkkk");
-    event.preventDefault();
-    this.setState({
-      addNew: true,
-      currentPage: page
-    });
-  };
+  // addNewTrip = (event, page) => {
+  //   console.log("clickkkk");
+  //   event.preventDefault();
+  //   this.setState({
+  //     addNew: true,
+  //     currentPage: page
+  //   });
+  // };
 
-  renderNewTripForm = () => {
-    if (this.state.addNew === true && this.state.currentPage === "Dashboard" || "Trips") {
-      return <NewTripForm />;
-    }
-  };
+  // renderNewTripForm = () => {
+  //   if (this.state.addNew === true && this.state.currentPage === "Dashboard" || "Trips") {
+  //     return <NewTripForm />;
+  //   }
+    
+  // };
 
   render() {
     return (
@@ -39,8 +40,9 @@ class CreateTrip extends Component {
           <AddButton 
           addNew={this.state.addNew}
           currentPage={this.state.currentPage} 
-          addNewTrip={this.addNewTrip}/>
-        {this.renderNewTripForm()}
+          // addNewTrip={this.addNewTrip}/>
+          />
+        {/* {this.renderNewTripForm()} */}
         </Container>
       </div>
     );

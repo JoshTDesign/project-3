@@ -7,26 +7,18 @@ import API from "./utils/API"
 import LoggedInHome from "./pages/LoggedInHome";
 import Dashboard from "./pages/Dashboard";
 import Discover from "./pages/Discover";
+import Agenda from "./pages/Agenda";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-// import Agenda from "./pages/Agenda";
 import Expenses from "./pages/Expenses";
 import NewTripForm from "./components/NewTripForm";
+import NewActivityForm from "./components/NewActivityForm";
+import NewExpenseForm from "./components/NewExpenseForm";
 // import MenuBar from "./components/MenuBar";
 import SidebarMenu from "./components/SidebarMenu";
 // import DashNavBtn from "./components/DashNavBtn";
-import Agenda from "./pages/Agenda";
-
-
-
-
-
-
 
 function App() {
-
-
-
   return (
     <div>
       {/* <SidebarMenu /> */}
@@ -44,6 +36,9 @@ function App() {
           <Route exact path="/home">
             <LoggedInHome />
           </Route>
+          <Route exact path="/newtripform">
+            <NewTripForm />
+          </Route>
           {/* <Route path="/createtrip" component={CreateTrip} /> */}
           <Route exact path="/Trip/:id/Dashboard">
             <Dashboard />
@@ -54,6 +49,9 @@ function App() {
             <Dashboard />
             <Agenda />
           </Route>
+          <Route exact path="/newactivityform">
+            <NewActivityForm />
+          </Route>
           <Route exact path="/Trip/:id/Dashboard/Discover/">
             <Dashboard />
             <Discover />
@@ -62,9 +60,10 @@ function App() {
             <Dashboard />
             <Expenses />
           </Route>
-          <Route exact path="/newtripform">
-            <NewTripForm />
+          <Route exact path="/newexpenseform">
+            <NewExpenseForm />
           </Route>
+       
           </Switch>
         </div>
     </Router>
