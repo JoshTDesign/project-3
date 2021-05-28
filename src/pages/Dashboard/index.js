@@ -25,21 +25,6 @@ export default function Dashboard() {
     });
   };
 
-  const renderPage = () => {
-    console.log("state:", state);
-
-    if (state.currentPage === "Agenda") {
-      // console.log('state.currentPage: ', state.currentPage);
-      return <Agenda />;
-    } else if (state.currentPage === "Discover") {
-      return <Discover />;
-    } else if (state.currentPage === "Expenses") {
-      return <Expenses />;
-    } else {
-      return <Agenda />;
-    }
-  };
-
   return (
     <div>
 
@@ -67,33 +52,24 @@ export default function Dashboard() {
             <Button
               variant="outlined"
               color="primary"
-              onClick={() => handlePageChange("Agenda")}
             >
               <Link to={`/Trip/${id}/Dashboard/Agenda`}>Agenda</Link>
             </Button>
             <Button
               variant="outlined"
               color="primary"
-              onClick={() => handlePageChange("Discover")}
             >
               <Link to={`/Trip/${id}/Dashboard/Discover`}>Discover</Link>
             </Button>
             <Button
               variant="outlined"
               color="primary"
-              onClick={() => handlePageChange("Expenses")}
             >
               <Link to={`/Trip/${id}/Dashboard/Expenses`}>Expenses</Link>
             </Button>
           </Box>
         </Container>
       </div>
-      <div>
-      {renderPage()}
-      </div>
-      {/* {state.currentPage === "Agenda" ? <Agenda /> : <div></div>} */}
-      {/* {state.currentPage === "Discover" ? <Discover /> : <div></div>} */}
-      {/* {state.currentPage === "Expenses" ? <Expenses /> : <div></div>} */}
     </div>
   );
 }

@@ -15,6 +15,7 @@ import NewTripForm from "./components/NewTripForm";
 // import MenuBar from "./components/MenuBar";
 import SidebarMenu from "./components/SidebarMenu";
 // import DashNavBtn from "./components/DashNavBtn";
+import Agenda from "./pages/Agenda";
 
 
 
@@ -82,15 +83,19 @@ function App() {
           {/* <Route path="/createtrip" component={CreateTrip} /> */}
           <Route exact path="/Trip/:id/Dashboard">
             <Dashboard />
+            <Agenda />
           </Route>
           {/* TODO: do we want this to be same as dashboard or have a different view? */}
           <Route exact path={`/Trip/:id/Dashboard/Agenda`}>
             <Dashboard />
+            <Agenda />
           </Route>
           <Route exact path="/Trip/:id/Dashboard/Discover/">
+            <Dashboard />
             <Discover />
           </Route>
           <Route exact path="/Trip/:id/Dashboard/Expenses/">
+            <Dashboard />
             <Expenses />
           </Route>
           <Route exact path="/newtripform">
