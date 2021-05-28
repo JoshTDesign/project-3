@@ -6,9 +6,11 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Card from "@material-ui/core/Card";
 import TripHeader from "../../components/TripHeader";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Expenses() {
+  let { id } = useParams();
+
   return (
     <div>
       <Container maxWidth="sm">
@@ -37,7 +39,7 @@ export default function Expenses() {
                 aria-label="add"
                 // onClick={() => props.addNewTrip("CreateTrip")}
                 component={Link}
-                to="/newexpenseform"
+                to={`/Trip/${id}/Dashboard/newexpenseform`}
               >
                 <AddIcon />
               </Fab>

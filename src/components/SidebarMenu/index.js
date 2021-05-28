@@ -49,6 +49,14 @@ const useStyles = makeStyles({
         onKeyDown={toggleDrawer(anchor, false)}
       >
         <List>
+          {['Home'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
           {['Profile', 'My Trips', 'My Friends', 'Log Out'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemText primary={text} />
@@ -61,7 +69,7 @@ const useStyles = makeStyles({
   
     return (
       <div>
-        {['left'].map((anchor) => (
+        {['menu'].map((anchor) => (
           <React.Fragment key={anchor}>
             <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
             <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)} color="secondary">

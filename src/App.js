@@ -14,7 +14,7 @@ import Expenses from "./pages/Expenses";
 import NewTripForm from "./components/NewTripForm";
 import NewActivityForm from "./components/NewActivityForm";
 import NewExpenseForm from "./components/NewExpenseForm";
-// import MenuBar from "./components/MenuBar";
+import MenuBar from "./components/MenuBar";
 import SidebarMenu from "./components/SidebarMenu";
 // import DashNavBtn from "./components/DashNavBtn";
 
@@ -25,6 +25,7 @@ function App() {
     <Router>
         <div>
           <SidebarMenu />
+          {/* <MenuBar /> */}
           {/* <DashNavBtn /> */}
           <Switch>
           <Route exact path="/">
@@ -49,7 +50,8 @@ function App() {
             <Dashboard />
             <Agenda />
           </Route>
-          <Route exact path="/newactivityform">
+          <Route exact path="/Trip/:id/Dashboard/newactivityform">
+            <Dashboard />
             <NewActivityForm />
           </Route>
           <Route exact path="/Trip/:id/Dashboard/Discover/">
@@ -60,7 +62,8 @@ function App() {
             <Dashboard />
             <Expenses />
           </Route>
-          <Route exact path="/newexpenseform">
+          <Route exact path="/Trip/:id/Dashboard/newexpenseform">
+            <Dashboard />
             <NewExpenseForm />
           </Route>
        

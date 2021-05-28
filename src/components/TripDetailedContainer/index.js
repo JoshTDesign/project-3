@@ -6,10 +6,12 @@ import TripDetailed from "../../components/TripDetailed";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Box from "@material-ui/core/box";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // import AddButton from "../AddButton";
 
 export default function TripDetailedContainer() {
+  const { id } = useParams();
+
   return (
     <div>
       <Container maxWidth="sm">
@@ -27,7 +29,7 @@ export default function TripDetailedContainer() {
                 aria-label="add"
                 // onClick={() => props.addNewTrip("CreateTrip")}
                 component={Link}
-                to="/newactivityform"
+                to={`/Trip/${id}/Dashboard/newactivityform`}
               >
                 <AddIcon />
               </Fab>
