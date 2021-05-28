@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
+import API from '../../utils/API';
 // import TripHeader from "../../components/TripHeader";
 // import Trips from "../../pages/Trips";
 // import Agenda from "../Agenda";
@@ -15,6 +16,38 @@ export default function Dashboard() {
     // header: "",
   });
 
+  const [userState,setUserState] = useState({
+    token:"",
+    user:{
+
+    }
+  })
+
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+    if(token){
+      API.getProfile(token).then(res=>{
+        console.log(res.data);
+        setUserState({
+          token:token,
+          user:{
+            email:res.data.email,
+            id:res.data.id,
+            username:res.data.username
+          }
+        })
+    }).catch(err=>{
+      console.log("no logged in user")
+      setUserState({
+        token:"",
+        user:{}
+      })
+    })
+  } else {
+    console.log("no token provided")
+  }
+  },[])
+
   let { id } = useParams();
 
   // const handlePageChange = (event, page) => {
@@ -24,6 +57,12 @@ export default function Dashboard() {
   //     // currentHeader: header,
   //   });
   // };
+
+  console.log(userState.token);
+
+  // API.getAllTrips = () => {
+  //   console.log(res.data);
+  // }
 
   return (
     <div>
