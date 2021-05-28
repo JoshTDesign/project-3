@@ -26,7 +26,10 @@ function Login() {
   
       // Updating the input's state
       setFormState({
+<<<<<<< HEAD
         ... formState,
+=======
+>>>>>>> develop
         [name]: value
       });
     };
