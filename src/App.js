@@ -67,7 +67,7 @@ function App() {
           </Switch>
         </div>
     </Router>
-    {console.log(API.getLatLon("Seattle"))};
+   
     </div>
   );
 }
