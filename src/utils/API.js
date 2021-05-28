@@ -4,6 +4,11 @@ const API = {
     login:function(userData){
         return axios.post("http://localhost:3001/login",userData)
     },
+
+    createUser:function(userData){
+        return axios.post("http://localhost:3001/signup",userData)
+    },
+
     getProfile: function(token){
         return axios.get("http://localhost:3001/profile",{
             headers:{
