@@ -17,14 +17,13 @@ export default function LoggedInHome() {
   })
 
   const [tripState, setTripState] = useState({
-    userTrips:{}
+    userTrips:[]
   })
-
-  let trips = {}
-  let thisUser= {}
 
   useEffect(()=>{
     const token = localStorage.getItem("token")
+    console.log("hello")
+
     if(token){
       API.getProfile(token).then(res=>{
         console.log(res.data);
@@ -37,24 +36,25 @@ export default function LoggedInHome() {
           }
         })
         //hardcoded the user id - need to change
+        // trips = tripState;
+        // thisUser = userState.user.username;
+        console.log("hello")
+      }).then(
         API.getDashboard(userState.user.id, token).then(res=>{
-          trips = res.data;
-          console.log(trips)
-
           setTripState({
-            userTrips:trips
+            userTrips:res.data
           })
-        });
-        trips = tripState;
-        thisUser = userState.user.username;
-      
-      
-        console.log(tripState.userTrips)
-      }).catch(err=>{
+        })
+
+
+      )
+      .catch(err=>{
         console.log("no logged in user")
         setUserState({
           token:"",
-          user:{}
+          user:{
+
+          }
         })
       })
     } else {
@@ -63,23 +63,19 @@ export default function LoggedInHome() {
   },[])
   
 
+  // const myTrips = tripState.userTrips
 
   return (
     <div>
       <SidebarMenu />
       <Box display="flex" style={{ justifyContent: "center", padding: 10 }}>
-        <h1>{thisUser}'s Trips</h1>
+        <h1>{userState.user.username}'s Trips</h1>
       </Box>
       <Container maxWidth="sm">
         <Paper elevation={3} variant="outlined" style={{ padding: 10 }}>
-          {/* <TripBasic /> */}
-          {/* {tripState.userTrips.map(trip => (
-
-              <TripBasic title={trip.city} start={trip.start_date}/>
-
-          ))} */}
-          {/* {props.children} */}
-          <AddButton style={{ justifyContent: "flex-end" }} />
+          {tripState.userTrips.map((trip) => (<TripBasic title={trip.city} start={trip.start_date}/>))
+          }
+        <AddButton style={{ justifyContent: "flex-end" }} />
         </Paper>
       </Container>
     </div>

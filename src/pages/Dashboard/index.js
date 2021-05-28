@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
+import API from '../../utils/API';
 // import TripHeader from "../../components/TripHeader";
 // import Trips from "../../pages/Trips";
 // import Agenda from "../Agenda";
