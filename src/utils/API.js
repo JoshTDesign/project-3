@@ -1,10 +1,26 @@
 const axios = require("axios")
+const Amadeus = require("amadeus")
+
+const amadeus = new Amadeus({
+    clientId: "ZuGbgEEqzu7GJ7bj3GJ0tvG2GB6MkMCp",
+    clientSecret: 'qoIUm1A9IqMbjpAl'
+});
 
 const API = {
+
+    discoverActivities:function(cityLat, cityLong){
+        amadeus.shopping.activities.get({
+            latitude: cityLat,
+            longitude: cityLong
+        }).then(response => {return response.data})
+
+        // EXAMPLE CALL: API.getLatLon("Seattle").then(response => API.discoverActivities(response.data.coord.lat, response.data.coord.lon));
+
+    },
+
     login:function(userData){
         return axios.post("http://localhost:3001/login",userData)
     },
-
     createUser:function(userData){
         return axios.post("http://localhost:3001/signup",userData)
     },
@@ -93,18 +109,11 @@ const API = {
             }
         });
     },
-    getLatLon: async function(cityName){
-        const cityData = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=ca0a6c1724abbeafa23dfc91590ac700`);
-        const latLon = [cityData.data.coord.lat, cityData.data.coord.lon];
-        Promise.resolve(latLon).then(function(value) {
-            console.log("value1: ", value);
-            return value;
-        }, function(value) {
-            console.log("value2: ", value);
-            return value;
-        });
-    },
-
+    getLatLon: function(cityName){
+        return axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=ca0a6c1724abbeafa23dfc91590ac700`);
+   
+        //  TO USE CALL LAT {API.getLatLon("Seattle").then(response => console.log(response.data.coord.lat))}
+        //  TO USE CALL LON {API.getLatLon("Seattle").then(response => console.log(response.data.coord.lon))}
+},
 }
-
-export default API
+export default API;

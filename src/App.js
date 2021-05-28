@@ -25,8 +25,6 @@ import Agenda from "./pages/Agenda";
 
 function App() {
 
-
-
   return (
     <div>
       {/* <SidebarMenu /> */}
@@ -68,7 +66,7 @@ function App() {
           </Switch>
         </div>
     </Router>
-    {console.log(API.getLatLon("Seattle"))};
+   
     </div>
   );
 }
