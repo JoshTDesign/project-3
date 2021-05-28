@@ -5,10 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 
-
-
-
-export default function NewExpenseForm(props) {
+export default function NewActivityForm(props) {
     return (
         <div>
             <form className="test" noValidate autoComplete="off">
@@ -16,23 +13,15 @@ export default function NewExpenseForm(props) {
                 container direction="column"
                 justify="center"
                 alignItems="center">
-                    <h2>Add new expense</h2>
+                    <h2>Add new activity</h2>
                     <TextField className="expenseName" id="outlined-basic" label="Expense Name" variant="outlined" onClick={props.handleInputChange} />
                     <TextField className="expenseAmount" id="outlined-basic" label="Expense Amount" variant="outlined" onClick={props.handleInputChange} />
                     
                     <Button variant="contained" color="primary" onSubmit={props.handleSubmit}>
                             <Link to="#">
-                                Add cost to your ledger
+                                Add activity
                             </Link>
                     </Button>
-
-                    <Button variant="contained" color="primary" onSubmit={props.handleSubmit}>
-                            <Link to="#">
-                                Split cost among group
-                            </Link>
-                    </Button>
-
-
                 </Grid>
             </form>
         </div>
