@@ -18,7 +18,7 @@ class TripHeader extends Component {
             display="flex"
             style={{ justifyContent: "space-between", padding: 10 }}
           >
-            <h1>{path.length > 0 ? <div>{path}</div> : <div>Trips</div>}</h1>
+            <h1>{path.length > 0 ? <div>{path}</div> : <div>Trip Name</div>}</h1>
             <Box>
               <p>start date</p>
               <p>end date</p>

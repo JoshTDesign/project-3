@@ -34,10 +34,10 @@ export default function TripBasic() {
   const history = useHistory();
   const classes = useStyles();
 
-  const handleClick = (event) => {
+  const handleclick = (event) => {
     event.preventDefault();
     console.log(event.target.id);
-    history.push(`/Trips/${event.target.id}`);
+    history.push(`/Trip/${event.target.id}/Dashboard/`);
   };
 
   // TODO: fitler on click and render detailed trip card
@@ -72,7 +72,7 @@ export default function TripBasic() {
             />
             <Avatar src="/broken-image.jpg" />
           </div>
-          <button onClick={handleClick} id="1">
+          <button onClick={handleclick} id="1">
             show more
           </button>
         </Card>
