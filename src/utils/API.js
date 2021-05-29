@@ -18,6 +18,14 @@ const API = {
 
     },
 
+    getImage: function(imageType){
+        return axios.get(`https://api.unsplash.com/search/photos?page=1&query=${imageType}`, {
+            headers: {
+                Authorization: `Client-ID 34TGxAx6Nt53t9zaY8MJD35t76aAwgLhsAi_zmNS8X0`
+            }
+        });
+    },
+
     login:function(userData){
         return axios.post("http://localhost:3001/login",userData)
     },
