@@ -24,8 +24,8 @@ function App() {
       {/* <SidebarMenu /> */}
     <Router>
         <div>
-          <SidebarMenu />
-          {/* <MenuBar /> */}
+          {/* <SidebarMenu /> */}
+          <MenuBar />
           {/* <DashNavBtn /> */}
           <Switch>
           <Route exact path="/">
@@ -33,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <Signup />
+          </Route>
+          <Route exact path="/login">
+            <Login />
           </Route>
           <Route exact path="/home">
             <LoggedInHome />

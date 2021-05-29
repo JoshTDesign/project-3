@@ -4,11 +4,13 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
 import Button from "@material-ui/core/Button";
 import API from '../../utils/API';
+import MenuBar from "../../components/MenuBar";
 // import TripHeader from "../../components/TripHeader";
 // import Trips from "../../pages/Trips";
 // import Agenda from "../Agenda";
 // import Discover from "../../pages/Discover";
 // import Expenses from "../../pages/Expenses";
+import NavBar from "../../components/Navbar";
 
 export default function Dashboard() {
   const [state, setState] = useState({
@@ -66,8 +68,9 @@ export default function Dashboard() {
 
   return (
     <div>
-
-      <div>
+      {/* <MenuBar /> */}
+      {/* <NavBar /> */}
+      {/* <div>
         <Container maxWidth="sm">
           <Box
             display="flex"
@@ -80,7 +83,7 @@ export default function Dashboard() {
             </Box>
           </Box>
         </Container>
-      </div>
+      </div> */}
 
       <div>
         <Container maxWidth="sm">
