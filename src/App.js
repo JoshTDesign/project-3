@@ -16,6 +16,7 @@ import NewActivityForm from "./components/NewActivityForm";
 import NewExpenseForm from "./components/NewExpenseForm";
 import MenuBar from "./components/MenuBar";
 import SidebarMenu from "./components/SidebarMenu";
+// import Navbar from "./components/Navbar";
 // import DashNavBtn from "./components/DashNavBtn";
 
 function App() {
@@ -25,8 +26,9 @@ function App() {
     <Router>
         <div>
           {/* <SidebarMenu /> */}
-          <MenuBar />
+          {/* <MenuBar /> */}
           {/* <DashNavBtn /> */}
+          <MenuBar />
           <Switch>
           <Route exact path="/">
             <Login />
@@ -48,7 +50,6 @@ function App() {
             <Dashboard />
             <Agenda />
           </Route>
-          {/* TODO: do we want this to be same as dashboard or have a different view? */}
           <Route exact path={`/Trip/:id/Dashboard/Agenda`}>
             <Dashboard />
             <Agenda />
