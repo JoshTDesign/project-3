@@ -8,7 +8,7 @@ import TripHeader from "../../components/TripHeader";
 export default function TripDetailed(props) {
   return (
     <div>
-      <TripHeader />
+      <TripHeader header={props.header}/>
       <Box p={2}>
         <Card handleclick={props.handleclick}>
           <Typography variant={"h6"} display="inline">

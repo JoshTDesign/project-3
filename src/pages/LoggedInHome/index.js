@@ -22,7 +22,6 @@ export default function LoggedInHome() {
 
   useEffect(()=>{
     const token = localStorage.getItem("token")
-    console.log("hello")
 
     if(token){
       API.getProfile(token).then(res=>{
@@ -36,9 +35,7 @@ export default function LoggedInHome() {
           }
         })
         //hardcoded the user id - need to change
-        // trips = tripState;
-        // thisUser = userState.user.username;
-        console.log("hello")
+
       }).then(
         API.getDashboard(userState.user.id, token).then(res=>{
           setTripState({

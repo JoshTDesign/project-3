@@ -14,7 +14,7 @@ export default function TripDetailedContainer() {
     <div>
       <Container maxWidth="sm">
         <Paper elevation={3} variant="outlined" style={{ padding: 10 }}>
-          <TripDetailed />
+          <TripDetailed header="test"/>
 
           <div>
             <Box

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/box";
 import Typography from "@material-ui/core/Typography";
@@ -50,6 +50,7 @@ export default function TripBasic(props) {
 
   return (
     <div>
+      <Link to={props.link}>
       <Box p={2}>
         <Card>
           <Typography variant={"h6"} display="inline">
@@ -77,6 +78,7 @@ export default function TripBasic(props) {
           </button>
         </Card>
       </Box>
+      </Link>
     </div>
   );
   // }

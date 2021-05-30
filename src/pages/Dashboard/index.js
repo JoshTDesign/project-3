@@ -23,8 +23,14 @@ export default function Dashboard() {
     }
   })
 
+  const [tripState, setTripState] = useState({
+  thisTrip:[]
+  }
+)
+
   useEffect(()=>{
     const token = localStorage.getItem("token")
+
     if(token){
       API.getProfile(token).then(res=>{
         console.log(res.data);
@@ -36,7 +42,15 @@ export default function Dashboard() {
             username:res.data.username
           }
         })
-    }).catch(err=>{
+    }).then(
+      //tripId currently hardcoded
+      API.getTripById(1, token).then(res=>{
+        console.log(res.data);
+        setTripState({
+          thisTrip:res.data
+        })
+      })
+    ).catch(err=>{
       console.log("no logged in user")
       setUserState({
         token:"",
