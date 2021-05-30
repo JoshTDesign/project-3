@@ -3,7 +3,8 @@ import React from 'react'
 export default function SplashLogo() {
     return (
         <div>
-            <h1>Travel App Logo!</h1>
+            <h1>Rally</h1>
         </div>
     )
 }
+

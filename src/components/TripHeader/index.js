@@ -13,7 +13,7 @@ class TripHeader extends Component {
     console.log("path: ", path);
     return (
       <div>
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
           <Box
             display="flex"
             style={{ justifyContent: "space-between", padding: 10 }}
@@ -21,10 +21,7 @@ class TripHeader extends Component {
             <h1>
               {path.length > 0 ? <div>{path}</div> : <div>{this.props.header}</div>}
             </h1>
-            <Box>
-              <p>start date</p>
-              <p>end date</p>
-            </Box>
+
           </Box>
         </Container>
       </div>

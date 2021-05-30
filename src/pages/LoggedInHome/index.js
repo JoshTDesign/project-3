@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Container, Link} from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
+import {Container, Link, Card} from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
 import Box from "@material-ui/core/Box";
@@ -69,11 +68,11 @@ export default function LoggedInHome() {
         <h1>{userState.user.username}'s Trips</h1>
       </Box>
       <Container maxWidth="sm">
-        <Paper elevation={3} variant="outlined" style={{ padding: 10 }}>
+        <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
           {tripState.userTrips.map((trip) => (<TripBasic title={trip.city} start={trip.start_date}/>))
           }
         <AddButton style={{ justifyContent: "flex-end" }} />
-        </Paper>
+        </Card>
       </Container>
     </div>
   );
