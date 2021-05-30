@@ -5,25 +5,25 @@ import Box from "@material-ui/core/box";
 // import NewTripForm from "../../components/NewTripForm";
 import { Link } from "react-router-dom";
 
+const btnStyle = {
+  position: 'fixed',
+  bottom: '15px',
+  right: '15px',
+}
 export default function AddButton() {
 
   return (
-    <div>
-          <Box
-        display="flex"
-        style={{ justifyContent: "flex-end", alignItems: "flex-end" }}
-        m={2}
-      >
-        <Fab
-          color="primary"
-          aria-label="add"
-          // onClick={() => props.addNewTrip("CreateTrip")}
-          component={Link}
-          to="/newtripform"
-        >
-          <AddIcon />
-        </Fab>
-      </Box> 
-    </div>
+    <>
+    <Fab
+      style={btnStyle}
+      color="primary"
+      aria-label="add"
+      // onClick={() => props.addNewTrip("CreateTrip")}
+      component={Link}
+      to="/newactivityform"
+    >
+      <AddIcon />
+    </Fab>
+    </>
   );
 }

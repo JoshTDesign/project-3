@@ -5,16 +5,17 @@ import Container from '@material-ui/core/Container';
 // import DashNavBtn from '../../components/DashNavBtn';
 import TripDetailedContainer from '../../components/TripDetailedContainer';
 import AddButton from "../../components/AddButton";
+import NextEvent from "../../components/NextEvent";
+
+const style = {
+  height: '100vh',
+};
 
 export default function Agenda() {
   return (
-    <div>
-      <CssBaseline />
-      {/* <SidebarMenu /> */}
-      <Container maxWidth="sm">
-        <h2>Get excited for your trip!</h2>
+      <Container maxWidth="md" padding="0" style={style}>
         <TripDetailedContainer />
+        <NextEvent event="Event Title Placeholder" time="time"/>
       </Container>
-    </div>
   );
 };

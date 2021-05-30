@@ -4,34 +4,33 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import TripHeader from "../../components/TripHeader";
 
+const containerStyle = {
+  background: 'white',
+  border: 0,
+  color: '#333333',
+  padding: 0,
+  fontFamily: 'Montserrat 500',
+};
+
 
 export default function TripDetailed(props) {
   return (
-    <div>
-      <TripHeader />
+    <div style={containerStyle}>
+      {/* <TripHeader /> */}
       <Box p={2}>
         <Card handleclick={props.handleclick}>
-          <Typography variant={"h6"} display="inline">
-            Trip Name Here...
-          {/* </Typography> */}
-
-          {/* <Typography> */}
-              How do we want to organize and show the details?
-              <ul>
-                 <li>
-                     things here
-                 </li>
-                 <li>
-                     things here
-                 </li>
-                 <li>
-                     things here
-                 </li>
-                 <li>
-                     things here
-                 </li>
-              </ul>
+          <Typography display="inline">
+            <h3>
+            {props.event}
+            </h3>
+            <p>
+            {props.description}
+            </p>
+            <p>
+            {props.start} {props.end}
+            </p>
           </Typography>
+            {props.image}
         
         </Card>
       </Box>

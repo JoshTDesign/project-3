@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { MuiThemeProvider, createMuiTheme, CssBaseLine } from '@material-ui/core';
-import { purple, amber, grey } from '@material-ui/core/colors';
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { blueGrey } from "@material-ui/core/colors";
 
 
 //Custom theme for Material UI
@@ -17,7 +15,7 @@ const theme = createMuiTheme({
     },
     background: {
       default: "#F3F3F3",
-      paper: "#F3F3F3"
+      paper: "#ffffff"
     }
   },
   shape: {
@@ -25,7 +23,15 @@ const theme = createMuiTheme({
   },
   textField: {
     
-  }
+  },
+  typography: {
+    fontFamily: [
+      'Montserrat',
+      'Roboto',
+      'open sans',
+      'sans-serif'
+    ].join(','),
+  },
 });
 
 // Function to change webpage background color
