@@ -5,17 +5,33 @@ import TripHeader from "../../components/TripHeader";
 // import TripDetailed from "../../components/TripDetailed";
 import DiscTodo from "../../components/DiscTodo";
 import DiscFood from "../../components/DiscFood";
+import AddButton from "../../components/AddButton";
+
+const containerStyle = {
+    backgroundColor: "white",
+    height: '100vh',
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 8,
+    border: 0,
+    color: '#333333',
+    padding: 0,
+  };
+  
+
+
+
 
 export default function DiscoverContainer() {
     return (
-        <div>
-            <Container maxWidth="sm">
-                <Paper elevation={3} variant="outlined" style={{ padding: 10 }}>
-                <TripHeader />
-                    <DiscTodo />
-                    <DiscFood />
-                </Paper>
-            </Container>
-        </div>
-    );
+        <Container maxWidth="md" style={containerStyle}>
+                <typography>
+                <h2 style={{margin:0, padding: '15px'}}>Discover Header</h2>
+                </typography>
+                <DiscTodo />
+                <DiscFood />
+                <AddButton />
+        </Container>
+    )
 };

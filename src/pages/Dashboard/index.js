@@ -2,15 +2,33 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
-import Button from "@material-ui/core/Button";
+import { Button, Typography } from "@material-ui/core";
 import API from '../../utils/API';
+import { withStyles } from "@material-ui/core/styles";
 // import TripHeader from "../../components/TripHeader";
 // import Trips from "../../pages/Trips";
 // import Agenda from "../Agenda";
 // import Discover from "../../pages/Discover";
 // import Expenses from "../../pages/Expenses";
 
-export default function Dashboard() {
+const btnStyle = {
+    background: 'white',
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
+    border: 0,
+    color: '#333333',
+    height: 48,
+    padding: '0 30px',
+    fontFamily: 'Montserrat 500',
+    width: '32%',
+};
+const linkStyle = {
+    textDecoration: 'none',
+    color: '#333333',
+};
+
+
+function Dashboard() {
   const [state, setState] = useState({
     currentPage: "Dashboard",
     // header: "",
@@ -50,6 +68,8 @@ export default function Dashboard() {
 
   let { id } = useParams();
 
+
+
   // const handlePageChange = (event, page) => {
   //   setState({
   //     ...state,
@@ -65,50 +85,52 @@ export default function Dashboard() {
   // }
 
   return (
-    <div>
 
-      <div>
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
+
           <Box
             display="flex"
-            style={{ justifyContent: "space-between", padding: 10 }}
+            style={{ justifyContent: "space-between", padding: 0 }}
           >
-            <h1>{state.currentPage}</h1>
+            <Typography>
+              <Link to="/home">
+              <h5>My Trips</h5>
+              </Link>
+            <h2 style={{fontFamily:'Quando'}}>Your trip location placeholder</h2>
+            </Typography>
             <Box>
               <p>start date</p>
               <p>end date</p>
             </Box>
           </Box>
-        </Container>
-      </div>
 
-      <div>
-        <Container maxWidth="sm">
           <Box
             display="flex"
-            style={{ justifyContent: "space-between", padding: 10 }}
+            style={{ justifyContent: "space-between", padding: 0, boxShadow:'none' }}
           >
             <Button
-              variant="outlined"
-              color="primary"
+              style={btnStyle}
+              // variant="outlined"
+              // color="primary"
             >
-              <Link to={`/Trip/${id}/Dashboard/Agenda`}>Agenda</Link>
+              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Agenda`}>Agenda</Link>
             </Button>
             <Button
-              variant="outlined"
-              color="primary"
+              style={btnStyle} 
             >
-              <Link to={`/Trip/${id}/Dashboard/Discover`}>Discover</Link>
+              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Discover`}>Discover</Link>
             </Button>
             <Button
-              variant="outlined"
-              color="primary"
+              style={btnStyle}
             >
-              <Link to={`/Trip/${id}/Dashboard/Expenses`}>Expenses</Link>
+              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Expenses`}>Expenses</Link>
             </Button>
           </Box>
         </Container>
-      </div>
-    </div>
+
   );
+
+
 }
+
+export default Dashboard;
