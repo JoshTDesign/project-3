@@ -171,7 +171,7 @@ function Login() {
               color="primary" 
               style={{minWidth: "100%", height:"50px"}}
             >
-              <Link to="#">
+              <Link to="/home">
                 Login
               </Link>
             </Button>
