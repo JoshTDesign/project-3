@@ -8,7 +8,6 @@
 //   const {id} = useParams()
 //   console.log('id: ',id);
 
-<<<<<<< HEAD
   return (
     <div>
       <Container maxWidth="sm">
@@ -29,7 +28,7 @@
       </Container>
     </div>
   );
-}
+
 
 
 // import React from 'react';
@@ -185,28 +184,6 @@
 //           </Fab>
 //         </Zoom>
 //       ))}
-=======
-
-//   return (
-//     <div>
-//       <Container maxWidth="sm">
-//         <Box
-//           display="flex"
-//           style={{ justifyContent: "space-between", padding: 10 }}
-//         >
-//           <Button variant="outlined" color="primary" onClick={() => props.handlePageChange("Trips")}>
-//             {/* TODO: get id in path */}
-//             <Link to={`/Trip/:id/Dashboard/Agenda`}>Agenda</Link>
-//           </Button>
-//           <Button variant="outlined" color="primary" onClick={() => props.handlePageChange("Discover")}>
-//             <Link to={`/Trip/:id/Dashboard/Discover/`}>Discover</Link>
-//           </Button>
-//           <Button variant="outlined" color="primary" onClick={() => props.handlePageChange("Expenses")}>
-//             <Link to={`/Trip/:id/Dashboard/Expenses/`}>Expenses</Link>
-//           </Button>
-//         </Box>
-//       </Container>
->>>>>>> develop
 //     </div>
 //   );
 // }

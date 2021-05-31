@@ -14,8 +14,9 @@ export default function NewActivityForm(props) {
                 justify="center"
                 alignItems="center">
                     <h2>Add new activity</h2>
-                    <TextField className="expenseName" id="outlined-basic" label="Expense Name" variant="outlined" onClick={props.handleInputChange} />
-                    <TextField className="expenseAmount" id="outlined-basic" label="Expense Amount" variant="outlined" onClick={props.handleInputChange} />
+                    <TextField className="actName" id="outlined-basic" label="Activity Name" variant="outlined" onClick={props.handleInputChange} />
+                    <TextField className="actCategory" id="outlined-basic" label="Category" variant="outlined" onClick={props.handleInputChange} />
+                    <TextField className="actUrl" id="outlined-basic" label="URL (optional)" variant="outlined" onClick={props.handleInputChange} />
                     
                     <Button variant="contained" color="primary" onSubmit={props.handleSubmit}>
                             <Link to="#">
