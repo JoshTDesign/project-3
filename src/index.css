@@ -1,4 +1,11 @@
+html {
+  height: 100vh;
+}
+
 body {
+  background: linear-gradient(to right bottom, #edf4fc, #d0ddf1);
+  height: 100vh;
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

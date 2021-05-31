@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/box";
 import Typography from "@material-ui/core/Typography";
@@ -25,6 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const style = {
+  backgroundColor: '#f3f5f9',
+  boxShadow: 'none',
+  borderRadius: '15px',
+  textDecoration: 'none',
+  padding: 15,
+}
+
 export default function TripBasic(props) {
   // const [state, setState] = useState({
   //   trips: [],
@@ -40,6 +48,8 @@ export default function TripBasic(props) {
     history.push(`/Trip/${event.target.id}/Dashboard/`);
   };
 
+  
+
   // TODO: fitler on click and render detailed trip card
   //
 
@@ -51,31 +61,40 @@ export default function TripBasic(props) {
   return (
     <div>
       <Box p={2}>
-        <Card>
-          <Typography variant={"h6"} display="inline">
-            {props.title}
-            <Typography align="right">{props.start}</Typography>
-          </Typography>
-
-          <div className={classes.root}>
-            <Avatar
-              alt="Remy Sharp"
-              src="/broken-image.jpg"
-              className={classes.orange}
-            >
-              J
-            </Avatar>
-            <Avatar
-              alt="Remy Sharp"
-              src="/broken-image.jpg"
-              className={classes.orange}
-            />
-            <Avatar src="/broken-image.jpg" />
-          </div>
-          <button onClick={handleclick} id="1">
-            show more
-          </button>
+      <Link to={props.link} style={{textDecoration: 'none'}}>
+        <Card style={style}>
+          <grid container spacing={2} direction="row">
+            <grid item>
+              <Typography variant={"h6"} display="inline">
+                {props.title}
+              </Typography>
+            </grid>
+            <grid item>
+              <Typography align="right">{props.start}</Typography>
+            </grid>
+            <grid item>
+              <div className={classes.root}>
+                <Avatar
+                  alt="Remy Sharp"
+                  src="/broken-image.jpg"
+                  className={classes.orange}
+                >
+                J
+                </Avatar>
+                <Avatar
+                  alt="Remy Sharp"
+                  src="/broken-image.jpg"
+                  className={classes.orange}
+                />
+                <Avatar src="/broken-image.jpg" />
+              </div>
+                {/* <button onClick={handleclick} id="1">
+                  show more
+                </button> */}
+            </grid>
+          </grid>
         </Card>
+      </Link>
       </Box>
     </div>
   );

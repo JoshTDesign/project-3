@@ -6,7 +6,6 @@ import { Button, Typography } from "@material-ui/core";
 import API from '../../utils/API';
 
 import MenuBar from "../../components/MenuBar";
-=======
 import { withStyles } from "@material-ui/core/styles";
 // import TripHeader from "../../components/TripHeader";
 // import Trips from "../../pages/Trips";
@@ -45,8 +44,14 @@ function Dashboard() {
     }
   })
 
+  const [tripState, setTripState] = useState({
+  trip:[]
+  }
+)
+
   useEffect(()=>{
     const token = localStorage.getItem("token")
+
     if(token){
       API.getProfile(token).then(res=>{
         console.log(res.data);
@@ -58,7 +63,16 @@ function Dashboard() {
             username:res.data.username
           }
         })
-    }).catch(err=>{
+    }).then(
+      //tripId currently hardcoded
+      API.getTripById(2, token).then(res=>{
+        console.log(res.data);
+        setTripState({
+          trip:res.data
+        })
+        console.log(res.data.city);
+      })
+    ).catch(err=>{
       console.log("no logged in user")
       setUserState({
         token:"",
@@ -71,7 +85,7 @@ function Dashboard() {
   },[])
 
   let { id } = useParams();
-
+  console.log(useParams());
 
 
   // const handlePageChange = (event, page) => {
@@ -89,7 +103,7 @@ function Dashboard() {
   // }
 
   return (
-
+      <Container maxWidth="md">
           <Box
             display="flex"
             style={{ justifyContent: "space-between", padding: 0 }}
@@ -98,11 +112,11 @@ function Dashboard() {
               <Link to="/home">
               <h5>My Trips</h5>
               </Link>
-            <h2 style={{fontFamily:'Quando'}}>Your trip location placeholder</h2>
+            <h2 style={{fontFamily:'Quando'}}>Trip to {tripState.trip.city}</h2>
             </Typography>
             <Box>
-              <p>start date</p>
-              <p>end date</p>
+              <p>{tripState.trip.start_date}</p>
+              <p>{tripState.trip.end_date}</p>
             </Box>
           </Box>
 
@@ -128,7 +142,7 @@ function Dashboard() {
               <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Expenses`}>Expenses</Link>
             </Button>
           </Box>
-        </Container>
+      </Container>
 
   );
 

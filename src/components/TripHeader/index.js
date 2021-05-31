@@ -19,7 +19,7 @@ class TripHeader extends Component {
             style={{ justifyContent: "space-between", padding: 10 }}
           >
             <h1>
-              {path.length > 0 ? <div>{path}</div> : <div>Trip Name</div>}
+              {path.length > 0 ? <div>{path}</div> : <div>{this.props.header}</div>}
             </h1>
 
           </Box>

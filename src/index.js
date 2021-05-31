@@ -14,12 +14,12 @@ const theme = createMuiTheme({
       dark: '#0C1D33'
     },
     background: {
-      default: "#F3F3F3",
-      paper: "#ffffff"
+      default: "#f3f5f9",
+      paper: "white"
     }
   },
   shape: {
-    borderRadius:10
+    borderRadius:20
   },
   textField: {
     
