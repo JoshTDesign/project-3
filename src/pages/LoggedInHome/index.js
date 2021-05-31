@@ -5,7 +5,7 @@ import TripBasic from "../../components/TripBasic";
 import Box from "@material-ui/core/Box";
 import SidebarMenu from "../../components/SidebarMenu";
 import API from '../../utils/API'
-// import MenuBar from "../../components/MenuBar";
+import MenuBar from "../../components/MenuBar";
 
 export default function LoggedInHome() {
 
@@ -68,7 +68,7 @@ export default function LoggedInHome() {
   return (
     <div>
       {/* <SidebarMenu /> */}
-      {/* <MenuBar /> */}
+      <MenuBar />
       <Box display="flex" style={{ justifyContent: "center", padding: 10 }}>
         <h1>{userState.user.username}'s Trips</h1>
       </Box>

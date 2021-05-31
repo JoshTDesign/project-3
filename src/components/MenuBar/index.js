@@ -163,7 +163,6 @@ import SidebarMenu from "../../components/SidebarMenu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import { Link, useParams } from "react-router-dom";
-// import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 const drawerWidth = 250;
 
@@ -197,27 +196,31 @@ export default function MenuBar() {
   const [drawerState, setDrawerState] = useState({
     drawerIsOpen: false,
   });
+  console.log('MenuBar drawer open state:',drawerState)
 
   const classes = useStyles();
 
-  const handleToggle = () => {
+  const handleToggle = (e) => {
+    e.preventDefault();
     setDrawerState({
-      ...drawerState,
+      // ...drawerState,
       drawerIsOpen: !drawerState.drawerIsOpen,
     });
+    console.log('MenuBar open state:', drawerState)
   };
 
+  
 let { id } = useParams();
 
   return (
-    <div className={classes.root}>
-      <AppBar psotion={"static"} className={classes.appBar}
+    <div className={classes.root} >
+      <AppBar className={classes.appBar}
       >
         <Toolbar>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton> */}
-
+          
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -229,14 +232,17 @@ let { id } = useParams();
           </IconButton>
 
           <Typography variant="h6" className={classes.title}>
-            Title here?
+           {/* Text here if we want */}
           </Typography>
           <Avatar alt="placeholder" src="http://placekitten.com/200/300" />
+          
         </Toolbar>
       </AppBar>
       <div className={classes.toolbarMargin}/>
+      
       <Drawer
       open={drawerState.drawerIsOpen}
+      onClose={handleToggle}
       width={200}
       classes={{paper: classes.drawerPaper}}
       // variant="persistent"
@@ -246,6 +252,7 @@ let { id } = useParams();
           [classes.toolbarMargin]: variant === 'persistent'
         })} */}
       {/* /> */}
+        
         <MenuItem component={Link} to={`/home`}>Home</MenuItem>
         <Divider />
         <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem>
