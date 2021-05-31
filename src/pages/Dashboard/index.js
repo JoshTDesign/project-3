@@ -4,12 +4,15 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
 import { Button, Typography } from "@material-ui/core";
 import API from '../../utils/API';
+
+import MenuBar from "../../components/MenuBar";
 import { withStyles } from "@material-ui/core/styles";
 // import TripHeader from "../../components/TripHeader";
 // import Trips from "../../pages/Trips";
 // import Agenda from "../Agenda";
 // import Discover from "../../pages/Discover";
 // import Expenses from "../../pages/Expenses";
+import NavBar from "../../components/Navbar";
 
 const btnStyle = {
     background: 'white',
@@ -99,9 +102,7 @@ function Dashboard() {
   // }
 
   return (
-
-        <Container maxWidth="md">
-
+      <Container>
           <Box
             display="flex"
             style={{ justifyContent: "space-between", padding: 0 }}
@@ -140,7 +141,7 @@ function Dashboard() {
               <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Expenses`}>Expenses</Link>
             </Button>
           </Box>
-        </Container>
+      </Container>
 
   );
 
