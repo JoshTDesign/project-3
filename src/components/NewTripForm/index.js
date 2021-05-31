@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import NavBar from "../../components/Navbar";
 
 
 
@@ -12,6 +13,7 @@ import Button from "@material-ui/core/Button";
 export default function NewTripForm(props) {
     return (
         <div>
+            <NavBar />
             <form className="test" noValidate autoComplete="off">
                 <Grid 
                 container direction="column"
