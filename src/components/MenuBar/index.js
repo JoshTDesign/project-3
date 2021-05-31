@@ -81,7 +81,7 @@ let { id } = useParams();
           <Typography variant="h6" className={classes.title}>
            {/* Text here if we want */}
           </Typography>
-          <Avatar component={Link} to={"/profile"} alt="placeholder" src="http://placekitten.com/200/300" />
+          <Avatar component={Link} to={`/profile/${id}`} alt="placeholder" src="http://placekitten.com/200/300" />
           
         </Toolbar>
       </AppBar>
@@ -103,7 +103,7 @@ let { id } = useParams();
         <MenuItem component={Link} to={`/home`}>Home</MenuItem>
         <Divider />
         <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem>
-        <MenuItem>Profile</MenuItem>
+        <MenuItem component={Link} to={`/profile/${id}`}>Profile</MenuItem>
         <MenuItem>My Friends</MenuItem>
         <MenuItem component={Link} to={`/login`}>Log Out</MenuItem>
       </Drawer>

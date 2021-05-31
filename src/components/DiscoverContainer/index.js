@@ -31,7 +31,7 @@ export default function DiscoverContainer() {
                 </typography>
                 <DiscTodo />
                 <DiscFood />
-                <AddButton />
+                {/* <AddButton /> */}
         </Container>
     )
 };
