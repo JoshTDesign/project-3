@@ -6,7 +6,10 @@ import { Button, Typography } from "@material-ui/core";
 import API from "../../utils/API";
 
 import MenuBar from "../../components/MenuBar";
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 import { withStyles } from "@material-ui/core/styles";
 // import TripHeader from "../../components/TripHeader";
 // import Trips from "../../pages/Trips";
@@ -42,6 +45,7 @@ function Dashboard() {
     user: {},
   });
 
+<<<<<<< HEAD
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -70,6 +74,51 @@ function Dashboard() {
   }, []);
 
   let { id } = useParams();
+=======
+  const [tripState, setTripState] = useState({
+  trip:[]
+  }
+)
+
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+
+    if(token){
+      API.getProfile(token).then(res=>{
+        console.log(res.data);
+        setUserState({
+          token:token,
+          user:{
+            email:res.data.email,
+            id:res.data.id,
+            username:res.data.username
+          }
+        })
+    }).then(
+      //tripId currently hardcoded
+      API.getTripById(2, token).then(res=>{
+        console.log(res.data);
+        setTripState({
+          trip:res.data
+        })
+        console.log(res.data.city);
+      })
+    ).catch(err=>{
+      console.log("no logged in user")
+      setUserState({
+        token:"",
+        user:{}
+      })
+    })
+  } else {
+    console.log("no token provided")
+  }
+  },[])
+
+  let { id } = useParams();
+  console.log(useParams());
+
+>>>>>>> develop
 
   // const handlePageChange = (event, page) => {
   //   setState({
@@ -86,6 +135,7 @@ function Dashboard() {
   // }
 
   return (
+<<<<<<< HEAD
     <Container>
       <MenuBar />
       <Box
@@ -135,6 +185,49 @@ function Dashboard() {
         </Button>
       </Box>
     </Container>
+=======
+      <Container maxWidth="md">
+          <Box
+            display="flex"
+            style={{ justifyContent: "space-between", padding: 0 }}
+          >
+            <Typography>
+              <Link to="/home">
+              <h5>My Trips</h5>
+              </Link>
+            <h2 style={{fontFamily:'Quando'}}>Trip to {tripState.trip.city}</h2>
+            </Typography>
+            <Box>
+              <p>{tripState.trip.start_date}</p>
+              <p>{tripState.trip.end_date}</p>
+            </Box>
+          </Box>
+
+          <Box
+            display="flex"
+            style={{ justifyContent: "space-between", padding: 0, boxShadow:'none' }}
+          >
+            <Button
+              style={btnStyle}
+              // variant="outlined"
+              // color="primary"
+            >
+              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Agenda`}>Agenda</Link>
+            </Button>
+            <Button
+              style={btnStyle} 
+            >
+              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Discover`}>Discover</Link>
+            </Button>
+            <Button
+              style={btnStyle}
+            >
+              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Expenses`}>Expenses</Link>
+            </Button>
+          </Box>
+      </Container>
+
+>>>>>>> develop
   );
 }
 

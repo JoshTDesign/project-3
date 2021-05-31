@@ -23,7 +23,6 @@ export default function LoggedInHome() {
 
   useEffect(()=>{
     const token = localStorage.getItem("token")
-    console.log("hello")
 
     if(token){
       API.getProfile(token).then(res=>{
@@ -37,9 +36,7 @@ export default function LoggedInHome() {
           }
         })
         //hardcoded the user id - need to change
-        // trips = tripState;
-        // thisUser = userState.user.username;
-        console.log("hello")
+
       }).then(
         API.getDashboard(userState.user.id, token).then(res=>{
           setTripState({
@@ -73,9 +70,9 @@ export default function LoggedInHome() {
       <Box display="flex" style={{ justifyContent: "center", padding: 10 }}>
         <h1>{userState.user.username}'s Trips</h1>
       </Box>
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
-          {tripState.userTrips.map((trip) => (<TripBasic title={trip.city} start={trip.start_date}/>))
+          {tripState.userTrips.map((trip) => (<TripBasic link={`/trip/`+trip.id+`/dashboard`} title={trip.city} start={trip.start_date}/>))
           }
         <AddButton style={{ justifyContent: "flex-end" }} />
         </Card>
@@ -83,3 +80,4 @@ export default function LoggedInHome() {
     </div>
   );
 }
+

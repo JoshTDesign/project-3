@@ -59,9 +59,15 @@ export default function MenuBar() {
   
 let { id } = useParams();
 
+const menuStyle = {
+  backgroundColor: "rgba(255, 255, 255, 0.6)",
+  boxShadow: 'none',
+}
+
   return (
-    <div className={classes.root} >
-      <AppBar className={classes.appBar}
+
+    <div className={classes.root}>
+      <AppBar position={"fixed"} style={menuStyle} className={classes.appBar}
       >
         <Toolbar>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -79,7 +85,9 @@ let { id } = useParams();
           </IconButton>
 
           <Typography variant="h6" className={classes.title}>
+
            {/* Text here if we want */}
+
           </Typography>
           <Avatar component={Link} to={`/profile/${id}`} alt="placeholder" src="http://placekitten.com/200/300" />
           
