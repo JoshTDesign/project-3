@@ -170,6 +170,7 @@ function Login() {
               variant="contained" 
               color="primary" 
               style={{minWidth: "100%", height:"50px"}}
+              onSubmit={handleFormSubmit}
             >
               <Link to="/home">
                 Login

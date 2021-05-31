@@ -100,7 +100,8 @@ function Dashboard() {
   // }
 
   return (
-
+    <div>
+      <MenuBar />
       <Container maxWidth="md">
           <Box
             display="flex"
@@ -141,7 +142,7 @@ function Dashboard() {
             </Button>
           </Box>
       </Container>
-
+      </div>
   );
 }
 
