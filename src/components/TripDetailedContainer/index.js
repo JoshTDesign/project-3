@@ -6,7 +6,7 @@ import TripDetailed from "../../components/TripDetailed";
 import TripBasic from "../../components/TripDetailed";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import { Card } from "@material-ui/core";
+import { Card, Box } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 import API from '../../utils/API';
 
@@ -20,10 +20,17 @@ const containerStyle = {
   borderTopLeftRadius: 0,
   borderBottomRightRadius: 8,
   borderBottomLeftRadius: 8,
-  border: '5px',
+  borderRadius: 0,
   color: '#333333',
-  padding: 0,
+  padding: 15,
 };
+
+const style = {
+  backgroundColor: 'white',
+  boxShadow: 'none',
+  borderRadius: '15px',
+  textDecoration: 'none',
+}
 
 const btnStyle = {
   position: 'fixed',
@@ -88,14 +95,17 @@ useEffect(()=>{
 
 
   return (
-      <Container maxWidth="md" style={containerStyle}>
-      {/* //    <typography>
-      //      <h2 style={{margin:0, padding: '15px'}}>{props.city}</h2>
-      //    </typography> */}
-        <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
-          {tripState.trip.map((trip) => (<TripDetailed event={trip.activityName} description={trip.description}/>))}
-        </Card>
-      </Container>
+    <div>
+      <Box p={2} style={{textDecoration: 'none', padding: 0 }}>
+        <Link to={props.link} style={{textDecoration: 'none', borderRadius:'none' }}>
+          <Container maxWidth="md" style={containerStyle}>
+            <Card elevation={3} style={style}>
+              {tripState.trip.map((trip) => (<TripDetailed event={trip.activityName} description={trip.description}/>))}
+            </Card>
+          </Container>
+        </Link>
+      </Box>
+    </div>
   );
 }
 
