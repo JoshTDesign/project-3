@@ -6,7 +6,7 @@ import AddButton from "../../components/AddButton";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Box from "@material-ui/core/box";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // import AddButton from "../AddButton";
 
 
@@ -28,9 +28,15 @@ const btnStyle = {
   right: '15px',
 }
 
+<<<<<<< HEAD
 
 
 export default function TripDetailedContainer(props) {
+=======
+export default function TripDetailedContainer() {
+  const { id } = useParams();
+
+>>>>>>> develop
   return (
       <Container maxWidth="md" style={containerStyle}>
           <typography>
@@ -40,7 +46,7 @@ export default function TripDetailedContainer(props) {
           <TripDetailed event="test title" description="test description" />
           <TripDetailed event="test title" description="test description" />
           <div>
-            <AddButton />
+
           </div>
       </Container>
   );
