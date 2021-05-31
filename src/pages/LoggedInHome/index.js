@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 import SidebarMenu from "../../components/SidebarMenu";
 import API from '../../utils/API'
 import MenuBar from "../../components/MenuBar";
+import NewTripForm from '../../components/NewTripForm';
 
 export default function LoggedInHome() {
 

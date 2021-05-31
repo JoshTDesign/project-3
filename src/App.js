@@ -10,6 +10,7 @@ import Discover from "./pages/Discover";
 import Agenda from "./pages/Agenda";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
 import Expenses from "./pages/Expenses";
 import NewTripForm from "./components/NewTripForm";
 import NewActivityForm from "./components/NewActivityForm";
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
             </Route>
             <Route exact path="/home">
               <LoggedInHome />
