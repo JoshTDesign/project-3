@@ -160,6 +160,7 @@ function Login() {
               variant="outlined" 
               value={formState.password}
               name="password"
+              type="password"
               onChange={handleInputChange}
               placeholder="Password"
             />
