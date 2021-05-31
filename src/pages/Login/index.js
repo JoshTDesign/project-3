@@ -46,7 +46,7 @@ function Login() {
   }
   },[])
 
-    console.log(userState.token)
+  console.log(userState.token)
   //   API.getAllTrips = (useState.token) => {
   //   console.log(res.data);
   // }
@@ -68,7 +68,7 @@ function Login() {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     API.login(formState).then(res=>{
-      console.log(res.data);
+      console.log('submitted');
       localStorage.setItem("token", res.data.token);
       setUserState({
         ...userState,
@@ -85,8 +85,8 @@ function Login() {
     })
     // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
     setFormState({
-      firstName: "",
-      lastName: ""
+      username: "",
+      password: ""
     }, [])
   }
 
