@@ -5,6 +5,7 @@ import TripHeader from "../../components/TripHeader";
 // import TripDetailed from "../../components/TripDetailed";
 import DiscTodo from "../../components/DiscTodo";
 import DiscFood from "../../components/DiscFood";
+import DiscoverMap from "../../components/DiscoverMap";
 import AddButton from "../../components/AddButton";
 
 const containerStyle = {
@@ -16,7 +17,7 @@ const containerStyle = {
     borderBottomLeftRadius: 8,
     border: 0,
     color: '#333333',
-    padding: 0,
+    padding: 15,
   };
   
 
@@ -26,12 +27,10 @@ const containerStyle = {
 export default function DiscoverContainer() {
     return (
         <Container maxWidth="md" style={containerStyle}>
-                <typography>
-                <h2 style={{margin:0, padding: '15px'}}>Discover Header</h2>
-                </typography>
-                <DiscTodo />
-                <DiscFood />
-                {/* <AddButton /> */}
+            <DiscoverMap/>
+            <DiscTodo />
+            <DiscFood />
+            {/* <AddButton /> */}
         </Container>
     )
 };

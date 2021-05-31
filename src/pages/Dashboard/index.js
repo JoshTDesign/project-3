@@ -31,6 +31,11 @@ const btnStyle = {
   textDecoration: "none",
   color: "#333333",
 };
+
+const selectedBtn = {
+  background: "pink",
+}
+
 const linkStyle = {
   textDecoration: "none",
   color: "#333333",
@@ -132,14 +137,14 @@ function Dashboard() {
             display="flex"
             style={{ justifyContent: "space-between", padding: 0, boxShadow:'none' }}
           >
-            <Link style={btnStyle} to={`/Trip/${id}/Dashboard/Agenda`}>
+            <Link style={btnStyle} className="active" to={`/Trip/${id}/Dashboard/Agenda`}>
             <Button style={btnStyle}>Agenda</Button>
             </Link>
             <Link style={btnStyle} to={`/Trip/${id}/Dashboard/Discover`}>
-            <Button style={btnStyle}>Discover</Button>
+            <Button style={btnStyle} className="inactive">Discover</Button>
             </Link>
             <Link style={btnStyle} to={`/Trip/${id}/Dashboard/Expenses`}>
-            <Button style={btnStyle}>Expenses</Button>
+            <Button style={btnStyle} className="inactive">Expenses</Button>
             </Link>
           </Box>
       </Container>
