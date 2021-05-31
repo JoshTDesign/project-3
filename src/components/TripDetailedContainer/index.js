@@ -28,11 +28,13 @@ const btnStyle = {
   right: '15px',
 }
 
-export default function TripDetailedContainer() {
+
+
+export default function TripDetailedContainer(props) {
   return (
       <Container maxWidth="md" style={containerStyle}>
           <typography>
-            <h2 style={{margin:0, padding: '15px'}}>Agenda Header</h2>
+            <h2 style={{margin:0, padding: '15px'}}>{props.city}</h2>
           </typography>
           <TripDetailed event="test title" description="test description" />
           <TripDetailed event="test title" description="test description" />

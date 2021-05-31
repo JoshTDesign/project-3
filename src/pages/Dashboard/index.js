@@ -42,7 +42,7 @@ function Dashboard() {
   })
 
   const [tripState, setTripState] = useState({
-  thisTrip:[]
+  trip:[]
   }
 )
 
@@ -62,11 +62,12 @@ function Dashboard() {
         })
     }).then(
       //tripId currently hardcoded
-      API.getTripById(1, token).then(res=>{
+      API.getTripById(2, token).then(res=>{
         console.log(res.data);
         setTripState({
-          thisTrip:res.data
+          trip:res.data
         })
+        console.log(res.data.city);
       })
     ).catch(err=>{
       console.log("no logged in user")
@@ -81,7 +82,7 @@ function Dashboard() {
   },[])
 
   let { id } = useParams();
-
+  console.log(useParams());
 
 
   // const handlePageChange = (event, page) => {
@@ -110,11 +111,11 @@ function Dashboard() {
               <Link to="/home">
               <h5>My Trips</h5>
               </Link>
-            <h2 style={{fontFamily:'Quando'}}>Your trip location placeholder</h2>
+            <h2 style={{fontFamily:'Quando'}}>Trip to {tripState.trip.city}</h2>
             </Typography>
             <Box>
-              <p>start date</p>
-              <p>end date</p>
+              <p>{tripState.trip.start_date}</p>
+              <p>{tripState.trip.end_date}</p>
             </Box>
           </Box>
 

@@ -67,7 +67,7 @@ export default function LoggedInHome() {
       <Box display="flex" style={{ justifyContent: "center", padding: 10 }}>
         <h1>{userState.user.username}'s Trips</h1>
       </Box>
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
           {tripState.userTrips.map((trip) => (<TripBasic title={trip.city} start={trip.start_date}/>))
           }
