@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Container, Link, Card} from "@material-ui/core";
+import {Container, Card} from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
 import Box from "@material-ui/core/Box";
