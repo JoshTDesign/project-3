@@ -171,10 +171,10 @@ function Login() {
               color="primary" 
               style={{minWidth: "100%", height:"50px"}}
               onSubmit={handleFormSubmit}
+              component={Link}
+              to="/home"
             >
-              <Link to="/home">
-                Login
-              </Link>
+              Login
             </Button>
             <Typography align="center">
             <p>or</p>
