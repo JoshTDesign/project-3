@@ -8,14 +8,34 @@ import Card from "@material-ui/core/Card";
 import TripHeader from "../../components/TripHeader";
 import { Link, useParams } from "react-router-dom";
 
+const containerStyle = {
+  backgroundColor: "white",
+  height: '100vh',
+  borderTopRightRadius: 0,
+  borderTopLeftRadius: 0,
+  borderBottomRightRadius: 8,
+  borderBottomLeftRadius: 8,
+  border: 0,
+  color: '#333333',
+  padding: 0,
+};
+
+const btnStyle = {
+  position: 'fixed',
+  bottom: '15px',
+  right: '15px',
+}
+
 export default function Expenses() {
   let { id } = useParams();
 
   return (
-    <div>
-      <Container maxWidth="sm">
-        <Paper elevation={3} variant="outlined" style={{ padding: 10 }}>
-          <TripHeader />
+    <div style={{paddingLeft:15, paddingRight:15}}>
+      <Container maxWidth="md" style={containerStyle}>
+        <typography>
+          <h2 style={{margin:0, padding: '15px'}}> Explore Header</h2>
+        </typography>
+          {/* <TripHeader /> */}
           <Box p={2}>
             <Card>
               <h3>Expenses content goes here</h3>
@@ -46,8 +66,7 @@ export default function Expenses() {
             </Box>
           </div>
           
-        </Paper>
       </Container>
-    </div>
+      </div>
   );
 }
