@@ -18,12 +18,18 @@ const btnStyle = {
   background: "white",
   borderBottomRightRadius: 0,
   borderBottomLeftRadius: 0,
+  borderTopRightRadius: 20,
+  borderTopLeftRadius: 20,
+  textAlign: 'center',
   border: 0,
   color: "#333333",
   height: 48,
   padding: "0 30px",
-  fontFamily: "Montserrat 500",
+  fontFamily: "Montserrat",
+  fontWeight: "bold",
   width: "32%",
+  textDecoration: "none",
+  color: "#333333",
 };
 const linkStyle = {
   textDecoration: "none",
@@ -46,6 +52,8 @@ function Dashboard() {
   }
 )
 
+
+
   useEffect(()=>{
     const token = localStorage.getItem("token")
 
@@ -62,7 +70,7 @@ function Dashboard() {
         })
     }).then(
       //tripId currently hardcoded
-      API.getTripById(2, token).then(res=>{
+      API.getTripById(id, token).then(res=>{
         console.log(res.data);
         setTripState({
           trip:res.data
@@ -100,8 +108,10 @@ function Dashboard() {
   // }
 
   return (
-
+      
       <Container maxWidth="md">
+              <MenuBar />
+
           <Box
             display="flex"
             style={{ justifyContent: "space-between", padding: 0 }}
@@ -122,23 +132,15 @@ function Dashboard() {
             display="flex"
             style={{ justifyContent: "space-between", padding: 0, boxShadow:'none' }}
           >
-            <Button
-              style={btnStyle}
-              // variant="outlined"
-              // color="primary"
-            >
-              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Agenda`}>Agenda</Link>
-            </Button>
-            <Button
-              style={btnStyle} 
-            >
-              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Discover`}>Discover</Link>
-            </Button>
-            <Button
-              style={btnStyle}
-            >
-              <Link style={linkStyle} to={`/Trip/${id}/Dashboard/Expenses`}>Expenses</Link>
-            </Button>
+            <Link style={btnStyle} to={`/Trip/${id}/Dashboard/Agenda`}>
+            <Button style={btnStyle}>Agenda</Button>
+            </Link>
+            <Link style={btnStyle} to={`/Trip/${id}/Dashboard/Discover`}>
+            <Button style={btnStyle}>Discover</Button>
+            </Link>
+            <Link style={btnStyle} to={`/Trip/${id}/Dashboard/Expenses`}>
+            <Button style={btnStyle}>Expenses</Button>
+            </Link>
           </Box>
       </Container>
 

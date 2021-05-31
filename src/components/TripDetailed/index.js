@@ -5,15 +5,24 @@ import Typography from "@material-ui/core/Typography";
 import TripHeader from "../../components/TripHeader";
 
 const containerStyle = {
-  background: 'white',
+  // background: 'white',
   padding: '15px',
+  margin: '15px',
   fontFamily: 'Montserrat 500',
 };
 
+const style = {
+  backgroundColor: '#f3f5f9',
+  boxShadow: 'none',
+  borderRadius: '15px',
+  textDecoration: 'none',
+  // padding: 15,
+  margin: 15,
+}
 
 export default function TripDetailed(props) {
   return (
-    <Card style={{margin:'15px'}} onClick={props.handleclick}>
+    <Card style={style} onClick={props.handleclick}>
       <div style={containerStyle}>
         <Typography display="inline">
           <h3>
