@@ -209,9 +209,14 @@ export default function MenuBar() {
 
 let { id } = useParams();
 
+const menuStyle = {
+  backgroundColor: "rgba(255, 255, 255, 0.6)",
+  boxShadow: 'none',
+}
+
   return (
     <div className={classes.root}>
-      <AppBar psotion={"static"} className={classes.appBar}
+      <AppBar position={"fixed"} style={menuStyle} className={classes.appBar}
       >
         <Toolbar>
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -229,7 +234,6 @@ let { id } = useParams();
           </IconButton>
 
           <Typography variant="h6" className={classes.title}>
-            Title here?
           </Typography>
           <Avatar alt="placeholder" src="http://placekitten.com/200/300" />
         </Toolbar>

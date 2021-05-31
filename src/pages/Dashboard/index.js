@@ -103,7 +103,7 @@ function Dashboard() {
   // }
 
   return (
-      <Container>
+      <Container maxWidth="md">
           <Box
             display="flex"
             style={{ justifyContent: "space-between", padding: 0 }}

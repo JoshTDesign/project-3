@@ -14,7 +14,14 @@ function Signup() {
     email:"",
     username:"",
     password:""
-    })
+    });
+
+    const [userState,setUserState] = useState({
+        token:"",
+        user:{
+    
+        }
+    });
 
     const handleInputChange = event => {
         // Getting the value and name of the input which triggered the change
@@ -28,25 +35,22 @@ function Signup() {
         });
     };
 
-    
     const handleFormSubmit = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
-        API.createUser(formState).then(res=>{
-            console.log(res.data);
+
+        API.createUser(formState).then(res =>{
+            localStorage.setItem("token", res.data.token);
+            setUserState({
+                ...userState,
+                token:res.data.token,
+                user:{
+                    email:res.data.user.email,
+                    username:res.data.user.username,
+                    }
+            })
         })
-
-        //TODO: should create axios request for user login when form submits
-        console.log("creating new user");
-    
-        // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-        setFormState({
-        firstName: "",
-        lastName: ""
-        }, [])
-    }
-
-
+    };
 
 
     return (
@@ -54,7 +58,7 @@ function Signup() {
             <Container maxWidth="sm">
                 <div>
                 <SplashLogo />
-
+                <div>{userState.user.username}</div>
                 <form className="test" onSubmit={handleFormSubmit}>
                 <Grid 
                     container direction="column"
@@ -98,11 +102,9 @@ function Signup() {
                         type="submit"
                         variant="contained" 
                         color="primary" 
-                        onClick={console.log('create account')}
+                        onClick={handleFormSubmit}
                         >
-                    <Link to="/dashboard">
                     Create Account
-                    </Link>
                         </Button>
 
                     <p>or</p>

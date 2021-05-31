@@ -71,7 +71,7 @@ export default function LoggedInHome() {
       </Box>
       <Container maxWidth="md">
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
-          {tripState.userTrips.map((trip) => (<TripBasic title={trip.city} start={trip.start_date}/>))
+          {tripState.userTrips.map((trip) => (<TripBasic link={`/trip/`+trip.id+`/dashboard`} title={trip.city} start={trip.start_date}/>))
           }
         <AddButton style={{ justifyContent: "flex-end" }} />
         </Card>
@@ -79,3 +79,4 @@ export default function LoggedInHome() {
     </div>
   );
 }
+

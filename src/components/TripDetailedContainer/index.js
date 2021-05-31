@@ -28,15 +28,9 @@ const btnStyle = {
   right: '15px',
 }
 
-<<<<<<< HEAD
-
-
 export default function TripDetailedContainer(props) {
-=======
-export default function TripDetailedContainer() {
   const { id } = useParams();
 
->>>>>>> develop
   return (
       <Container maxWidth="md" style={containerStyle}>
           <typography>
