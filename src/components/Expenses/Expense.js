@@ -39,7 +39,7 @@ return (
     variant="outlined"
     size="small"
   >
-    <FormControl fullWidth className={classes.margin} variant="outlined">
+    <FormControl className={classes.margin} variant="outlined">
       <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
       <OutlinedInput
         id="outlined-adornment-amount"
