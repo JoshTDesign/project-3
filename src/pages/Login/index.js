@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useParams } from 'react'
-import { TextField, Box, makeStyles, Button, Container, Typography, TableBody } from '@material-ui/core/';
-import { Link, useHistory, Route } from "react-router-dom";
+import { TextField, Box, makeStyles, Button, Container, Typography } from '@material-ui/core/';
+import { Link, useHistory } from "react-router-dom";
 import SplashLogo from '../../components/SplashLogo';
 import API from '../../utils/API';
-import LoggedInHome from '../LoggedInHome';
+
 
 function Login() {
 
@@ -37,18 +37,18 @@ function Login() {
           }
         })
     }).catch(err=>{
-      console.log("no logged in user")
+      console.log("Login / no logged in user")
       setUserState({
         token:"",
         user:{}
       })
     })
   } else {
-    console.log("no token provided")
+    console.log("Login / no token provided")
   }
   },[])
 
-  console.log(userState.token)
+  console.log('Login / userState.token: ', userState.token)
   //   API.getAllTrips = (useState.token) => {
   //   console.log(res.data);
   // }
@@ -69,9 +69,9 @@ function Login() {
   const handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    console.log('form submit started')
+    console.log('Login / form submit started')
     API.login(formState).then(res=>{
-      console.log('submitted');
+      console.log('Login / form submitted');
       localStorage.setItem("token", res.data.token);
       setUserState({
         ...userState,
@@ -82,7 +82,7 @@ function Login() {
         }
       })
     }).catch(err=>{
-      console.log("error occured")
+      console.log("Login / error occured")
       console.log(err);
       localStorage.removeItem("token");
     }).then(

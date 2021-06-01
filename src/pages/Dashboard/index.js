@@ -12,7 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 // import Agenda from "../Agenda";
 // import Discover from "../../pages/Discover";
 // import Expenses from "../../pages/Expenses";
-import NavBar from "../../components/Navbar";
+// import NavBar from "../../components/Navbar";
 
 const btnStyle = {
   background: "white",
@@ -75,7 +75,7 @@ function Dashboard() {
         setTripState({
           trip:res.data
         })
-        console.log(res.data.city);
+        console.log('Dashboard / city: ', res.data.city);
       })
     ).catch(err=>{
       console.log("no logged in user")
@@ -90,7 +90,8 @@ function Dashboard() {
   },[])
 
   let { id } = useParams();
-  console.log(useParams());
+  
+  console.log('Dashboard / useParams: ', useParams());
 
 
   // const handlePageChange = (event, page) => {

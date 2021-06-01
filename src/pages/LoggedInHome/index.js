@@ -3,10 +3,10 @@ import {Container, Card} from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
 import Box from "@material-ui/core/Box";
-import SidebarMenu from "../../components/SidebarMenu";
+// import SidebarMenu from "../../components/SidebarMenu";
 import API from '../../utils/API'
 import MenuBar from "../../components/MenuBar";
-import NewTripForm from '../../components/NewTripForm';
+// import NewTripForm from '../../components/NewTripForm';
 
 export default function LoggedInHome() {
 
@@ -22,7 +22,8 @@ export default function LoggedInHome() {
   })
 
   useEffect(()=>{
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token")  
+    console.log('LoggedInHome / token: ', token)
 
     if(token){
       API.getProfile(token).then(res=>{
@@ -47,7 +48,7 @@ export default function LoggedInHome() {
 
       )
       .catch(err=>{
-        console.log("no logged in user")
+        console.log("LoggedInHome / no logged in user")
         setUserState({
           token:"",
           user:{
@@ -56,7 +57,7 @@ export default function LoggedInHome() {
         })
       })
     } else {
-      console.log("no token provided")
+      console.log("LoggedInHome / no token provided")
     }
   },[])
   

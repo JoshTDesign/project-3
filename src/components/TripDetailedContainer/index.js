@@ -1,11 +1,6 @@
 import { React, useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import AddButton from "../../components/AddButton";
 import TripDetailed from "../../components/TripDetailed";
-import TripBasic from "../../components/TripDetailed";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
 import { Card, Box } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 import API from '../../utils/API';
@@ -52,7 +47,7 @@ const [tripState, setTripState] = useState({
   userTrips:[]
 })
 
-const { id } = useParams();
+let { id } = useParams();
 // console.log(id);
 
 
@@ -79,7 +74,7 @@ useEffect(()=>{
         })
     )
     .catch(err=>{
-      console.log("no logged in user")
+      console.log("TripDetailedContainer / no logged in user")
       setUserState({
         token:"",
         user:{
@@ -88,7 +83,7 @@ useEffect(()=>{
       })
     })
 } else {
-  console.log("no token provided")
+  console.log("TripDetailedContainer / no token provided")
 }
 },[])
 

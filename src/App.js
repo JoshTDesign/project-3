@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import API from "./utils/API";
+// import API from "./utils/API";
 // import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global reset for css styling
 // import CreateTrip from "./pages/CreateTrip";
 import LoggedInHome from "./pages/LoggedInHome";
@@ -15,8 +15,8 @@ import Expenses from "./pages/Expenses";
 import NewTripForm from "./components/NewTripForm";
 import NewActivityForm from "./components/NewActivityForm";
 import NewExpenseForm from "./components/NewExpenseForm";
-import MenuBar from "./components/MenuBar";
-import SidebarMenu from "./components/SidebarMenu";
+// import MenuBar from "./components/MenuBar";
+// import SidebarMenu from "./components/SidebarMenu";
 // import Navbar from "./components/Navbar";
 // import DashNavBtn from "./components/DashNavBtn";
 
