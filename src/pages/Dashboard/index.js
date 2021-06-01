@@ -79,7 +79,7 @@ function Dashboard() {
         setTripState({
           trip:res.data
         })
-        console.log('Dashboard / city: ', res.data.city);
+        console.log('Dashboard / city: ', res.data?.city);
       })
     ).catch(err=>{
       console.log("no logged in user")
@@ -125,11 +125,11 @@ function Dashboard() {
               <Link to="/home">
               <h5>My Trips</h5>
               </Link>
-            <h2 style={{fontFamily:'Quando'}}>Trip to {tripState.trip.city}</h2>
+            <h2 style={{fontFamily:'Quando'}}>Trip to {tripState.trip?.city}</h2>
             </Typography>
             <Box>
-              <p>{tripState.trip.start_date}</p>
-              <p>{tripState.trip.end_date}</p>
+              <p>{tripState.trip?.start_date}</p>
+              <p>{tripState.trip?.end_date}</p>
             </Box>
           </Box>
 

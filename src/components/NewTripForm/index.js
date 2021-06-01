@@ -31,6 +31,7 @@ export default function NewTripForm(props) {
   useEffect(() => {
       const token = localStorage.getItem("token")
     setFormState({
+        ...formState,
         token: token
     })
   }, []);
@@ -41,6 +42,7 @@ export default function NewTripForm(props) {
     const value = event.target.value;
     const name = event.target.name;
 
+    console.log(name, value)
     setFormState({
       ...formState,
       [name]: value,
@@ -51,7 +53,7 @@ export default function NewTripForm(props) {
     event.preventDefault();
 
     console.log("NewTripForm / formState: ", formState);
-    API.createTrip(formState).then((res) => {
+    API.createTrip(formState, formState.token).then((res) => {
       setTripState({
         ...tripState,
         userTrips: res.data,
