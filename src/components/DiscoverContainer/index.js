@@ -29,8 +29,8 @@ const containerStyle = {
   const axios = require("axios")
 
   const amadeus = new Amadeus({
-    clientId: "9ixQG6uOoa4KR4CYLGhPAjrZA3ecsAw0",
-    clientSecret: '8GrNWevlGpTQ4YEL'
+    clientId: "PYrFNqSSAtd9y1O2IvGgOxy74GCTUsNV",
+    clientSecret: 'hKC1aBnTTs1MYfWg'
 });
 
         let thisLon = "34.0522";
@@ -101,22 +101,7 @@ export default function DiscoverContainer(props) {
                 })
             })
                 
-            .then (
-                // axios.get('https://test.api.amadeus.com/v1/shopping/activities?latitude=41.397158&longitude=2.160873&radius=1', {
-                //     headers: {
-                //         'Authorization':'Bearer ZuGbgEEqzu7GJ7bj3GJ0tvG2GB6MkMCp'
-                //     }
-                // })
-                amadeus.shopping.activities.get({
-                    latitude: thisLat,
-                    longitude: thisLon
-                }).then(response => {
-                      console.log('getting activities', response.data)
-                      setActivitiesState({
-                          activities:response.data
-                      })
-                  })
-            ))
+            )
 
 
 
@@ -125,36 +110,23 @@ export default function DiscoverContainer(props) {
           console.log("no token provided")
         }
     },[])
-        
-    // useEffect(()=>{
-    //     console.log('useEffect2 run')
-    //     console.log(tripState.trip.city)
-    //     API.getLatLon(tripState.trip.city).then(res => {
-    //         thisLon = res.data.coord.lon;
-    //         thisLat = res.data.coord.lat;
-    //         console.log(thisLon)
-    //         console.log(thisLat)
-    //         setTripState({
-    //             ...tripState,
-    //             lat:thisLat,
-    //             lon:thisLon
-    //         })
-    //     })
-            
-    //     .then (
-    //         amadeus.shopping.activities.get({
-    //             latitude: tripState.lat,
-    //             longitude: tripState.lon,
-    //           }).then(response => {
-    //               console.log(response.data)
-    //               setActivitiesState({
-    //                   activities:response.data
-    //               })
-    //           })
-    //     );
-        
 
-    // },[]);
+    useEffect(() => {
+
+            amadeus.shopping.activities.get({
+                latitude: thisLat,
+                longitude: thisLon
+            }).then(response => {
+                  console.log('getting activities', response.data)
+                  setActivitiesState({
+                      activities:response.data
+                  })
+              })
+        
+    })
+        
+    console.log(amadeus)
+
 
 
     const { id } = useParams();
