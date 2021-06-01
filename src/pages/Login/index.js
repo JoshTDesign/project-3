@@ -80,21 +80,20 @@ function Login() {
           email:res.data.user.email,
           username:res.data.user.username,
         }
-      })
+      });
+      history.push('/home');
     }).catch(err=>{
       console.log("Login / error occured")
       console.log(err);
       localStorage.removeItem("token");
+      history.push('/login');
     }).then(
     // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
     setFormState({
       username: "",
       password: ""
     }, [])
-    ).then(
-      history.push('/home')
-
-      )
+    )
   }
 
   const useStyles = makeStyles((theme) => ({
