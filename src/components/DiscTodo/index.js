@@ -36,7 +36,7 @@ export default function DiscTodo(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={props.test}>
           + Add to my agenda
         </Button>
       </CardActions>

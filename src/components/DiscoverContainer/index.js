@@ -109,12 +109,20 @@ export default function DiscoverContainer(props) {
                 lat:thisLat,
                 lon:thisLon
             })
-        }).then(
+        }).then( () => {
             getActivities(thisLat,thisLon)
-            )
+            }
+        )
         },[])
         
+    const handleAddActivity = () => {
+        console.log('Submit new activity')
+        let activityData = "test";
+        API.createActivity(activityData, userState.token).then(()=>{
+            console.log('submitted');
+        })
 
+    }
 
 
     const { id } = useParams();
@@ -145,7 +153,7 @@ export default function DiscoverContainer(props) {
             {/* <p>{{anotherName}}</p> */}
             {activitiesState.activities.map((activity) => (
             <Grid item xs={6}>
-            <DiscTodo name={activity.name} pictures={activity.pictures[0]} />
+            <DiscTodo name={activity.name} pictures={activity.pictures[0]} test={handleAddActivity} />
             </Grid>
             ))}
             <AddButton />
