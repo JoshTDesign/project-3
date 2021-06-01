@@ -1,12 +1,10 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import TripHeader from "../../components/TripHeader";
-// import TripDetailed from "../../components/TripDetailed";
 import DiscTodo from "../../components/DiscTodo";
 import DiscFood from "../../components/DiscFood";
 import AddButton from "../../components/AddButton";
 import GeoJsonLayer from '../Map/index.js';
+import Typography from "@material-ui/core/Typography";
 
 const containerStyle = {
     backgroundColor: "white",
@@ -23,9 +21,9 @@ const containerStyle = {
 export default function DiscoverContainer() {
     return (
         <Container maxWidth="md" style={containerStyle}>
-                <typography>
+                <Typography>
                 <h2 style={{margin:0, padding: '15px'}}>Discover Header</h2>
-                </typography>
+                </Typography>
                 <DiscTodo />
                 <DiscFood />
                 {/* <AddButton /> */}

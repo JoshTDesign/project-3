@@ -3,10 +3,10 @@ import {Container, Card} from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
 import Box from "@material-ui/core/Box";
-import SidebarMenu from "../../components/SidebarMenu";
+// import SidebarMenu from "../../components/SidebarMenu";
 import API from '../../utils/API'
 import MenuBar from "../../components/MenuBar";
-import NewTripForm from '../../components/NewTripForm';
+// import NewTripForm from '../../components/NewTripForm';
 
 export default function LoggedInHome() {
 
@@ -21,10 +21,11 @@ export default function LoggedInHome() {
     userTrips:[]
   })
 
-  useEffect(()=>{
-    const token = localStorage.getItem("token")
+  const getUser = () => {
+    const token = localStorage.getItem("token")  
+    console.log('LoggedInHome / token: ', token)
 
-    if(token){
+    
       API.getProfile(token).then(res=>{
         console.log(res.data);
         setUserState({
@@ -36,28 +37,62 @@ export default function LoggedInHome() {
           }
         })
         //hardcoded the user id - need to change
+        console.log('LoggedInHome / userState: ', userState);
 
-      }).then(
-        API.getDashboard(userState.user.id, token).then(res=>{
+        const userId = res.data.id
+
+        API.getDashboard(userId, token).then(res=>{
           setTripState({
             userTrips:res.data
           })
         })
-
-
-      )
-      .catch(err=>{
-        console.log("no logged in user")
-        setUserState({
-          token:"",
-          user:{
-
-          }
-        })
       })
-    } else {
-      console.log("no token provided")
-    }
+
+
+      
+  
+};
+
+  useEffect(()=>{
+    // const token = localStorage.getItem("token")  
+    // console.log('LoggedInHome / token: ', token)
+
+    // if(token){
+    //   API.getProfile(token).then(res=>{
+    //     console.log(res.data);
+    //     setUserState({
+    //       token:token,
+    //       user:{
+    //         email:res.data.email,
+    //         id:res.data.id,
+    //         username:res.data.username
+    //       }
+    //     })
+    //     //hardcoded the user id - need to change
+
+    //   }).then(
+    //     API.getDashboard(userState.user.id, token).then(res=>{
+    //       setTripState({
+    //         userTrips:res.data
+    //       })
+    //     })
+
+
+    //   )
+    //   .catch(err=>{
+    //     console.log("LoggedInHome / no logged in user")
+    //     setUserState({
+    //       token:"",
+    //       user:{
+
+    //       }
+    //     })
+    //   })
+    // } else {
+    //   console.log("LoggedInHome / no token provided")
+    // }
+
+    getUser();
   },[])
   
 
