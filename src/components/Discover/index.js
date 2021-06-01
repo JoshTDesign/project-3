@@ -12,6 +12,7 @@ export default function Discover() {
                     <h1>Discover Page</h1>
                 </Box>
             </Container>
+            
             {/* <MultiContainer>
                 <h1>Discover now</h1>
             </MultiContainer> */}

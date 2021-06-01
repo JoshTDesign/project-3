@@ -2,6 +2,8 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import DiscTodo from "../../components/DiscTodo";
 import DiscFood from "../../components/DiscFood";
+import AddButton from "../../components/AddButton";
+import GeoJsonLayer from '../Map/index.js';
 import Typography from "@material-ui/core/Typography";
 
 const containerStyle = {
@@ -16,10 +18,6 @@ const containerStyle = {
     padding: 0,
   };
   
-
-
-
-
 export default function DiscoverContainer() {
     return (
         <Container maxWidth="md" style={containerStyle}>
@@ -29,6 +27,7 @@ export default function DiscoverContainer() {
                 <DiscTodo />
                 <DiscFood />
                 {/* <AddButton /> */}
+                <GeoJsonLayer/>
         </Container>
     )
 };
