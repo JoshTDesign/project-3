@@ -29,8 +29,8 @@ const containerStyle = {
   const axios = require("axios")
 
   const amadeus = new Amadeus({
-    clientId: "PYrFNqSSAtd9y1O2IvGgOxy74GCTUsNV",
-    clientSecret: 'hKC1aBnTTs1MYfWg'
+    clientId: "Da21Ae2eHv9GeCs1AfSbCzbNHWp0ArNW!",
+    clientSecret: '5w5HxeLoEQzzxcdC!'
 });
 
         let thisLon = "34.0522";
@@ -88,20 +88,7 @@ export default function DiscoverContainer(props) {
               })
               console.log('set trip state:'+ tripState.trip.city);
             })
-          ).then (
-
-            API.getLatLon("Seattle").then(res => {
-                thisLon = res.data.coord.lon;
-                thisLat = res.data.coord.lat;
-                console.log('getting lat lon:', thisLon, thisLat)
-                setTripState({
-                    ...tripState,
-                    lat:thisLat,
-                    lon:thisLon
-                })
-            })
-                
-            )
+          )
 
 
 
@@ -113,33 +100,29 @@ export default function DiscoverContainer(props) {
 
     useEffect(() => {
 
-<<<<<<< HEAD
+        API.getLatLon("Seattle").then(res => {
+            thisLon = res.data.coord.lon;
+            thisLat = res.data.coord.lat;
+            console.log('getting lat lon:', thisLon, thisLat)
+            setTripState({
+                ...tripState,
+                lat:thisLat,
+                lon:thisLon
+            })
+        }).then(
+            
             amadeus.shopping.activities.get({
                 latitude: thisLat,
                 longitude: thisLon
             }).then(response => {
-                  console.log('getting activities', response.data)
-                  setActivitiesState({
-                      activities:response.data
-                  })
-              })
-        
-    })
-        
-=======
-        amadeus.shopping.activities.get({
-            latitude: thisLat,
-            longitude: thisLon
-        }).then(response => {
-            console.log('getting activities', response.data)
-            setActivitiesState({
-                activities:response.data
+                console.log('getting activities', response.data)
+                setActivitiesState({
+                    activities:response.data
+                })
             })
-        })
-    })
+            )
+        },[])
         
->>>>>>> develop
-    console.log(amadeus)
 
 
 
