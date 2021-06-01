@@ -6,6 +6,7 @@ import TripHeader from "../../components/TripHeader";
 import DiscTodo from "../../components/DiscTodo";
 import DiscFood from "../../components/DiscFood";
 import AddButton from "../../components/AddButton";
+import GeoJsonLayer from '../Map/index.js';
 
 const containerStyle = {
     backgroundColor: "white",
@@ -19,10 +20,6 @@ const containerStyle = {
     padding: 0,
   };
   
-
-
-
-
 export default function DiscoverContainer() {
     return (
         <Container maxWidth="md" style={containerStyle}>
@@ -32,6 +29,7 @@ export default function DiscoverContainer() {
                 <DiscTodo />
                 <DiscFood />
                 {/* <AddButton /> */}
+                <GeoJsonLayer/>
         </Container>
     )
 };

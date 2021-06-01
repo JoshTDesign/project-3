@@ -1,51 +1,66 @@
-import "mapbox-gl/dist/mapbox-gl.css";
-import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
-import React, { useState, useRef, useCallback } from "react";
-import MapGL from "react-map-gl";
-import Geocoder from "react-map-gl-geocoder";
-import "./style.css";
+import {Component} from 'react';
+import ReactMapboxGl, { GeoJSONLayer } from 'react-mapbox-gl'; 
+import "./style.css"
 
-const MAPBOX_TOKEN =
-  "pk.eyJ1IjoiaWdvdHl1IiwiYSI6ImNrbjI0cmtyczE0NmEydm1mcTY4dnRvZXYifQ.FLRmzP1mqXuFKrCR9Vwabw";
+// tslint:disable-next-line:no-var-requires
+const { token, styles } = require('./config.json');
+// tslint:disable-next-line:no-var-requires
+const geojson = require('./geojson.json');
 
-const Map = () => {
-  const [viewport, setViewport] = useState({
-    latitude: 37.7577,
-    longitude: -122.4376,
-    zoom: 2,
-  });
-  const mapRef = useRef();
-  const handleViewportChange = useCallback(
-    (newViewport) => setViewport(newViewport),
-    []
-  );
-  const handleGeocoderViewportChange = useCallback((newViewport) => {
-    const geocoderDefaultOverrides = { transitionDuration: 1000 };
+const Map = ReactMapboxGl({ accessToken: token });
 
-    return handleViewportChange({
-      ...newViewport,
-      ...geocoderDefaultOverrides,
-    });
-  }, []);
-  return (
-    <div style={{ height: "40vh", width: "40vh" }}>
-      <MapGL
-        ref={mapRef}
-        {...viewport}
-        width="100%"
-        height="100%"
-        onViewportChange={handleViewportChange}
-        mapboxApiAccessToken={MAPBOX_TOKEN}
-      >
-        <Geocoder
-          mapRef={mapRef}
-          onViewportChange={handleGeocoderViewportChange}
-          mapboxApiAccessToken={MAPBOX_TOKEN}
-          position="top-right"
-        />
-      </MapGL>
-    </div>
-  );
+const mapStyle = {
+  flex: 1
 };
 
-export default Map;
+const symbolLayout = {
+  'text-field': '{place}',
+  'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+  'text-offset': [0, 0.6],
+  'text-anchor': 'top'
+};
+const symbolPaint = {
+  'text-color': 'white'
+};
+
+const circleLayout = { visibility: 'visible' };
+const circlePaint = {
+  'circle-color': 'white'
+};
+
+class GeoJsonLayer extends Component {
+  center = [-77.01239, 38.91275];
+
+  // tslint:disable-next-line:no-any
+  onClickCircle = (evt) => {
+    console.log(evt);
+  };
+
+  // tslint:disable-next-line:no-any
+  onStyleLoad = (map) => {
+    const { onStyleLoad } = this.props;
+    return onStyleLoad && onStyleLoad(map);
+  };
+
+  render() {
+    return (
+      <Map
+        style={styles.dark}
+        // center={this.center}
+        containerStyle={mapStyle}
+        onStyleLoad={this.onStyleLoad}
+      >
+        <GeoJSONLayer
+          data={geojson}
+          circleLayout={circleLayout}
+          circlePaint={circlePaint}
+          circleOnClick={this.onClickCircle}
+          symbolLayout={symbolLayout}
+          symbolPaint={symbolPaint}
+        />
+      </Map>
+    );
+  }
+}
+
+export default GeoJsonLayer;
