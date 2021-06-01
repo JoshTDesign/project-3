@@ -31,8 +31,11 @@ let testLon="";
             
             
             export default function DiscoverMap() {
-    
+    // useEffect(()=>{    
+    //     API.getLatLon("Palm Springs").then(response => API.testDiscoverActivities(response.data.coord.lat, response.data.coord.lon));
+    //     })
 
+    // API.discoverActivities('34.4208', '119.6982')
     // const test = API.discoverActivities('34.4208', '119.6982');
     // console.log(test.meta);
 

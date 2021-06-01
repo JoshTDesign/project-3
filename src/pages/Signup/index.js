@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import { Button } from "@material-ui/core/";
 import { Grid } from "@material-ui/core/";
 import { TextField } from "@material-ui/core/";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SplashLogo from "../../components/SplashLogo";
 import API from "../../utils/API";
 
