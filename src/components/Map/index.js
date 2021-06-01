@@ -45,7 +45,7 @@ class GeoJsonLayer extends Component {
   render() {
     return (
       <Map
-        style={styles.dark}
+        style={styles.outdoor}
         // center={this.center}
         containerStyle={mapStyle}
         onStyleLoad={this.onStyleLoad}
