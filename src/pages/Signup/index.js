@@ -3,12 +3,13 @@ import Container from "@material-ui/core/Container";
 import { Button } from "@material-ui/core/";
 import { Grid } from "@material-ui/core/";
 import { TextField } from "@material-ui/core/";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SplashLogo from "../../components/SplashLogo";
 import API from "../../utils/API";
 
 function Signup() {
   //States for controlling the form content
+const history = useHistory();
   const [formState, setFormState] = useState({
     email: "",
     username: "",
@@ -50,14 +51,15 @@ function Signup() {
           image: res.data.user.imagePath
         },
       });
-    });
+    }).then(
     setFormState(
       {
         firstName: "",
         lastName: "",
       },
-      []
-    );
+      [])).then(
+          history.push('/home')
+      )
   };
 
   //TODO: should create axios request for user login when form submits

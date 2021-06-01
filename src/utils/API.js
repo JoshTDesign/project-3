@@ -6,6 +6,8 @@ const amadeus = new Amadeus({
   clientSecret: "qoIUm1A9IqMbjpAl",
 });
 
+const openTripMapKey = "5ae2e3f221c38a28845f05b60586bc5cab98f89b1fc4c500fe7c4cf7";
+
 const API = {
   discoverActivities: function (cityLat, cityLong) {
     amadeus.shopping.activities

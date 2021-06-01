@@ -72,7 +72,7 @@ export default function NewTripForm(props) {
         ...tripState,
         userTrips: res.data,
       });
-      history.push(`/Trip/${id}/Dashboard`);
+      history.push(`/home`);
     });
     console.log("NewTripForm / creating new trip!");
   };
