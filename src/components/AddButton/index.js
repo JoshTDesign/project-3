@@ -19,7 +19,7 @@ export default function AddButton() {
       aria-label="add"
       // onClick={() => props.addNewTrip("CreateTrip")}
       component={Link}
-      to="/newtripform"
+      to="/newActivityForm"
     >
       <AddIcon />
     </Fab>
