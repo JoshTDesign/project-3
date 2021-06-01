@@ -3,6 +3,7 @@ import { TextField, Box, makeStyles, Button, Container, Typography, TableBody } 
 import { Link, Route } from "react-router-dom";
 import SplashLogo from '../../components/SplashLogo';
 import API from '../../utils/API';
+import LoggedInHome from '../LoggedInHome';
 
 function Login() {
 
@@ -164,18 +165,20 @@ function Login() {
               onChange={handleInputChange}
               placeholder="Password"
             />
-
+            <Link to="/home">
             <Button 
               type="submit"
               variant="contained" 
               color="primary" 
               style={{minWidth: "100%", height:"50px"}}
-              onSubmit={handleFormSubmit}
-              component={Link}
-              to="/home"
+              onClick={handleFormSubmit}
+              // component={Link}
+              // to="/home"
             >
               Login
+            
             </Button>
+            </Link>
             <Typography align="center">
             <p>or</p>
               <Link to="/signup">
