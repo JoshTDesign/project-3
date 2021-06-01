@@ -110,7 +110,7 @@ const menuStyle = {
         
         <MenuItem component={Link} to={`/home`}>Home</MenuItem>
         <Divider />
-        <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem>
+        {/* <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem> */}
         <MenuItem component={Link} to={`/profile/${id}`}>Profile</MenuItem>
         <MenuItem>My Friends</MenuItem>
         <MenuItem component={Link} to={`/login`}>Log Out</MenuItem>
