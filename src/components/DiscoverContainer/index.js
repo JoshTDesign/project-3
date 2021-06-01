@@ -6,8 +6,10 @@ import TripHeader from "../../components/TripHeader";
 // import TripDetailed from "../../components/TripDetailed";
 import DiscFood from "../../components/DiscFood";
 import AddButton from "../../components/AddButton";
+import DiscTodo from "../../components/DiscTodo";
 import GeoJsonLayer from '../Map/index.js';
 import Typography from "@material-ui/core/Typography";
+import API from "../../utils/API"
 
 const containerStyle = {
     backgroundColor: "white",
@@ -179,4 +181,4 @@ export default function DiscoverContainer(props) {
             <AddButton />
         </Grid>
     );
-            }
+}
