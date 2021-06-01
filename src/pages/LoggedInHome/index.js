@@ -25,9 +25,8 @@ export default function LoggedInHome() {
     const token = localStorage.getItem("token")  
     console.log('LoggedInHome / token: ', token)
 
-    
       API.getProfile(token).then(res=>{
-        console.log(res.data);
+        console.log('LoggedInHome / res.data: ', res.data);
         setUserState({
           token:token,
           user:{
@@ -37,22 +36,30 @@ export default function LoggedInHome() {
           }
         })
         //hardcoded the user id - need to change
-        console.log('LoggedInHome / userState: ', userState);
+        // console.log('LoggedInHome / userState: ', userState);
 
         const userId = res.data.id
+        console.log('LoggedInHome / userId: ', userId)
 
-        API.getDashboard(userId, token).then(res=>{
+        API.getDashboard(userId, token).then(result=>{
           setTripState({
-            userTrips:res.data
+            userTrips:result.data.creator
           })
+          console.log('LoggedInHome / res.data: ', result.data)
         })
       })
-
-
-      
-  
 };
 
+  // const getDash = () => {
+  //   API.getDashboard(userId, token).then(res=>{
+  //     setTripState({
+  //       userTrips:res.data
+  //     })
+  //   })
+  // }
+
+  
+  
   useEffect(()=>{
     // const token = localStorage.getItem("token")  
     // console.log('LoggedInHome / token: ', token)
@@ -70,11 +77,13 @@ export default function LoggedInHome() {
     //     })
     //     //hardcoded the user id - need to change
 
+        
     //   }).then(
     //     API.getDashboard(userState.user.id, token).then(res=>{
     //       setTripState({
     //         userTrips:res.data
     //       })
+    //       console.log('LoggedInHome / userState: ', userState)
     //     })
 
 
@@ -94,6 +103,7 @@ export default function LoggedInHome() {
 
     getUser();
   },[])
+  // getDash();
   
 
   // const myTrips = tripState.userTrips

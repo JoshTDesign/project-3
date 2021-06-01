@@ -47,19 +47,19 @@ function Signup() {
         },
       });
     });
+    setFormState(
+      {
+        firstName: "",
+        lastName: "",
+      },
+      []
+    );
   };
 
   //TODO: should create axios request for user login when form submits
   console.log("creating new user");
 
   // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-  setFormState(
-    {
-      firstName: "",
-      lastName: "",
-    },
-    []
-  );
 
   return (
     <div>
