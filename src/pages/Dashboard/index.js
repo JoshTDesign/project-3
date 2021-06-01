@@ -91,7 +91,7 @@ function Dashboard() {
 
   let { id } = useParams();
   
-  console.log('Dashboard / useParams: ', useParams());
+  console.log('Dashboard / useParams tripId: ', useParams());
 
 
   // const handlePageChange = (event, page) => {

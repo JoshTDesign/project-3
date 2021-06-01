@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useParams } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TextField, Box, makeStyles, Button, Container, Typography } from '@material-ui/core/';
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import SplashLogo from '../../components/SplashLogo';
 import API from '../../utils/API';
 
@@ -20,7 +20,7 @@ function Login() {
     }
   })
 
- let id = useParams;
+//  let id = useParams;
  const history = useHistory();
     
   useEffect(()=>{
