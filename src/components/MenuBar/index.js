@@ -43,7 +43,7 @@ export default function MenuBar() {
   const [drawerState, setDrawerState] = useState({
     drawerIsOpen: false,
   });
-  console.log('MenuBar drawer state:',drawerState)
+  // console.log('MenuBar drawer state:',drawerState)
 
   const classes = useStyles();
 
@@ -53,7 +53,7 @@ export default function MenuBar() {
       // ...drawerState,
       drawerIsOpen: !drawerState.drawerIsOpen,
     });
-    console.log('MenuBar drawer state:', drawerState)
+    // console.log('MenuBar drawer state:', drawerState)
   };
 
   

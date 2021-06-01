@@ -29,7 +29,8 @@ export default function Profile() {
               username: res.data.username,
               location: res.data.location,
             },
-          });
+        });
+        console.log('profile/username: ', userState.username)
         })
         .then(
           API.getDashboard(userState.user.id, token).then((res) => {
