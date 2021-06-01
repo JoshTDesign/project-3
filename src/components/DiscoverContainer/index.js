@@ -1,11 +1,18 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
+import { Link, useParams } from "react-router-dom";
+import { Grid } from "@material-ui/core";
 import TripHeader from "../../components/TripHeader";
 // import TripDetailed from "../../components/TripDetailed";
-import DiscTodo from "../../components/DiscTodo";
 import DiscFood from "../../components/DiscFood";
+import DiscTodo from "../../components/DiscTodo";
 import DiscoverMap from "../../components/DiscoverMap";
+import API from '../../utils/API';
+
+
+
+
+
 import AddButton from "../../components/AddButton";
 
 const containerStyle = {
@@ -17,20 +24,164 @@ const containerStyle = {
     borderBottomLeftRadius: 8,
     border: 0,
     color: '#333333',
-    padding: 15,
+    padding: 25,
   };
-  
+//   const Amadeus = require("amadeus")
+
+  let test = {};
+  const Amadeus = require("amadeus")
+  const axios = require("axios")
+
+  const amadeus = new Amadeus({
+    clientId: "9ixQG6uOoa4KR4CYLGhPAjrZA3ecsAw0",
+    clientSecret: '8GrNWevlGpTQ4YEL'
+});
+
+        let thisLon = "34.0522";
+        let thisLat = "118.2437";
+        
+export default function DiscoverContainer(props) {
+    
+    /*--------------------------*/
+    
+    const style = {
+        height: '100vh',
+    };
+
+    const [userState,setUserState] = useState({
+    token:"",
+    user:{
+    }
+    })
+
+    const [tripState, setTripState] = useState({
+    trip:[],
+    lat:"",
+    lon:""
+    })
+
+    const [activitiesState, setActivitiesState] = useState({
+        activities:[]
+    })
+    
+    
+    /*--------------------------*/
+
+
+    useEffect(()=>{
+        const token = localStorage.getItem("token")
+        console.log('useEffect1 run')
+        
+        if(token){
+            API.getProfile(token).then(res=>{
+              console.log('getting profile', res.data);
+              setUserState({
+                token:token,
+                user:{
+                  email:res.data.email,
+                  id:res.data.id,
+                  username:res.data.username
+                }
+              })
+          }).then(
+            API.getTripById(id, token).then(res=>{
+              console.log('getting trip:', res.data);
+              setTripState({
+                ...tripState,
+                trip:res.data
+              })
+              console.log('set trip state:'+ tripState.trip.city);
+            })
+          ).then (
+
+            API.getLatLon("Seattle").then(res => {
+                thisLon = res.data.coord.lon;
+                thisLat = res.data.coord.lat;
+                console.log('getting lat lon:', thisLon, thisLat)
+                setTripState({
+                    ...tripState,
+                    lat:thisLat,
+                    lon:thisLon
+                })
+            })
+                
+            .then (
+                // axios.get('https://test.api.amadeus.com/v1/shopping/activities?latitude=41.397158&longitude=2.160873&radius=1', {
+                //     headers: {
+                //         'Authorization':'Bearer ZuGbgEEqzu7GJ7bj3GJ0tvG2GB6MkMCp'
+                //     }
+                // })
+                amadeus.shopping.activities.get({
+                    latitude: thisLat,
+                    longitude: thisLon
+                }).then(response => {
+                      console.log('getting activities', response.data)
+                      setActivitiesState({
+                          activities:response.data
+                      })
+                  })
+            ))
 
 
 
+          
+        } else {
+          console.log("no token provided")
+        }
+    },[])
+        
+    // useEffect(()=>{
+    //     console.log('useEffect2 run')
+    //     console.log(tripState.trip.city)
+    //     API.getLatLon(tripState.trip.city).then(res => {
+    //         thisLon = res.data.coord.lon;
+    //         thisLat = res.data.coord.lat;
+    //         console.log(thisLon)
+    //         console.log(thisLat)
+    //         setTripState({
+    //             ...tripState,
+    //             lat:thisLat,
+    //             lon:thisLon
+    //         })
+    //     })
+            
+    //     .then (
+    //         amadeus.shopping.activities.get({
+    //             latitude: tripState.lat,
+    //             longitude: tripState.lon,
+    //           }).then(response => {
+    //               console.log(response.data)
+    //               setActivitiesState({
+    //                   activities:response.data
+    //               })
+    //           })
+    //     );
+        
 
-export default function DiscoverContainer() {
+    // },[]);
+
+
+    const { id } = useParams();
+
+
+
     return (
-        <Container maxWidth="md" style={containerStyle}>
+        <Grid container spacing={3} maxWidth="md" style={containerStyle}>
+            <Grid item xs={12}>
             <DiscoverMap/>
-            <DiscTodo />
-            <DiscFood />
-            {/* <AddButton /> */}
-        </Container>
+            </Grid>
+
+            <Grid item xs={12}>
+            <h3>Ideas</h3>
+            </Grid>
+
+            {/* <p>{{anotherName}}</p> */}
+            {activitiesState.activities.map((activity) => (
+            <Grid item xs={6}>
+            <DiscTodo name={activity.name} pictures={activity.pictures[0]} />
+            </Grid>
+            ))}
+            <AddButton />
+        </Grid>
     )
 };

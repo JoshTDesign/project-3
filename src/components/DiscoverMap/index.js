@@ -16,31 +16,37 @@ const style = {
 let testLat="";
 let testLon="";
 
+
 // API.discoverActivities(testLat, testLon).then(
-//     console.log('test')
-// ).catch(err=>{
-//     console.log(err)
-//   })
-
-// const test = API.getLatLon("Palm Springs").then(res=>{
-//     console.log(res.data)
-// });
-
-
-
-
-export default function DiscoverMap() {
-    useEffect(()=>{
+    //     console.log('test')
+    // ).catch(err=>{
+        //     console.log(err)
+        //   })
         
-        const test = API.getLatLon("Palm Springs").then(res => {
-            testLat=res.data.coord.lat; 
-            testLon=res.data.coord.lon;
-        }
-        );
+        // const test = API.getLatLon("Palm Springs").then(res=>{
+            //     console.log(res.data)
+            // });
+            
+            
+            
+            
+            export default function DiscoverMap() {
     
-    },[])
+
+    // const test = API.discoverActivities('34.4208', '119.6982');
+    // console.log(test.meta);
+
+    // useEffect(()=>{
+        
+    //     const test = API.getLatLon("Palm Springs").then(res => {
+    //         testLat=res.data.coord.lat; 
+    //         testLon=res.data.coord.lon;
+    //     }
+    //     );
+    
+    // },[])
     return (
-        <Box p={2}>
+        <Box p={0}>
             <div style={style}>Map placeholder</div>
         </Box>
     )

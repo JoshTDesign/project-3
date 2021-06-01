@@ -74,7 +74,6 @@ function Dashboard() {
           }
         })
     }).then(
-      //tripId currently hardcoded
       API.getTripById(id, token).then(res=>{
         console.log(res.data);
         setTripState({
