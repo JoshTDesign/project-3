@@ -45,7 +45,7 @@ export default function LoggedInHome() {
           setTripState({
             userTrips:result.data.creator
           })
-          console.log('LoggedInHome / res.data: ', result.data)
+          console.log('LoggedInHome / result.data: ', result.data)
         })
       })
 };

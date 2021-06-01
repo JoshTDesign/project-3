@@ -42,8 +42,12 @@ function Signup() {
         ...userState,
         token: res.data.token,
         user: {
+          firstName: res.data.user.firstName,
+          lastName: res.data.user.lastName,
+          location: res.data.user.location,
           email: res.data.user.email,
           username: res.data.user.username,
+          image: res.data.user.imagePath
         },
       });
     });

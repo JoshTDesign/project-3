@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -9,10 +10,23 @@ import API from "../../utils/API";
 
 // TODO: Need to create POST request in form submit handler
 
+const useStyles = makeStyles((theme) => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+      },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 200,
+    },
+  }));
+
 export default function NewTripForm(props) {
   const [formState, setFormState] = useState({
     tripName: "",
     city: "",
+    state: "",
     token: "",
   });
 
@@ -63,6 +77,8 @@ export default function NewTripForm(props) {
     console.log("NewTripForm / creating new trip!");
   };
 
+const classes =useStyles();
+
   return (
     <div>
       <NavBar />
@@ -78,12 +94,56 @@ export default function NewTripForm(props) {
             onChange={handleInputChange}
           />
           <TextField
-            className="date"
+            className={classes.textField}
+            id="date"
+            label=""
+            type="date"
+            variant="outlined"
+            name="startDate"
+            inputLabelProps={{ 
+                shrink: true
+            }}
+            value={formState.startDate}
+            onChange={handleInputChange}
+          />
+          <TextField
+            className={classes.textField}
+            id="date"
+            label=""
+            type="date"
+            variant="outlined"
+            name="endDate"
+            inputLabelProps={{ 
+                shrink: true
+            }}
+            value={formState.endDate}
+            onChange={handleInputChange}
+          />
+          <TextField
+            className="location"
             id="outlined-basic"
             label="City"
             variant="outlined"
             name="city"
             value={formState.city}
+            onChange={handleInputChange}
+          />
+          <TextField
+            className="location"
+            id="outlined-basic"
+            label="State"
+            variant="outlined"
+            name="state"
+            value={formState.state}
+            onChange={handleInputChange}
+          />
+          <TextField
+            className="location"
+            id="outlined-basic"
+            label="Country (optional)"
+            variant="outlined"
+            name="country"
+            value={formState.country}
             onChange={handleInputChange}
           />
 
