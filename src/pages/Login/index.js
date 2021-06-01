@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useParams } from 'react'
 import { TextField, Box, makeStyles, Button, Container, Typography, TableBody } from '@material-ui/core/';
-import { Link, Route } from "react-router-dom";
+import { Link, useHistory, Route } from "react-router-dom";
 import SplashLogo from '../../components/SplashLogo';
 import API from '../../utils/API';
 
@@ -20,6 +20,7 @@ function Login() {
   })
 
  let id = useParams;
+ const history = useHistory();
     
   useEffect(()=>{
     const token = localStorage.getItem("token")
@@ -46,7 +47,7 @@ function Login() {
   }
   },[])
 
-    console.log(userState.token)
+  console.log(userState.token)
   //   API.getAllTrips = (useState.token) => {
   //   console.log(res.data);
   // }
@@ -67,8 +68,9 @@ function Login() {
   const handleFormSubmit = event => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    console.log('form submit started')
     API.login(formState).then(res=>{
-      console.log(res.data);
+      console.log('submitted');
       localStorage.setItem("token", res.data.token);
       setUserState({
         ...userState,
@@ -82,12 +84,16 @@ function Login() {
       console.log("error occured")
       console.log(err);
       localStorage.removeItem("token");
-    })
+    }).then(
     // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
     setFormState({
-      firstName: "",
-      lastName: ""
+      username: "",
+      password: ""
     }, [])
+    ).then(
+      history.push('/home')
+
+      )
   }
 
   const useStyles = makeStyles((theme) => ({
@@ -170,10 +176,11 @@ function Login() {
               variant="contained" 
               color="primary" 
               style={{minWidth: "100%", height:"50px"}}
+              onClick={handleFormSubmit}
+              // onSubmit={handleFormSubmit}
+              // component={Link} to="/home"
             >
-              <Link to="/home">
-                Login
-              </Link>
+              Login
             </Button>
             <Typography align="center">
             <p>or</p>

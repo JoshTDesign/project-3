@@ -15,26 +15,15 @@ function Signup() {
     password: "",
   });
 
-<<<<<<< HEAD
+  const [userState, setUserState] = useState({
+    token: "",
+    user: {},
+  });
+
   const handleInputChange = (event) => {
     // Getting the value and name of the input which triggered the change
     const value = event.target.value;
     const name = event.target.name;
-=======
-    //States for controlling the form content
-    const [formState,setFormState] = useState({
-    email:"",
-    username:"",
-    password:""
-    });
-
-    const [userState,setUserState] = useState({
-        token:"",
-        user:{
-    
-        }
-    });
->>>>>>> develop
 
     // Updating the input's state
     setFormState({
@@ -46,23 +35,31 @@ function Signup() {
   const handleFormSubmit = (event) => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+
     API.createUser(formState).then((res) => {
-      console.log(res.data);
+      localStorage.setItem("token", res.data.token);
+      setUserState({
+        ...userState,
+        token: res.data.token,
+        user: {
+          email: res.data.user.email,
+          username: res.data.user.username,
+        },
+      });
     });
-
-<<<<<<< HEAD
-    //TODO: should create axios request for user login when form submits
-    console.log("creating new user");
-
-    // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    setFormState(
-      {
-        firstName: "",
-        lastName: "",
-      },
-      []
-    );
   };
+
+  //TODO: should create axios request for user login when form submits
+  console.log("creating new user");
+
+  // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
+  setFormState(
+    {
+      firstName: "",
+      lastName: "",
+    },
+    []
+  );
 
   return (
     <div>
@@ -87,24 +84,6 @@ function Signup() {
                 onChange={handleInputChange}
                 placeholder="First Name"
               />
-=======
-    const handleFormSubmit = event => {
-        // Preventing the default behavior of the form submit (which is to refresh the page)
-        event.preventDefault();
-
-        API.createUser(formState).then(res =>{
-            localStorage.setItem("token", res.data.token);
-            setUserState({
-                ...userState,
-                token:res.data.token,
-                user:{
-                    email:res.data.user.email,
-                    username:res.data.user.username,
-                    }
-            })
-        })
-    };
->>>>>>> develop
 
               <TextField
                 className="lastName"
@@ -117,7 +96,6 @@ function Signup() {
                 placeholder="Last Name"
               />
 
-<<<<<<< HEAD
               <TextField
                 className="email"
                 id="outlined-basic"
@@ -147,7 +125,6 @@ function Signup() {
                 variant="outlined"
                 value={formState.password}
                 name="password"
-                type="password"
                 onChange={handleInputChange}
                 placeholder="Password"
               />
@@ -156,65 +133,10 @@ function Signup() {
                 type="submit"
                 variant="contained"
                 color="primary"
-                onClick={console.log("create account")}
+                onClick={handleFormSubmit}
               >
-                <Link to="/home">Create Account</Link>
+                Create Account
               </Button>
-=======
-    return (
-        <div>
-            <Container maxWidth="sm">
-                <div>
-                <SplashLogo />
-                <div>{userState.user.username}</div>
-                <form className="test" onSubmit={handleFormSubmit}>
-                <Grid 
-                    container direction="column"
-                    justify="center"
-                    alignItems="center">
-
-                    <TextField 
-                        className="email" 
-                        id="outlined-basic" 
-                        label="Email" 
-                        variant="outlined" 
-                        value={formState.email}
-                        name="email"
-                        onChange={handleInputChange}
-                        placeholder="Email"
-                    />                    
-                    
-                    <TextField 
-                        className="userName" 
-                        id="outlined-basic" 
-                        label="User Name" 
-                        variant="outlined" 
-                        value={formState.username}
-                        name="username"
-                        onChange={handleInputChange}
-                        placeholder="User Name"
-                    />                    
-                    
-                    <TextField 
-                      className="password" 
-                      id="outlined-basic" 
-                      label="Password" 
-                      variant="outlined" 
-                      value={formState.password}
-                      name="password"
-                      onChange={handleInputChange}
-                      placeholder="Password"
-                      />
-                    
-                    <Button 
-                        type="submit"
-                        variant="contained" 
-                        color="primary" 
-                        onClick={handleFormSubmit}
-                        >
-                    Create Account
-                        </Button>
->>>>>>> develop
 
               <p>or</p>
             </Grid>
