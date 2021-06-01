@@ -13,14 +13,20 @@
     "connect-session-sequelize": "^7.1.1",
     "dotenv": "^10.0.0",
     "express-session": "^1.17.2",
+    "mapbox-gl": "^2.3.0",
     "moment": "^2.29.1",
     "mysql2": "^2.2.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
     "react-material-ui-carousel": "^2.2.6",
+=======
+    "react-mapbox-gl": "^5.1.1",
+>>>>>>> 5fc84e7f89c66c21c497727939fbfbfae9569f9a
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-swipeable-views": "^0.13.9",
+    "reactstrap": "^8.9.0",
     "sequelize": "^6.6.2",
     "web-vitals": "^1.1.2"
   },

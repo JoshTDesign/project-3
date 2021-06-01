@@ -5,15 +5,9 @@ import { Grid } from "@material-ui/core";
 import TripHeader from "../../components/TripHeader";
 // import TripDetailed from "../../components/TripDetailed";
 import DiscFood from "../../components/DiscFood";
-import DiscTodo from "../../components/DiscTodo";
-import DiscoverMap from "../../components/DiscoverMap";
-import API from '../../utils/API';
-
-
-
-
-
 import AddButton from "../../components/AddButton";
+import GeoJsonLayer from '../Map/index.js';
+import Typography from "@material-ui/core/Typography";
 
 const containerStyle = {
     backgroundColor: "white",
@@ -168,7 +162,8 @@ export default function DiscoverContainer(props) {
     return (
         <Grid container spacing={3} maxWidth="md" style={containerStyle}>
             <Grid item xs={12}>
-            <DiscoverMap/>
+            <GeoJsonLayer/>
+
             </Grid>
 
             <Grid item xs={12}>
@@ -184,4 +179,3 @@ export default function DiscoverContainer(props) {
             <AddButton />
         </Grid>
     )
-};
