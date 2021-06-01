@@ -65,7 +65,7 @@ export default function TripDetailedContainer(props) {
         .then(
           API.getActivityById(id, token).then((res) => {
             console.log('TripDetailedContainer / res.data: ', res.data)
-            if (res.data.activites) {
+            if (res.data?.activites) {
               setTripState({
                 ...tripState,
                 trip: res.data.activities,
