@@ -1,11 +1,11 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/box";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Card from "@material-ui/core/Card";
-import TripHeader from "../../components/TripHeader";
+// import TripHeader from "../../components/TripHeader";
 import { Link, useParams } from "react-router-dom";
 
 const containerStyle = {
