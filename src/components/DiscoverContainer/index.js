@@ -113,6 +113,7 @@ export default function DiscoverContainer(props) {
 
     useEffect(() => {
 
+<<<<<<< HEAD
             amadeus.shopping.activities.get({
                 latitude: thisLat,
                 longitude: thisLon
@@ -125,6 +126,19 @@ export default function DiscoverContainer(props) {
         
     })
         
+=======
+        amadeus.shopping.activities.get({
+            latitude: thisLat,
+            longitude: thisLon
+        }).then(response => {
+            console.log('getting activities', response.data)
+            setActivitiesState({
+                activities:response.data
+            })
+        })
+    })
+        
+>>>>>>> develop
     console.log(amadeus)
 
 
