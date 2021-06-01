@@ -29,8 +29,8 @@ const containerStyle = {
   const axios = require("axios")
 
   const amadeus = new Amadeus({
-    clientId: "Da21Ae2eHv9GeCs1AfSbCzbNHWp0ArNW!",
-    clientSecret: '5w5HxeLoEQzzxcdC!'
+    clientId: 'Da21Ae2eHv9GeCs1AfSbCzbNHWp0ArNW',
+    clientSecret: '5w5HxeLoEQzzxcdC'
 });
 
         let thisLon = "34.0522";
@@ -51,7 +51,7 @@ export default function DiscoverContainer(props) {
     })
 
     const [tripState, setTripState] = useState({
-    trip:[],
+    trip:{},
     lat:"",
     lon:""
     })
@@ -110,16 +110,7 @@ export default function DiscoverContainer(props) {
                 lon:thisLon
             })
         }).then(
-            
-            amadeus.shopping.activities.get({
-                latitude: thisLat,
-                longitude: thisLon
-            }).then(response => {
-                console.log('getting activities', response.data)
-                setActivitiesState({
-                    activities:response.data
-                })
-            })
+            getActivities(thisLat,thisLon)
             )
         },[])
         
@@ -128,7 +119,17 @@ export default function DiscoverContainer(props) {
 
     const { id } = useParams();
 
-
+    const getActivities = (lat,lon) => {
+        amadeus.shopping.activities.get({
+            latitude: lat,
+            longitude: lon
+        }).then(response => {
+            console.log('getting activities', response.data)
+            setActivitiesState({
+                activities:response.data
+            })
+        })
+    }
 
     return (
         <Grid container spacing={3} maxWidth="md" style={containerStyle}>
