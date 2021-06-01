@@ -72,7 +72,7 @@ export default function Agenda() {
   return (
       <Container maxWidth="md" padding="0" >
         <TripDetailedContainer city="city"/>
-        <NextEvent event="Event Title Placeholder" time="time"/>
+        {/* <NextEvent event="Event Title Placeholder" time="time"/> */}
       </Container>
   );
 };
