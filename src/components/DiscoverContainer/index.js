@@ -178,4 +178,5 @@ export default function DiscoverContainer(props) {
             ))}
             <AddButton />
         </Grid>
-    )
+    );
+            }
