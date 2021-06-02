@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import Box from "@material-ui/core/Box";
 import { Container, Card } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
-
+import { getSuggestedQuery } from "@testing-library/dom";
 
 export default function Profile() {
   const [userState, setUserState] = useState({
@@ -12,12 +12,14 @@ export default function Profile() {
     user: {},
   });
 
-  useEffect(() => {
+  
+      useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      API.getProfile(token)
+    if (userState.token) {
+      API.getProfile(userState.token)
         .then((res) => {
           console.log("profile page:", res.data);
+          console.log('Profile / token: ', token);
           setUserState({
             token: token,
             user: {
@@ -25,27 +27,29 @@ export default function Profile() {
               email: res.data.email,
               username: res.data.username,
             },
-        });
-        console.log('Profile / username: ', userState.user.username)
-        })
-        .then(
-          API.getDashboard(userState.user.id, token).then((res) => {
-            setUserState({
-              userState: res.data,
-            });
-          })
-        )
-        .catch((err) => {
-          console.log("profile page: no user");
-          setUserState({
-            token: "",
-            user: {},
           });
-        });
+          console.log("Profile / userState: ", userState);
+        })
+          API.getDashboard(userState.user.id, token).then((result) => {
+            setUserState({
+              userState: result.data,
+            });
+            console.log("Profile / res.data: ", result.data);
+          })
+          .catch((err) => {
+              console.log("profile page: no user");
+              setUserState({
+                  token: "",
+                  user: {},
+                });
+            });
     } else {
       console.log("profile page: no token");
     }
-  }, []);
+      }, []);
+
+
+
 
   return (
     <div>
