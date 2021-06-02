@@ -19,6 +19,7 @@ export default function Profile() {
         .then((res) => {
           console.log("profile page:", res.data);
           setUserState({
+            ...userState,
             token: token,
             user: {
               id: res.data.id,
@@ -49,7 +50,7 @@ export default function Profile() {
 
   return (
     <div>
-      <MenuBar />
+      {/* <MenuBar />
       <Box display="flex" style={{ justifyContent: "center", padding: 10 }}>
         <h1>{userState.user.username}'s Profile</h1>
         <Box display="flex">
@@ -64,7 +65,7 @@ export default function Profile() {
           <h3>Username: {userState.user.username}</h3>
           <h3>Location: {userState.user.location}</h3>
         </Card>
-      </Container>
+      </Container> */}
     </div>
   );
 }
