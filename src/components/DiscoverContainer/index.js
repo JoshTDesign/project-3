@@ -186,7 +186,7 @@ export default function DiscoverContainer(props) {
   return (
     <Grid container spacing={3} maxWidth="md" style={containerStyle}>
       <Grid item xs={12}>
-        <GeoJsonLayer />
+        <GeoJsonLayer lat={tripState.lat} lon={tripState.lon}/>
       </Grid>
 
       <Grid item xs={12}>

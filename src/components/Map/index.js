@@ -6,6 +6,12 @@ import "./style.css"
 const { token, styles } = require('./config.json');
 // tslint:disable-next-line:no-var-requires
 const geojson = require('./geojson.json');
+const Amadeus = require ("amadeus");
+
+const amadeus = new Amadeus({
+  clientId: "Da21Ae2eHv9GeCs1AfSbCzbNHWp0ArNW",
+  clientSecret: "5w5HxeLoEQzzxcdC",
+});
 
 const Map = ReactMapboxGl({ accessToken: token });
 
@@ -27,9 +33,7 @@ const circleLayout = { visibility: 'visible' };
 const circlePaint = {
   'circle-color': 'white'
 };
-
 class GeoJsonLayer extends Component {
-  center = [-77.01239, 38.91275];
 
   // tslint:disable-next-line:no-any
   onClickCircle = (evt) => {
@@ -46,7 +50,7 @@ class GeoJsonLayer extends Component {
     return (
       <Map
         style={styles.outdoor}
-        // center={this.center}
+        center={[this.props.lon, this.props.lat]}
         containerStyle={mapStyle}
         onStyleLoad={this.onStyleLoad}
       >

@@ -3,13 +3,33 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   TextField,
   Box,
+  Card,
+  Container,
   Button,
   FormControl,
   InputLabel,
   InputAdornment,
   OutlinedInput,
 } from "@material-ui/core/";
-import { render } from "@testing-library/react";
+// import { render } from "@testing-library/react";
+
+
+const containerStyle = {
+  backgroundColor: "white",
+  height: '100vh',
+  borderTopRightRadius: 0,
+  borderTopLeftRadius: 0,
+  borderBottomRightRadius: 8,
+  borderBottomLeftRadius: 8,
+  border: 0,
+  color: '#333333',
+  padding: 0,
+  textAlign: 'center',
+};
+
+const boxStyle={
+  textAlign: 'center',
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +52,7 @@ function Expenses() {
   const [totalExpenses, setTotalExpenses] = useState();
   const [inputValue, setInputValue] = useState(null);
   const [inputActivity, setInputActivity] = useState(null);
+  const [participants, setParticipants] = useState(null);
   const [expenses, setExpenses] = useState([]);
   
 
@@ -40,6 +61,7 @@ function Expenses() {
     const newExpense = {
       value: inputValue,
       activity: inputActivity,
+      participants: participants,
     };
 
     const data = expenses;
@@ -58,8 +80,9 @@ function Expenses() {
     return expenses.map((expense) => {
       return (
         <div>
-          <div>Value: {expense.value}</div>
-          <div>activity: {expense.activity}</div>
+          <Card>
+           {expense.activity} $ {expense.value}, {expense.participants}
+           </Card>
         </div>
       );
     });
@@ -67,7 +90,10 @@ function Expenses() {
 
   return (
     <>
-      <Box>Total: {totalExpenses}</Box>
+    <div style={{paddingLeft:15, paddingRight:15}}>
+      <Container maxWidth="md" style={containerStyle}>
+      <Box style={boxStyle}>
+        <h2>Total Spent:$ {totalExpenses}</h2></Box>
       <TextField
         label="Name of Activity"
         id="filled-size-small"
@@ -84,10 +110,18 @@ function Expenses() {
           labelWidth={60}
         />
       </FormControl>
+      <TextField
+        label="Participants"
+        id="filled-size-small"
+        value={participants ? participants : ""}
+        onChange={(event) => setParticipants(event.target.value)}
+      />
 
       <Button onClick={handleClick}>Submit</Button>
 
       <div>{renderExpensesRow()}</div>
+      </Container>
+      </div>
     </>
   );
 }
