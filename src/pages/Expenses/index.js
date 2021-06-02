@@ -52,6 +52,7 @@ function Expenses() {
   const [totalExpenses, setTotalExpenses] = useState();
   const [inputValue, setInputValue] = useState(null);
   const [inputActivity, setInputActivity] = useState(null);
+  const [participants, setParticipants] = useState(null);
   const [expenses, setExpenses] = useState([]);
   
 
@@ -60,6 +61,7 @@ function Expenses() {
     const newExpense = {
       value: inputValue,
       activity: inputActivity,
+      participants: participants,
     };
 
     const data = expenses;
@@ -78,7 +80,9 @@ function Expenses() {
     return expenses.map((expense) => {
       return (
         <div>
-          <Card>{expense.activity} $ {expense.value}</Card>
+          <Card>
+           {expense.activity} $ {expense.value}, {expense.participants}
+           </Card>
         </div>
       );
     });
@@ -106,6 +110,12 @@ function Expenses() {
           labelWidth={60}
         />
       </FormControl>
+      <TextField
+        label="Participants"
+        id="filled-size-small"
+        value={participants ? participants : ""}
+        onChange={(event) => setParticipants(event.target.value)}
+      />
 
       <Button onClick={handleClick}>Submit</Button>
 
