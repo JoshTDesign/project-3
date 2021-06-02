@@ -5,28 +5,31 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import NavBar from "../../components/Navbar";
 import API from "../../utils/API";
 
 // TODO: Need to create POST request in form submit handler
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-      },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200,
-    },
-  }));
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
 
 export default function NewTripForm(props) {
   const [formState, setFormState] = useState({
     tripName: "",
     city: "",
     state: "",
+    start_date: "",
+    end_date: "",
     token: "",
   });
 
@@ -43,11 +46,11 @@ export default function NewTripForm(props) {
   });
 
   useEffect(() => {
-      const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     setFormState({
-        ...formState,
-        token: token
-    })
+      ...formState,
+      token: token,
+    });
   }, []);
 
   let { id } = useParams();
@@ -56,7 +59,8 @@ export default function NewTripForm(props) {
     const value = event.target.value;
     const name = event.target.name;
 
-    console.log(name, value)
+    console.log("NewTripForm / name,value: ", name, value);
+
     setFormState({
       ...formState,
       [name]: value,
@@ -67,6 +71,7 @@ export default function NewTripForm(props) {
     event.preventDefault();
 
     console.log("NewTripForm / formState: ", formState);
+
     API.createTrip(formState, formState.token).then((res) => {
       setTripState({
         ...tripState,
@@ -77,7 +82,7 @@ export default function NewTripForm(props) {
     console.log("NewTripForm / creating new trip!");
   };
 
-const classes =useStyles();
+  const classes = useStyles();
 
   return (
     <div>
@@ -88,33 +93,37 @@ const classes =useStyles();
             className="location"
             id="outlined-basic"
             label="Trip Name"
+            type="text"
             variant="outlined"
             name="tripName"
             value={formState.tripName}
+            required
             onChange={handleInputChange}
           />
+          <Typography>Start Date</Typography>
           <TextField
             className={classes.textField}
             id="date"
             label=""
             type="date"
             variant="outlined"
-            name="startDate"
-            inputLabelProps={{ 
-                shrink: true
+            name="start_date"
+            inputLabelProps={{
+              shrink: true,
             }}
             value={formState.startDate}
             onChange={handleInputChange}
           />
+          <Typography>End Date</Typography>
           <TextField
             className={classes.textField}
             id="date"
             label=""
             type="date"
             variant="outlined"
-            name="endDate"
-            inputLabelProps={{ 
-                shrink: true
+            name="end_date"
+            inputLabelProps={{
+              shrink: true,
             }}
             value={formState.endDate}
             onChange={handleInputChange}
@@ -126,6 +135,7 @@ const classes =useStyles();
             variant="outlined"
             name="city"
             value={formState.city}
+            required
             onChange={handleInputChange}
           />
           <TextField
@@ -141,6 +151,15 @@ const classes =useStyles();
             className="location"
             id="outlined-basic"
             label="Country (optional)"
+            variant="outlined"
+            name="country"
+            value={formState.country}
+            onChange={handleInputChange}
+          />
+          <TextField
+            className="location"
+            id="outlined-basic"
+            label="Lodging (url)"
             variant="outlined"
             name="country"
             value={formState.country}
@@ -172,6 +191,9 @@ const classes =useStyles();
           </Button>
         </Grid>
       </form>
+      <p style={{ color: "red", padding: "10px" }}>
+        * indicates required field
+      </p>
     </div>
   );
 }
