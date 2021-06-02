@@ -2,8 +2,8 @@ const axios = require("axios");
 const Amadeus = require("amadeus");
 
 const amadeus = new Amadeus({
-  clientId: "ZuGbgEEqzu7GJ7bj3GJ0tvG2GB6MkMCp",
-  clientSecret: "qoIUm1A9IqMbjpAl",
+    clientId: "92kCFA5i2hKHcOKGaJ4yQ8mjhZSPIDbo",
+    clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
 const openTripMapKey = "5ae2e3f221c38a28845f05b60586bc5cab98f89b1fc4c500fe7c4cf7";
