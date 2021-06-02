@@ -29,8 +29,8 @@ const containerStyle = {
   const axios = require("axios")
 
   const amadeus = new Amadeus({
-    clientId: "9ixQG6uOoa4KR4CYLGhPAjrZA3ecsAw0",
-    clientSecret: '8GrNWevlGpTQ4YEL'
+    clientId: 'Da21Ae2eHv9GeCs1AfSbCzbNHWp0ArNW',
+    clientSecret: '5w5HxeLoEQzzxcdC'
 });
 
         let thisLon = "34.0522";
@@ -51,7 +51,7 @@ export default function DiscoverContainer(props) {
     })
 
     const [tripState, setTripState] = useState({
-    trip:[],
+    trip:{},
     lat:"",
     lon:""
     })
@@ -88,35 +88,7 @@ export default function DiscoverContainer(props) {
               })
               console.log('set trip state:'+ tripState.trip.city);
             })
-          ).then (
-
-            API.getLatLon("Seattle").then(res => {
-                thisLon = res.data.coord.lon;
-                thisLat = res.data.coord.lat;
-                console.log('getting lat lon:', thisLon, thisLat)
-                setTripState({
-                    ...tripState,
-                    lat:thisLat,
-                    lon:thisLon
-                })
-            })
-                
-            .then (
-                // axios.get('https://test.api.amadeus.com/v1/shopping/activities?latitude=41.397158&longitude=2.160873&radius=1', {
-                //     headers: {
-                //         'Authorization':'Bearer ZuGbgEEqzu7GJ7bj3GJ0tvG2GB6MkMCp'
-                //     }
-                // })
-                amadeus.shopping.activities.get({
-                    latitude: thisLat,
-                    longitude: thisLon
-                }).then(response => {
-                      console.log('getting activities', response.data)
-                      setActivitiesState({
-                          activities:response.data
-                      })
-                  })
-            ))
+          )
 
 
 
@@ -125,41 +97,47 @@ export default function DiscoverContainer(props) {
           console.log("no token provided")
         }
     },[])
-        
-    // useEffect(()=>{
-    //     console.log('useEffect2 run')
-    //     console.log(tripState.trip.city)
-    //     API.getLatLon(tripState.trip.city).then(res => {
-    //         thisLon = res.data.coord.lon;
-    //         thisLat = res.data.coord.lat;
-    //         console.log(thisLon)
-    //         console.log(thisLat)
-    //         setTripState({
-    //             ...tripState,
-    //             lat:thisLat,
-    //             lon:thisLon
-    //         })
-    //     })
-            
-    //     .then (
-    //         amadeus.shopping.activities.get({
-    //             latitude: tripState.lat,
-    //             longitude: tripState.lon,
-    //           }).then(response => {
-    //               console.log(response.data)
-    //               setActivitiesState({
-    //                   activities:response.data
-    //               })
-    //           })
-    //     );
-        
 
-    // },[]);
+    useEffect(() => {
+
+        API.getLatLon("Seattle").then(res => {
+            thisLon = res.data.coord.lon;
+            thisLat = res.data.coord.lat;
+            console.log('getting lat lon:', thisLon, thisLat)
+            setTripState({
+                ...tripState,
+                lat:thisLat,
+                lon:thisLon
+            })
+        }).then( () => {
+            getActivities(thisLat,thisLon)
+            }
+        )
+        },[])
+        
+    const handleAddActivity = () => {
+        console.log('Submit new activity')
+        let activityData = "test";
+        API.createActivity(activityData, userState.token).then(()=>{
+            console.log('submitted');
+        })
+
+    }
 
 
     const { id } = useParams();
 
-
+    const getActivities = (lat,lon) => {
+        amadeus.shopping.activities.get({
+            latitude: lat,
+            longitude: lon
+        }).then(response => {
+            console.log('getting activities', response.data)
+            setActivitiesState({
+                activities:response.data
+            })
+        })
+    }
 
     return (
         <Grid container spacing={3} maxWidth="md" style={containerStyle}>
@@ -175,7 +153,7 @@ export default function DiscoverContainer(props) {
             {/* <p>{{anotherName}}</p> */}
             {activitiesState.activities.map((activity) => (
             <Grid item xs={6}>
-            <DiscTodo name={activity.name} pictures={activity.pictures[0]} />
+            <DiscTodo name={activity.name} pictures={activity.pictures[0]} test={handleAddActivity} />
             </Grid>
             ))}
             <AddButton />

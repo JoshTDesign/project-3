@@ -46,6 +46,10 @@ export default function TripDetailedContainer(props) {
   let { id } = useParams();
   // console.log(id);
 
+  const handleDelete = () => {
+    console.log('delete click')
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -98,6 +102,7 @@ export default function TripDetailedContainer(props) {
                 <TripDetailed
                   event={trip.activityName}
                   description={trip.description}
+                  uponclick = {handleDelete}
                 />
               ))}
             </Card>

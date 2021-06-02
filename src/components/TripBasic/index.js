@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import Card from "@material-ui/core/Card";
+import { Card, Chip, Grid } from "@material-ui/core";
+import DoneIcon from '@material-ui/icons/Done';
 import Box from "@material-ui/core/box";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
@@ -42,13 +43,13 @@ export default function TripBasic(props) {
   const history = useHistory();
   const classes = useStyles();
 
-  const handleclick = (event) => {
-    event.preventDefault();
-    console.log(event.target.id);
-    history.push(`/Trip/${event.target.id}/Dashboard/`);
-  };
+  // const handleclick = (event) => {
+  //   event.preventDefault();
+  //   console.log(event.target.id);
+  //   history.push(`/Trip/${event.target.id}/Dashboard/`);
+  // };
 
-  
+
 
   // TODO: fitler on click and render detailed trip card
   //
@@ -61,40 +62,48 @@ export default function TripBasic(props) {
   return (
     <div>
       <Box p={2}>
-      <Link to={props.link} style={{textDecoration: 'none'}}>
         <Card style={style}>
-          <grid container spacing={2} direction="row">
-            <grid item>
+          
+          <Grid container  justify="space-between" spacing={2} direction="row">
+          
+            <Link to={props.link} style={{textDecoration: 'none'}}>
+            <Grid item justify="space-around">
               <Typography variant={"h6"} display="inline">
                 {props.title}
               </Typography>
-            </grid>
-            <grid item>
-              <Typography align="right">{props.start}</Typography>
-            </grid>
-            <grid item>
+              <Typography align="right" display='inline' style={{paddingLeft:"10px"}}>{props.start}</Typography>
+            </Grid>
+            
+            <Grid item xs>
               <div className={classes.root}>
                 <Avatar
                   alt="Remy Sharp"
                   src="/broken-image.jpg"
                   className={classes.orange}
-                >
-                J
-                </Avatar>
-                <Avatar
-                  alt="Remy Sharp"
-                  src="/broken-image.jpg"
-                  className={classes.orange}
+                  >
+                  J
+                  </Avatar>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/broken-image.jpg"
+                    className={classes.orange}
+                  />
+                  <Avatar src="/broken-image.jpg" />
+                </div >
+            </Grid>
+            </Link>
+
+            {/* <Grid xs={3}>
+                <Chip
+                  label="Delete Trip"
+                  clickable
+                  color="primary"
+                  deleteIcon={<DoneIcon />}
                 />
-                <Avatar src="/broken-image.jpg" />
-              </div>
-                {/* <button onClick={handleclick} id="1">
-                  show more
-                </button> */}
-            </grid>
-          </grid>
+            </Grid> */}
+          
+        </Grid>
         </Card>
-      </Link>
       </Box>
     </div>
   );
