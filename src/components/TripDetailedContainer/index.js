@@ -4,6 +4,10 @@ import TripDetailed from "../../components/TripDetailed";
 import { Card, Box } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 import API from "../../utils/API";
+import Grid from '@material-ui/core/Grid';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import NavBar from "../../components/Navbar";
 
 // import AddButton from "../AddButton";
 
@@ -42,14 +46,50 @@ export default function TripDetailedContainer(props) {
     trip: [],
     userTrips: [],
   });
-
   let { id } = useParams();
   // console.log(id);
+  const [formState, setFormState] = useState({
+    activityName: "",
+    category: "",
+    url: "",
+    token: "",
+    UserId: "",
+    tripId: id,
+  });
 
-  const handleDelete = () => {
-    console.log('delete click')
-  }
 
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    console.log(name, value)
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const createActivity = id => {
+    console.log('create event function / trip id is:'+id +' user id is:'+userState.user.id)
+  
+    
+    API.createActivity(formState, userState.token).then(res=>{
+      console.log(formState)
+      console.log(userState)
+      API.getActivityById(formState.tripId, userState.token).then(result=>{
+        console.log(result.data)
+        setTripState({
+          // ...tripState,
+        
+          trip: result.data.activities,
+        })
+    
+    }).catch(err=>{
+      console.log(err)
+    })
+  });
+  };
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -106,6 +146,46 @@ export default function TripDetailedContainer(props) {
           </Container>
         </Link>
       </Box>
+      <form className="test" noValidate autoComplete="off">
+                <Grid 
+                container direction="column"
+                justify="center"
+                alignItems="center">
+                    <h2>Add new activity</h2>
+                    <TextField 
+                        className="activityName" 
+                        id="outlined-basic" 
+                        name="activityName"
+                        label="Activity Name" 
+                        variant="outlined" 
+                        onChange={handleInputChange} 
+                    />
+                    <TextField 
+                        className="category" 
+                        id="outlined-basic" 
+                        name="category"
+                        label="Category" 
+                        variant="outlined" 
+                        onChange={handleInputChange} 
+                    />
+                    <TextField 
+                        className="actUrl" 
+                        id="outlined-basic" 
+                        name="url"
+                        label="URL (optional)" 
+                        variant="outlined" 
+                        onChange={handleInputChange} 
+                    />
+                    
+
+                    <Button variant="contained" color="primary" onClick={createActivity}>
+                            {/* <Link to="#">
+                                Add activity
+                            </Link> */}
+                            Create Activity
+                    </Button>
+                </Grid>
+            </form>
     </div>
   );
 }
