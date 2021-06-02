@@ -1,7 +1,8 @@
 import React from "react";
 // import Box from "@material-ui/core/box";
 import { Card } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import { Typography, Chip } from "@material-ui/core";
+import DoneIcon from '@material-ui/icons/Done';
 import TripHeader from "../../components/TripHeader";
 
 const containerStyle = {
@@ -24,10 +25,11 @@ export default function TripDetailed(props) {
   return (
     <Card style={style} onClick={props.handleclick}>
       <div style={containerStyle}>
+      
         <Typography display="inline">
-          <h3>
+          <h4>
           {props.event}
-          </h3>
+          </h4>
           <p>
           {props.description}
           </p>
