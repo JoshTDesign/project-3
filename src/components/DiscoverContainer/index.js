@@ -10,6 +10,10 @@ import DiscTodo from "../../components/DiscTodo";
 import GeoJsonLayer from "../Map/index.js";
 import Typography from "@material-ui/core/Typography";
 import API from "../../utils/API";
+import { makeStyles } from "@material-ui/core/styles";
+import Pagination from "@material-ui/lab/Pagination";
+import Divider from "@material-ui/core/Divider";
+import Box from "@material-ui/core/Box";
 
 const containerStyle = {
   backgroundColor: "white",
@@ -22,6 +26,20 @@ const containerStyle = {
   color: "#333333",
   padding: 25,
 };
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+  paginator: {
+    justifyContent: "center",
+    padding: "10px"
+  }
+
+}));
+
 //   const Amadeus = require("amadeus")
 
 let test = {};
@@ -58,6 +76,18 @@ export default function DiscoverContainer(props) {
   const [activitiesState, setActivitiesState] = useState({
     activities: [],
   });
+
+  const classes = useStyles();
+  const itemsPerPage = 6;
+  const [page, setPage] = useState(1);
+  const [noOfPages] = useState(
+    Math.ceil(activitiesState.activities.length / itemsPerPage)
+  );
+
+  const handlePageChange = (event, value) => {
+    event.preventDefault();
+    setPage(value);
+  };
 
   /*--------------------------*/
 
@@ -163,8 +193,20 @@ export default function DiscoverContainer(props) {
         <h3>Ideas</h3>
       </Grid>
 
+      {activitiesState.activities
+        .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+        .map((activity) => (
+          <Grid item xs={6}>
+            <DiscTodo
+              name={activity.name}
+              pictures={activity.pictures[0]}
+              test={handleAddActivity}
+            />
+          </Grid>
+        ))}
+
       {/* <p>{{anotherName}}</p> */}
-      {activitiesState.activities.map((activity) => (
+      {/* {activitiesState.activities.map((activity) => (
         <Grid item xs={6}>
           <DiscTodo
             name={activity.name}
@@ -172,8 +214,22 @@ export default function DiscoverContainer(props) {
             test={handleAddActivity}
           />
         </Grid>
-      ))}
+      ))} */}
       <AddButton />
+      <Divider />
+      <Box component="span">
+        <Pagination
+          count={4}
+          page={page}
+          onChange={handlePageChange}
+          defaultPage={1}
+          color="primary"
+          size="large"
+          showFirstButton
+          showLastButton
+          classes={{ ul: classes.paginator }}
+        ></Pagination>
+      </Box>
     </Grid>
   );
 }
