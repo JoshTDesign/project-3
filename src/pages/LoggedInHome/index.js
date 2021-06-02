@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card } from "@material-ui/core";
+import {Container, Card} from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
 import DeleteBtn from "../../components/DeleteBtn";
 import Box from "@material-ui/core/Box";
 // import SidebarMenu from "../../components/SidebarMenu";
-import API from "../../utils/API";
+import API from '../../utils/API'
 import MenuBar from "../../components/MenuBar";
 // import NewTripForm from '../../components/NewTripForm';
 
 export default function LoggedInHome() {
-  const [userState, setUserState] = useState({
-    token: "",
-    user: {},
-  });
+
+  const [userState,setUserState] = useState({
+    token:"",
+    user:{
+
+    }
+  })
 
   const [tripState, setTripState] = useState({
-    userTrips: [],
-  });
+    userTrips:[]
+  })
 
   const getUser = () => {
     const token = localStorage.getItem("token")  
@@ -48,14 +51,7 @@ export default function LoggedInHome() {
       })
 };
 
-const removeTrip = id => {
-  API.deleteTrip(id,userState.token).then(res=>{
-    console.log('remove trip worked')
-    console.log(res.data)
-  })
-    
-    .catch(err => console.log(err));
-};
+
 
   // const getDash = () => {
   //   API.getDashboard(userId, token).then(res=>{
@@ -109,10 +105,12 @@ const removeTrip = id => {
     // }
 
     getUser();
-  }, []);
+  },[])
+  // getDash();
+  
 
 
-  const removeEvent = id => {
+  const removeTrip = id => {
     console.log('remove event function / trip id is:'+id +' user id is:'+userState.user.id)
     API.deleteTrip(id, userState.user.id, userState.token).then(res=>{
       console.log(userState.token)
@@ -140,7 +138,7 @@ const removeTrip = id => {
           {tripState.userTrips.map((trip) => (
             <>
             <TripBasic link={`/trip/`+trip.id+`/dashboard`} title={trip.city} start={trip.start_date}/>
-            <DeleteBtn onClick={() => removeEvent(trip.id)} />
+            <DeleteBtn onClick={() => removeTrip(trip.id)} />
 
             </>
             ))}
@@ -151,3 +149,4 @@ const removeTrip = id => {
     </div>
   );
 }
+
