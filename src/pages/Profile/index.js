@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import Box from "@material-ui/core/Box";
 import { Container, Card } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
-
+import { getSuggestedQuery } from "@testing-library/dom";
 
 export default function Profile() {
   const [userState, setUserState] = useState({
@@ -48,7 +48,10 @@ export default function Profile() {
     } else {
       console.log("profile page: no token");
     }
-  }, []);
+      }, []);
+
+
+
 
   return (
     <div>
