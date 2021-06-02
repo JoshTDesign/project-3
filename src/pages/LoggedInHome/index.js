@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Container, Card} from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
+import DeleteBtn from "../../components/DeleteBtn";
 import Box from "@material-ui/core/Box";
 // import SidebarMenu from "../../components/SidebarMenu";
 import API from '../../utils/API'
@@ -48,6 +49,15 @@ export default function LoggedInHome() {
           console.log('LoggedInHome / res.data: ', result.data)
         })
       })
+};
+
+const removeTrip = id => {
+  API.deleteTrip(id,userState.token).then(res=>{
+    console.log('remove trip worked')
+    console.log(res.data)
+  })
+    
+    .catch(err => console.log(err));
 };
 
   // const getDash = () => {
@@ -106,7 +116,22 @@ export default function LoggedInHome() {
   // getDash();
   
 
-  // const myTrips = tripState.userTrips
+
+  const removeEvent = id => {
+    console.log('remove event function / trip id is:'+id +' user id is:'+userState.user.id)
+    API.deleteTrip(id, userState.user.id, userState.token).then(res=>{
+      console.log(userState.token)
+    }).catch(err=>{
+      console.log(err)
+    }).then(()=>{
+      API.getDashboard(userState.user.id, userState.token).then(result=>{
+        setTripState({
+          userTrips:result.data.creator
+        })
+      })
+    }
+    )
+  };
 
   return (
     <div>
@@ -117,8 +142,14 @@ export default function LoggedInHome() {
       </Box>
       <Container maxWidth="md">
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
-          {tripState.userTrips.map((trip) => (<TripBasic link={`/trip/`+trip.id+`/dashboard`} title={trip.city} start={trip.start_date}/>))
-          }
+          {tripState.userTrips.map((trip) => (
+            <>
+            <TripBasic link={`/trip/`+trip.id+`/dashboard`} title={trip.city} start={trip.start_date}/>
+            <DeleteBtn onClick={() => removeEvent(trip.id)} />
+
+            </>
+            ))}
+          
         <AddButton style={{ justifyContent: "flex-end" }} />
         </Card>
       </Container>
