@@ -75,8 +75,8 @@ const API = {
       },
     });
   },
-  deleteTrip: function (TripId, token) {
-    return axios.destroy(`http://localhost:3001/api/trips/${TripId}`, {
+  deleteTrip: function (TripId, userId, token) {
+    return axios.delete(`http://localhost:3001/api/trips/${TripId}/${userId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },

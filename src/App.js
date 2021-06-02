@@ -49,6 +49,9 @@ function App() {
             <Route exact path="/newtripform">
               <NewTripForm />
             </Route>
+            <Route exact path="/newactivityform">
+              <NewActivityForm />
+            </Route>
             {/* <Route path="/createtrip" component={CreateTrip} /> */}
             <Route exact path="/Trip/:id/Dashboard">
               <Dashboard />
