@@ -6,6 +6,12 @@ import "./style.css"
 const { token, styles } = require('./config.json');
 // tslint:disable-next-line:no-var-requires
 const geojson = require('./geojson.json');
+const Amadeus = require ("amadeus");
+
+const amadeus = new Amadeus({
+  clientId: "Da21Ae2eHv9GeCs1AfSbCzbNHWp0ArNW",
+  clientSecret: "5w5HxeLoEQzzxcdC",
+});
 
 const Map = ReactMapboxGl({ accessToken: token });
 
