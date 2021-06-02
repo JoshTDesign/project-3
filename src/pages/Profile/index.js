@@ -22,15 +22,11 @@ export default function Profile() {
             token: token,
             user: {
               id: res.data.id,
-              image: res.data.image_path,
-              firstName: res.data.first_name,
-              lastName: res.data.last_name,
               email: res.data.email,
               username: res.data.username,
-              location: res.data.location,
             },
         });
-        console.log('profile/username: ', userState.username)
+        console.log('Profile / username: ', userState.user.username)
         })
         .then(
           API.getDashboard(userState.user.id, token).then((res) => {
