@@ -6,7 +6,7 @@ const amadeus = new Amadeus({
     clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
-const openTripMapKey = "5ae2e3f221c38a28845f05b60586bc5cab98f89b1fc4c500fe7c4cf7";
+const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
@@ -34,77 +34,77 @@ const API = {
   },
 
   login: function (userData) {
-    return axios.post("http://localhost:3001/login", userData);
+    return axios.post(`${urlPrefix}/login`, userData);
   },
   createUser: function (userData) {
-    return axios.post("http://localhost:3001/signup", userData);
+    return axios.post(`${urlPrefix}/signup`, userData);
   },
 
   getProfile: function (token) {
-    return axios.get("http://localhost:3001/profile", {
+    return axios.get(`${urlPrefix}/profile`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   getAllTrips: function (token) {
-    return axios.get("http://localhost:3001/api/trips/", {
+    return axios.get(`${urlPrefix}/api/trips/`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   getTripById: function (TripId, token) {
-    return axios.get(`http://localhost:3001/api/trips/${TripId}`, {
+    return axios.get(`${urlPrefix}/api/trips/${TripId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   createTrip: function (tripData, token) {
-    return axios.post("http://localhost:3001/api/trips/", tripData, {
+    return axios.post(`${urlPrefix}/api/trips/`, tripData, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   updateTrip: function (tripId, tripData, token) {
-    return axios.put(`http://localhost:3001/api/trips/${tripId}`, tripData, {
+    return axios.put(`${urlPrefix}/api/trips/${tripId}`, tripData, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   deleteTrip: function (TripId, userId, token) {
-    return axios.delete(`http://localhost:3001/api/trips/${TripId}/${userId}`, {
+    return axios.delete(`${urlPrefix}/api/trips/${TripId}/${userId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   getAllActivities: function (token) {
-    return axios.get("http://localhost:3001/api/activities/", {
+    return axios.get(`${urlPrefix}/api/activities/`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   getActivityById: function (activityId, token) {
-    return axios.get(`http://localhost:3001/api/trips/${activityId}`, {
+    return axios.get(`${urlPrefix}/api/trips/${activityId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   deleteActivity: function (activityId, token) {
-    return axios.destroy(`http://localhost:3001/api/trips/${activityId}`, {
+    return axios.destroy(`${urlPrefix}/api/trips/${activityId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   createActivity: function (activityData, token) {
-    return axios.post("http://localhost:3001/api/activities/", activityData, {
+    return axios.post(`${urlPrefix}/api/activities/`, activityData, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -112,7 +112,7 @@ const API = {
   },
   updateActivity: function (activityId, activityData, token) {
     return axios.put(
-      `http://localhost:3001/api/activities/${activityId}`,
+      `${urlPrefix}/api/activities/${activityId}`,
       activityData,
       {
         headers: {
@@ -122,7 +122,7 @@ const API = {
     );
   },
   getDashboard: function (userId, token) {
-    return axios.get(`http://localhost:3001/dashboard/${userId}`, {
+    return axios.get(`${urlPrefix}/dashboard/${userId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
