@@ -94,6 +94,18 @@ const handleFormSubmit = (event) => {
   console.log("Form Submitted / creating new activity!");
 };
 
+const createActivity = id => {
+  console.log('create event function / trip id is:'+id +' user id is:'+userState.user.id)
+  API.createActivity(id, userState.token).then(res=>{
+    console.log(res.data)
+  }).catch(err=>{
+    console.log(err)
+  }).then(()=>{
+
+  }
+  )
+};
+
   useEffect(()=>{
     const token = localStorage.getItem("token")
     
@@ -173,7 +185,8 @@ const handleFormSubmit = (event) => {
                         onChange={handleInputChange} 
                     />
                     
-                    <Button variant="contained" color="primary" onClick={handleFormSubmit}>
+
+                    <Button variant="contained" color="primary" onClick={createActivity}>
                             {/* <Link to="#">
                                 Add activity
                             </Link> */}
