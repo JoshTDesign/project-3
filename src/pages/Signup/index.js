@@ -33,11 +33,12 @@ const history = useHistory();
     });
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    console.log("Submitting Form");
+    API.createUser(formState).then(res => {
 
-    API.createUser(formState).then((res) => {
       localStorage.setItem("token", res.data.token);
       setUserState({
         ...userState,
@@ -47,15 +48,29 @@ const history = useHistory();
           username: res.data.user.username,
         },
       });
-    }).then(
-    setFormState(
-      {
-        firstName: "",
-        lastName: "",
-      },
-      [])).then(
-          history.push('/home')
-      )
+        history.push('/home');
+    //.then(
+    // setFormState(
+    //   {
+    //     firstName: "",
+    //     lastName: "",
+    //   },
+    //   [])).then(
+    //       history.push('/home')
+     // )
+   }).catch(err=>{
+    switch(err.response.data.err.errors[0].message) {
+      case("Validation isEmail on email failed"):
+      window.alert("Please Enter a Valid Email Address");
+      break;
+      case("Validation len on password failed"):
+      window.alert("Please Enter a Password that is 8 characters or more");
+      break;
+      case("user.email must be unique"):
+      window.alert("This Email Address is already in use");
+      break;
+    }
+   })
   };
 
   //TODO: should create axios request for user login when form submits

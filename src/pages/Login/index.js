@@ -24,28 +24,37 @@ function Login() {
  const history = useHistory();
     
   useEffect(()=>{
-    const token = localStorage.getItem("token")
-    if(token){
-      API.getProfile(token).then(res=>{
-        console.log(res.data);
-        setUserState({
-          token:token,
-          user:{
-            email:res.data.email,
-            id:res.data.id,
-            username:res.data.username
-          }
-        })
-    }).catch(err=>{
-      console.log("Login / no logged in user")
-      setUserState({
-        token:"",
-        user:{}
-      })
-    })
-  } else {
-    console.log("Login / no token provided")
-  }
+  //   const token = localStorage.getItem("token")
+  //   if(token){
+  //     API.getProfile(token).then(res=>{
+  //       console.log(res.data);
+  //       setUserState({
+  //         token:token,
+  //         user:{
+  //           email:res.data.email,
+  //           id:res.data.id,
+  //           username:res.data.username
+  //         }
+  //       })
+  //   }).catch(err=>{
+  //     console.log("Login / no logged in user")
+  //     setUserState({
+  //       token:"",
+  //       user:{}
+  //     })
+  //   })
+  // } else {
+  //   console.log("Login / no token provided")
+  // }
+
+  setUserState({
+    token: "",
+    user:{
+      email: "",
+      id: "",
+      username: "",
+    },
+  })
   },[])
 
   console.log('Login / userState.token: ', userState.token)
@@ -83,6 +92,7 @@ function Login() {
       });
       history.push('/home');
     }).catch(err=>{
+      window.alert('Incorrect Username or Password');
       console.log("Login / error occured")
       console.log(err);
       localStorage.removeItem("token");
