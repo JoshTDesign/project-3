@@ -138,15 +138,6 @@ const removeTrip = id => {
       <Container maxWidth="md">
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
           {tripState.userTrips.map((trip) => (
-<<<<<<< HEAD
-            <TripBasic
-              link={`/trip/` + trip.id + `/dashboard`}
-              title={trip.city}
-              start={trip.start_date}
-            />
-          ))}
-          <AddButton style={{ justifyContent: "flex-end" }} />
-=======
             <>
             <TripBasic link={`/trip/`+trip.id+`/dashboard`} title={trip.city} start={trip.start_date}/>
             <DeleteBtn onClick={() => removeEvent(trip.id)} />
@@ -155,7 +146,6 @@ const removeTrip = id => {
             ))}
           
         <AddButton style={{ justifyContent: "flex-end" }} />
->>>>>>> develop
         </Card>
       </Container>
     </div>
