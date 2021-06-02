@@ -52,15 +52,14 @@ export default function Agenda() {
     Trip:[],
   })
 
-  const addNewActivity = () => {
-    console.log('adding new activity')
-  }
+
 
   const btnStyle = {
     position: 'fixed',
     bottom: '15px',
     right: '15px',
   }
+
 
   const handleInputChange = (event) => {
     const value = event.target.value;
