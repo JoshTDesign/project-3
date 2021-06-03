@@ -4,6 +4,7 @@ import { Card } from "@material-ui/core";
 import { Typography, Chip } from "@material-ui/core";
 import DoneIcon from '@material-ui/icons/Done';
 import TripHeader from "../../components/TripHeader";
+import DeleteBtn from "../../components/DeleteBtn";
 
 const containerStyle = {
   // background: 'white',
@@ -23,7 +24,9 @@ const style = {
 
 export default function TripDetailed(props) {
   return (
-    <Card style={style} onClick={props.handleclick}>
+    <Card style={style} 
+    //onClick={props.handleclick} 
+    id={props.id}>
       <div style={containerStyle}>
       
         <Typography display="inline">
@@ -39,6 +42,8 @@ export default function TripDetailed(props) {
         </Typography>
           {props.image}
       </div>
+      <DeleteBtn label="Delete activity" onClick={props.onClick}/>
+
     </Card>
   );
 }

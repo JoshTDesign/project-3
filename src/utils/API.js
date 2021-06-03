@@ -97,7 +97,7 @@ const API = {
     });
   },
   deleteActivity: function (activityId, token) {
-    return axios.destroy(`${urlPrefix}/api/trips/${activityId}`, {
+    return axios.delete(`${urlPrefix}/api/activities/${activityId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },

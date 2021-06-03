@@ -8,6 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import NavBar from "../../components/Navbar";
+import AddActivityModal from "../../components/AddActivityModal";
+import DeleteBtn from "../../components/DeleteBtn"
 
 // import AddButton from "../AddButton";
 
@@ -47,7 +49,7 @@ export default function TripDetailedContainer(props) {
     userTrips: [],
   });
   let { id } = useParams();
-  // console.log(id);
+
   const [formState, setFormState] = useState({
     activityName: "",
     category: "",
@@ -70,14 +72,26 @@ export default function TripDetailedContainer(props) {
     });
   };
 
+  const deleteActivity = (event) => {
+    let thisId = event.target.parentElement.parentElement.id
+    console.log(thisId)
+    console.log('delete event function / activity id is:'+thisId +' user id is:'+userState.user.id)
+    API.deleteActivity(thisId, userState.token).then(res=>{
+      console.log('API req sent // ',res.data)
+  }).catch(err=>{
+    console.log(err)
+  })
+}
+
+
   const createActivity = id => {
     console.log('create event function / trip id is:'+id +' user id is:'+userState.user.id)
-  
-    
+    console.log(formState)
     API.createActivity(formState, userState.token).then(res=>{
       console.log(formState)
-      console.log(userState)
-      API.getActivityById(formState.tripId, userState.token).then(result=>{
+      console.log(id)
+      console.log(res.data)
+      API.getActivityById(id, userState.token).then(result=>{
         console.log(result.data)
         setTripState({
           // ...tripState,
@@ -88,8 +102,12 @@ export default function TripDetailedContainer(props) {
     }).catch(err=>{
       console.log(err)
     })
+  }).catch(error=>{
+    console.log(error)
   });
   };
+
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -135,57 +153,24 @@ export default function TripDetailedContainer(props) {
           style={{ textDecoration: "none", borderRadius: "none" }}
         >
           <Container maxWidth="md" style={containerStyle}>
+              <AddActivityModal 
+                createActivity={createActivity}
+                handleInputChange={handleInputChange}
+                />
             <Card elevation={3} style={style}>
               {tripState.trip.map((trip) => (
                 <TripDetailed
                   event={trip.activityName}
                   description={trip.description}
-                />
+                  onClick={deleteActivity}
+                  id={trip.id}
+                  />
               ))}
             </Card>
           </Container>
         </Link>
       </Box>
-      <form className="test" noValidate autoComplete="off">
-                <Grid 
-                container direction="column"
-                justify="center"
-                alignItems="center">
-                    <h2>Add new activity</h2>
-                    <TextField 
-                        className="activityName" 
-                        id="outlined-basic" 
-                        name="activityName"
-                        label="Activity Name" 
-                        variant="outlined" 
-                        onChange={handleInputChange} 
-                    />
-                    <TextField 
-                        className="category" 
-                        id="outlined-basic" 
-                        name="category"
-                        label="Category" 
-                        variant="outlined" 
-                        onChange={handleInputChange} 
-                    />
-                    <TextField 
-                        className="actUrl" 
-                        id="outlined-basic" 
-                        name="url"
-                        label="URL (optional)" 
-                        variant="outlined" 
-                        onChange={handleInputChange} 
-                    />
-                    
-
-                    <Button variant="contained" color="primary" onClick={createActivity}>
-                            {/* <Link to="#">
-                                Add activity
-                            </Link> */}
-                            Create Activity
-                    </Button>
-                </Grid>
-            </form>
+      
     </div>
   );
 }
