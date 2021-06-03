@@ -11,7 +11,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import { Link, useParams } from "react-router-dom";
 import API from "../../utils/API";
-
 const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +48,8 @@ export default function MenuBar() {
 
   const [userState, setUserState] = useState({
     token: "",
-    id: ""
+    id: "",
+    image_path: "",
   })
 
   const classes = useStyles();
@@ -61,14 +61,19 @@ export default function MenuBar() {
     if(userState.token) {
       API.getProfile(userState.token)
       .then((res) => {
+        API.getDashboard(res.data.id, userState.token)
+        .then(result=>{
+        console.log(result.data);
         setUserState({
           token: userState.token,
-          id: res.data.id
+          id: result.data.id,
+          image_path: result.data.image_path,
+        })
         })
       })
     }
   }, []);
-
+console.log(userState.image_path);
   const handleToggle = (e) => {
     e.preventDefault();
     setDrawerState({
@@ -111,7 +116,7 @@ const menuStyle = {
            {/* Text here if we want */}
 
           </Typography>
-          <Avatar component={Link} to={`/profile/${userState.id}`} alt="placeholder" src="http://placekitten.com/200/300" />
+          <Avatar component={Link} to={`/profile/${userState.id}`} alt="placeholder" src={userState.image_path} />
           
         </Toolbar>
       </AppBar>
