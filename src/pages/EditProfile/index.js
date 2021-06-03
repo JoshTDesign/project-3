@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import {
   Container,
   Grid,
@@ -31,6 +31,8 @@ export default function EditProfile() {
 
   const { id } = useParams();
 
+  const history = useHistory();
+
   useEffect(() => {
     userState.token = localStorage.getItem("token");
     console.log('userstate.token:', userState.token)
@@ -42,6 +44,13 @@ export default function EditProfile() {
           API.getDashboard(res.data.id, userState.token).then((result) => {
               setUserState({
                   id: res.data.id,
+                  first_name: result.data.first_name,
+                  last_name: result.data.last_name,
+                  location: result.data.location,
+                  username: result.data.username,
+                  email: result.data.email,
+                });
+              setFormState({
                   first_name: result.data.first_name,
                   last_name: result.data.last_name,
                   location: result.data.location,
@@ -88,6 +97,10 @@ export default function EditProfile() {
             username: formState.username,
             location: formState.location
         }, userState.token)
+        .then(() => {
+            console.log('update: ')
+            history.push(`/profile/${userState.id}`)
+        })
         setUserState({
             first_name: formState.first_name,
             last_name: formState.last_name,
@@ -162,7 +175,7 @@ export default function EditProfile() {
                 onChange={handleInputChange}
                 placeholder={userState.location}
               />
-              <Button onClick={handleFormSubmit} component={Link} to={`/profile/${userState.id}`}>Submit</Button>
+              <Button onClick={handleFormSubmit}>Submit</Button>
             </Grid>
           </form>
         </div>

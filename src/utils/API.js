@@ -6,7 +6,8 @@ const amadeus = new Amadeus({
     clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
-const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+// const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+const urlPrefix = "http://localhost:3001";
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
@@ -49,7 +50,8 @@ const API = {
   },
   updateProfile: function (user, token) {
     console.log('token: ', token)
-    return axios.put(`http://localhost:3001/edit/${user.id}`, {
+    return axios.put(`http://localhost:3001/edit/${user.id}`, user,
+     {
       headers: {
         authorization: `Bearer ${token}`
       }
