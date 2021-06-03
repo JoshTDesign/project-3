@@ -128,6 +128,42 @@ const API = {
       },
     });
   },
+  getAllExpenses: function (token) {
+    return axios.get(`http://localhost:3001/api/expenses/`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  getExpenseById: function (ExpenseId, token) {
+    return axios.get(`http://localhost:3001/api/expenses/${ExpenseId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  createExpense: function (expenseData, token) {
+    return axios.post(`http://localhost:3001/api/expenses/`, expenseData, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  updateExpense: function (expenseId, expenseData, token) {
+    return axios.put(`http://localhost:3001/api/expenses/${expenseId}`, expenseData, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  deleteExpense: function (ExpenseId, userId, token) {
+    return axios.delete(`http://localhost:3001/api/expenses/${ExpenseId}/${userId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  
   getLatLon: function (cityName) {
     return axios.get(
       `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=ca0a6c1724abbeafa23dfc91590ac700`

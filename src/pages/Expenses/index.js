@@ -55,6 +55,9 @@ function Expenses() {
   const [participants, setParticipants] = useState(null);
   const [expenses, setExpenses] = useState([]);
   
+  // const handleInputChange = (event) => {
+  //   const 
+  // }
 
   const handleClick = () => {
     // click should add amount to total amount
