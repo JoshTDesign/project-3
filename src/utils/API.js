@@ -6,8 +6,13 @@ const amadeus = new Amadeus({
     clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
+<<<<<<< HEAD
 const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
 //const urlPrefix = "http://localhost:3001";
+=======
+// const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+const urlPrefix = "http://localhost:3001";
+>>>>>>> develop
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
@@ -47,6 +52,15 @@ const API = {
         authorization: `Bearer ${token}`,
       },
     });
+  },
+  updateProfile: function (user, token) {
+    console.log('token: ', token)
+    return axios.put(`http://localhost:3001/edit/${user.id}`, user,
+     {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
   },
   getAllTrips: function (token) {
     return axios.get(`${urlPrefix}/api/trips/`, {
