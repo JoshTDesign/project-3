@@ -22,8 +22,8 @@ export default function EditProfile() {
   });
 
   const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     username: "",
     location: "",
@@ -33,14 +33,16 @@ export default function EditProfile() {
 
   useEffect(() => {
     userState.token = localStorage.getItem("token");
+
+    console.log('userstate.token:', userState.token)
     if (userState.token) {
       API.getProfile(userState.token)
         .then((res) => {
-          console.log("EditProfile / initial userState: ", res.data);
+          console.log("EditProfile / INITIAL userState: ", res.data);
           setUserState({
             id: res.data.id,
-            first_name: res.data.first_name,
-            last_name: res.data.last_name,
+            first_name: res.data.firstName,
+            last_name: res.data.lastName,
             location: res.data.location,
             username: res.data.username,
             email: res.data.email,
@@ -62,7 +64,7 @@ export default function EditProfile() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
+    console.log('value:', value)
     setFormState({
       ...formState,
       [name]: value,
@@ -72,26 +74,28 @@ export default function EditProfile() {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log("EditProfile / updating profile information");
+    console.log('EditProfile / userState: ', userState);
 
     userState.token = localStorage.getItem("token");
-    if(formState.firstName || formState.lastName || formState.email || formState.username || formState.location) {
+    if(formState.first_name || formState.last_name || formState.email || formState.username || formState.location) {
+        console.log('userState: ', userState)
         API.updateProfile({
-            first_name: formState.firstName,
-            last_name: formState.lastName,
+            id: userState.id,
+            first_name: formState.first_name,
+            last_name: formState.last_name,
             email: formState.email,
             username: formState.username,
             location: formState.location
-        })
+        }, userState.token)
         setUserState({
-            first_name: formState.firstName,
-            last_name: formState.lastName,
+            first_name: formState.first_name,
+            last_name: formState.last_name,
             email: formState.email,
             username: formState.username,
             location: formState.location
         })
     }
     console.log('EditProfile / NEW userState: ', userState)
-        
   };
 
   return (
@@ -112,20 +116,20 @@ export default function EditProfile() {
                 className="firstName"
                 id="outlined-basic"
                 variant="outlined"
-                value={formState.firstName}
-                name="firstName"
-                placeholder={userState.firstName}
-                onChange={handleInputChange}
+                value={formState.first_name}
+                name="first_name"
+                placeholder={userState.first_name}
+                onChange={(e) => setFormState({ ...formState, first_name: e.target.value})}
               />
               <Typography>LastName:</Typography>
               <TextField
                 className="lastName"
                 id="outlined-basic"
                 variant="outlined"
-                value={formState.lastName}
-                name="lastName"
+                value={formState.last_name}
+                name="last_name"
                 onChange={handleInputChange}
-                placeholder={userState.lastName}
+                placeholder={userState.last_name}
               />
               <Typography>Email:</Typography>
               <TextField

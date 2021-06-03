@@ -47,8 +47,9 @@ const API = {
       },
     });
   },
-  updateProfile: function (userId, token) {
-    return axios.post(`${urlPrefix}/profile/${userId}/edit`, {
+  updateProfile: function (user, token) {
+    console.log('token: ', token)
+    return axios.put(`http://localhost:3001/edit/${user.id}`, {
       headers: {
         authorization: `Bearer ${token}`
       }
