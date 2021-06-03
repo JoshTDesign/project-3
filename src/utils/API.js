@@ -6,13 +6,8 @@ const amadeus = new Amadeus({
     clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
-<<<<<<< HEAD
-const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
-//const urlPrefix = "http://localhost:3001";
-=======
 // const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
 const urlPrefix = "http://localhost:3001";
->>>>>>> develop
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
