@@ -2,14 +2,11 @@ import { React, useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
 import TripDetailed from "../../components/TripDetailed";
 import { Card, Box } from "@material-ui/core";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
-import Grid from '@material-ui/core/Grid';
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import NavBar from "../../components/Navbar";
-import AddActivityModal from "../../components/AddActivityModal";
-import DeleteBtn from "../../components/DeleteBtn"
+// import AddActivityModal from "../../components/AddActivityModal";
+import { makeStyles } from '@material-ui/core/styles';
+import {Modal, Grid, TextField, Button} from '@material-ui/core';
 
 // import AddButton from "../AddButton";
 
@@ -38,6 +35,32 @@ const btnStyle = {
   right: "15px",
 };
 
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    borderRadius: '20px',
+  },
+}));
+
 export default function TripDetailedContainer(props) {
   const [userState, setUserState] = useState({
     token: "",
@@ -49,6 +72,7 @@ export default function TripDetailedContainer(props) {
     userTrips: [],
   });
   let { id } = useParams();
+  console.log(id)
 
   const [formState, setFormState] = useState({
     activityName: "",
@@ -59,7 +83,18 @@ export default function TripDetailedContainer(props) {
     tripId: id,
   });
 
+  const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -76,36 +111,36 @@ export default function TripDetailedContainer(props) {
     let thisId = event.target.parentElement.parentElement.id
     console.log(thisId)
     console.log('delete event function / activity id is:'+thisId +' user id is:'+userState.user.id)
-    API.deleteActivity(thisId, userState.token).then(res=>{
+    API.deleteActivity(thisId, userState.user.id, userState.token).then(res=>{
+      API.getActivityById(id, userState.token).then(result=>{
+        console.log(result.data.activities)
+        setTripState({
+          trip: result.data.activities,
+        })
       console.log('API req sent // ',res.data)
   }).catch(err=>{
     console.log(err)
   })
+})
 }
+const history = useHistory();
 
 
-  const createActivity = id => {
-    console.log('create event function / trip id is:'+id +' user id is:'+userState.user.id)
+  const createActivity = () => {
+    console.log('create event function / trip id is:'+ id +' user id is:'+userState.user.id)
     console.log(formState)
     API.createActivity(formState, userState.token).then(res=>{
-      console.log(formState)
-      console.log(id)
-      console.log(res.data)
       API.getActivityById(id, userState.token).then(result=>{
-        console.log(result.data)
+        console.log(result.data.activities)
         setTripState({
-          // ...tripState,
-        
           trip: result.data.activities,
         })
-    
-    }).catch(err=>{
-      console.log(err)
-    })
-  }).catch(error=>{
-    console.log(error)
-  });
-  };
+      console.log('API req sent // ',res.data)
+  }).catch(err=>{
+    console.log(err)
+  })
+}).then(handleClose)
+}
 
 
   useEffect(() => {
@@ -145,6 +180,54 @@ export default function TripDetailedContainer(props) {
     }
   }, []);
 
+  const body = (
+    <div style={modalStyle} className={classes.paper}>
+      <h2 id="simple-modal-title">Add activity</h2>
+      <p id="simple-modal-description">
+        Add an activity to your agenda
+      </p>
+      {/* <AddActivityModal /> */}
+      <form className="test" noValidate autoComplete="off">
+                <Grid 
+                container direction="column"
+                justify="center"
+                alignItems="center">
+                    <h2>Add new activity</h2>
+                    <TextField 
+                        className="activityName" 
+                        id="outlined-basic" 
+                        name="activityName"
+                        label="Activity Name"
+                        variant="outlined" 
+                        onChange={handleInputChange} 
+                    />
+                    <TextField 
+                        className="category" 
+                        id="outlined-basic" 
+                        name="category"
+                        label="Category" 
+                        variant="outlined" 
+                        onChange={handleInputChange} 
+                    />
+                    <TextField 
+                        className="actUrl" 
+                        id="outlined-basic" 
+                        name="url"
+                        label="URL (optional)" 
+                        variant="outlined" 
+                        onChange={handleInputChange} 
+                    />
+                    
+
+                    <Button variant="contained" color="primary" onClick={createActivity}>
+                            <p>create activity</p>                  
+                    </Button>
+                </Grid>
+            </form>
+    </div>
+  );
+
+
   return (
     <div>
       <Box p={2} style={{ textDecoration: "none", padding: 0 }}>
@@ -153,10 +236,20 @@ export default function TripDetailedContainer(props) {
           style={{ textDecoration: "none", borderRadius: "none" }}
         >
           <Container maxWidth="md" style={containerStyle}>
-              <AddActivityModal 
-                createActivity={createActivity}
-                handleInputChange={handleInputChange}
-                />
+
+                <div>
+                  <button type="button" onClick={handleOpen}>
+                    Add to my agenda
+                  </button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    {body}
+                  </Modal>
+                </div>
             <Card elevation={3} style={style}>
               {tripState.trip.map((trip) => (
                 <TripDetailed
@@ -170,7 +263,9 @@ export default function TripDetailedContainer(props) {
           </Container>
         </Link>
       </Box>
-      
+
+      {/* Model content */}
+    
     </div>
   );
 }

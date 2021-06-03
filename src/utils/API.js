@@ -2,12 +2,12 @@ const axios = require("axios");
 const Amadeus = require("amadeus");
 
 const amadeus = new Amadeus({
-    clientId: "92kCFA5i2hKHcOKGaJ4yQ8mjhZSPIDbo",
+    clientId: "gKvozgYd9DXLSGj1GEscE7JJqcZW5y9A",
     clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
-// const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
-const urlPrefix = "http://localhost:3001";
+const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+// const urlPrefix = "http://localhost:3001";
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
@@ -106,8 +106,8 @@ const API = {
       },
     });
   },
-  deleteActivity: function (activityId, token) {
-    return axios.delete(`${urlPrefix}/api/activities/${activityId}`, {
+  deleteActivity: function (activityId, userId, token) {
+    return axios.delete(`${urlPrefix}/api/activities/${activityId}/${userId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
