@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -12,6 +12,8 @@ import {
   OutlinedInput,
 } from "@material-ui/core/";
 // import { render } from "@testing-library/react";
+import {useParams} from "react-router-dom";
+import API from "../../utils/API";
 
 
 const containerStyle = {
@@ -48,21 +50,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Expenses() {
+  const params = useParams();
   const classes = useStyles();
   const [totalExpenses, setTotalExpenses] = useState();
   const [inputValue, setInputValue] = useState(null);
   const [inputActivity, setInputActivity] = useState(null);
   const [participants, setParticipants] = useState(null);
   const [expenses, setExpenses] = useState([]);
-  
+  const [userState,setUserState] = useState({
+    token:"",
+    user:{
+
+    }
+  })
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+
+    if(token){
+      API.getProfile(token).then(res=>{
+        console.log(res.data);
+        setUserState({
+          token:token,
+          user:{
+            email:res.data.email,
+            id:res.data.id,
+            username:res.data.username
+          }
+        })
+    })
+    } 
+  }, [] )
 
   const handleClick = () => {
     // click should add amount to total amount
     const newExpense = {
-      value: inputValue,
-      activity: inputActivity,
+      cost: inputValue,
+      name: inputActivity,
       participants: participants,
+      tripId: params.id,
     };
+    
+    API.createExpense(newExpense, userState.token)
+    
 
     const data = expenses;
     data.push(newExpense);
@@ -71,7 +100,7 @@ function Expenses() {
 
     let total = 0;
     data.forEach((datum) => {
-      total += datum.value;
+      total += datum.cost;
     });
 
     setTotalExpenses(total);
@@ -81,7 +110,7 @@ function Expenses() {
       return (
         <div>
           <Card>
-           {expense.activity} $ {expense.value}, {expense.participants}
+           {expense.name} $ {expense.cost}, {expense.participants}
            </Card>
         </div>
       );

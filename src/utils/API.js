@@ -6,8 +6,10 @@ const amadeus = new Amadeus({
     clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
-const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
-// const urlPrefix = "http://localhost:3001";
+
+//const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+const urlPrefix = "http://localhost:3001";
+
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
@@ -50,7 +52,7 @@ const API = {
   },
   updateProfile: function (user, token) {
     console.log('token: ', token)
-    return axios.put(`http://localhost:3001/edit/${user.id}`, user,
+    return axios.put(`${urlPrefix}/edit/${user.id}`, user,
      {
       headers: {
         authorization: `Bearer ${token}`
@@ -138,6 +140,42 @@ const API = {
       },
     });
   },
+  getAllExpenses: function (token) {
+    return axios.get(`${urlPrefix}/api/expenses/`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  getExpenseById: function (ExpenseId, token) {
+    return axios.get(`${urlPrefix}/api/expenses/${ExpenseId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  createExpense: function (expenseData, token) {
+    return axios.post(`${urlPrefix}/api/expenses/`, expenseData, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  updateExpense: function (expenseId, expenseData, token) {
+    return axios.put(`${urlPrefix}/api/expenses/${expenseId}`, expenseData, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  deleteExpense: function (ExpenseId, userId, token) {
+    return axios.delete(`${urlPrefix}/api/expenses/${ExpenseId}/${userId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  
   getLatLon: function (cityName) {
     return axios.get(
       `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=ca0a6c1724abbeafa23dfc91590ac700`
@@ -197,6 +235,14 @@ const API = {
       },
     });
   },
+addProfilePic: function(userId, image, token) {
+  return axios.put(`${urlPrefix}/profilepic/${userId}`, image, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+},
+
 
 };
 export default API;
