@@ -6,13 +6,8 @@ const amadeus = new Amadeus({
     clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
-<<<<<<< HEAD
-const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
-//const urlPrefix = "http://localhost:3001";
-=======
 // const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
 const urlPrefix = "http://localhost:3001";
->>>>>>> develop
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
@@ -55,7 +50,7 @@ const API = {
   },
   updateProfile: function (user, token) {
     console.log('token: ', token)
-    return axios.put(`http://localhost:3001/edit/${user.id}`, user,
+    return axios.put(`${urlPrefix}/edit/${user.id}`, user,
      {
       headers: {
         authorization: `Bearer ${token}`
@@ -144,35 +139,35 @@ const API = {
     });
   },
   getAllExpenses: function (token) {
-    return axios.get(`http://localhost:3001/api/expenses/`, {
+    return axios.get(`${urlPrefix}/api/expenses/`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   getExpenseById: function (ExpenseId, token) {
-    return axios.get(`http://localhost:3001/api/expenses/${ExpenseId}`, {
+    return axios.get(`${urlPrefix}/api/expenses/${ExpenseId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   createExpense: function (expenseData, token) {
-    return axios.post(`http://localhost:3001/api/expenses/`, expenseData, {
+    return axios.post(`${urlPrefix}/api/expenses/`, expenseData, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   updateExpense: function (expenseId, expenseData, token) {
-    return axios.put(`http://localhost:3001/api/expenses/${expenseId}`, expenseData, {
+    return axios.put(`${urlPrefix}/api/expenses/${expenseId}`, expenseData, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
   },
   deleteExpense: function (ExpenseId, userId, token) {
-    return axios.delete(`http://localhost:3001/api/expenses/${ExpenseId}/${userId}`, {
+    return axios.delete(`${urlPrefix}/api/expenses/${ExpenseId}/${userId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
