@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Drawer from "@material-ui/core/Drawer";
@@ -10,6 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import { Link, useParams } from "react-router-dom";
+import API from "../../utils/API";
 
 const drawerWidth = 250;
 
@@ -43,9 +44,30 @@ export default function MenuBar() {
   const [drawerState, setDrawerState] = useState({
     drawerIsOpen: false,
   });
+
   // console.log('MenuBar drawer state:',drawerState)
 
+  const [userState, setUserState] = useState({
+    token: "",
+    id: ""
+  })
+
   const classes = useStyles();
+
+  useEffect(() => {
+    userState.token = localStorage.getItem("token");
+    console.log('MenuBar / token: ', userState.token)
+
+    if(userState.token) {
+      API.getProfile(userState.token)
+      .then((res) => {
+        setUserState({
+          token: userState.token,
+          id: res.data.id
+        })
+      })
+    }
+  }, []);
 
   const handleToggle = (e) => {
     e.preventDefault();
@@ -89,7 +111,7 @@ const menuStyle = {
            {/* Text here if we want */}
 
           </Typography>
-          <Avatar component={Link} to={`/profile/${id}`} alt="placeholder" src="http://placekitten.com/200/300" />
+          <Avatar component={Link} to={`/profile/${userState.id}`} alt="placeholder" src="http://placekitten.com/200/300" />
           
         </Toolbar>
       </AppBar>
@@ -111,7 +133,7 @@ const menuStyle = {
         <MenuItem component={Link} to={`/home`}>Home</MenuItem>
         <Divider />
         {/* <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem> */}
-        <MenuItem component={Link} to={`/profile/${id}`}>Profile</MenuItem>
+        <MenuItem component={Link} to={`/profile/${userState.id}`}>Profile</MenuItem>
         <MenuItem>My Friends</MenuItem>
         <MenuItem component={Link} to={`/login`}>Log Out</MenuItem>
       </Drawer>
