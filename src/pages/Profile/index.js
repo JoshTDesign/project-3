@@ -4,6 +4,8 @@ import API from "../../utils/API";
 import Box from "@material-ui/core/Box";
 import { Container, Card } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
+import { Button } from "@material-ui/core/";
+import { Link, useParams } from "react-router-dom";
 import { getSuggestedQuery } from "@testing-library/dom";
 
 export default function Profile() {
@@ -50,7 +52,7 @@ export default function Profile() {
     }
       }, []);
 
-
+const { id } = useParams();
 
 
   return (
@@ -70,6 +72,7 @@ export default function Profile() {
           <h3>Username: {userState.username}</h3>
           <h3>Location: {userState.location}</h3>
         </Card>
+        <Button component={Link} to={`/profile/${id}/edit`}>Edit Profile</Button>
       </Container>
     </div>
   );

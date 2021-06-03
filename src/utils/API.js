@@ -47,6 +47,13 @@ const API = {
       },
     });
   },
+  updateProfile: function (userId, token) {
+    return axios.post(`${urlPrefix}/profile/${userId}/edit`, {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
+  },
   getAllTrips: function (token) {
     return axios.get(`${urlPrefix}/api/trips/`, {
       headers: {
