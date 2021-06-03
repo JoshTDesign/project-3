@@ -10,7 +10,6 @@ import Avatar from "@material-ui/core/Avatar";
 import MenuItem from "@material-ui/core/MenuItem";
 import Divider from "@material-ui/core/Divider";
 import { Link, useParams } from "react-router-dom";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
 import API from "../../utils/API";
 
 const drawerWidth = 250;
