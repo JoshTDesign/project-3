@@ -23,7 +23,7 @@ export default function Profile() {
     if (userState.token) {
       API.getProfile(userState.token)
         .then((res) => {
-          console.log("profile page:", res.data);
+          console.log("Profile / data: ", res.data);
          
         console.log(res.id);
           API.getDashboard(res.data.id, userState.token).then((result) => {
@@ -36,7 +36,7 @@ export default function Profile() {
               username: result.data.username,
               email: result.data.email,
             });
-            console.log(result);
+            console.log('Profile / result: ', result);
           })
       })
         .catch((err) => {

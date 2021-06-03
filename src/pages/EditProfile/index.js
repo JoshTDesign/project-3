@@ -33,22 +33,23 @@ export default function EditProfile() {
 
   useEffect(() => {
     userState.token = localStorage.getItem("token");
-
     console.log('userstate.token:', userState.token)
+    
     if (userState.token) {
       API.getProfile(userState.token)
         .then((res) => {
           console.log("EditProfile / INITIAL userState: ", res.data);
-          setUserState({
-            id: res.data.id,
-            first_name: res.data.firstName,
-            last_name: res.data.lastName,
-            location: res.data.location,
-            username: res.data.username,
-            email: res.data.email,
-          });
-
-          console.log("EditProfile / CURRENT userState: ", userState);
+          API.getDashboard(res.data.id, userState.token).then((result) => {
+              setUserState({
+                  id: res.data.id,
+                  first_name: result.data.first_name,
+                  last_name: result.data.last_name,
+                  location: result.data.location,
+                  username: result.data.username,
+                  email: result.data.email,
+                });
+                console.log("EditProfile / CURRENT userState: ", userState);
+            })
         })
         .catch((err) => {
           console.log("EditProfile / no user");
@@ -113,7 +114,7 @@ export default function EditProfile() {
             >
               <Typography>First Name:</Typography>
               <TextField
-                className="firstName"
+                className="first_name"
                 id="outlined-basic"
                 variant="outlined"
                 value={formState.first_name}
@@ -123,7 +124,7 @@ export default function EditProfile() {
               />
               <Typography>LastName:</Typography>
               <TextField
-                className="lastName"
+                className="last_name"
                 id="outlined-basic"
                 variant="outlined"
                 value={formState.last_name}
@@ -161,7 +162,7 @@ export default function EditProfile() {
                 onChange={handleInputChange}
                 placeholder={userState.location}
               />
-              <Button onClick={handleFormSubmit} component={Link} to={`/profile/${id}`}>Submit</Button>
+              <Button onClick={handleFormSubmit} component={Link} to={`/profile/${userState.id}`}>Submit</Button>
             </Grid>
           </form>
         </div>
