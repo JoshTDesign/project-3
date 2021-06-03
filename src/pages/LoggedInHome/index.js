@@ -41,7 +41,6 @@ export default function LoggedInHome() {
 
         const userId = res.data.id
         console.log('LoggedInHome / userId: ', userId)
-
         API.getDashboard(userId, token).then(result=>{
           setTripState({
             userTrips:result.data.creator

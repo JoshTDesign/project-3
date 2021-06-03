@@ -7,6 +7,7 @@ const amadeus = new Amadeus({
 });
 
 const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+//const urlPrefix = "http://localhost:3001";
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
@@ -162,13 +163,17 @@ const API = {
       },
     });
   },
+  //getting 403 forbidden error.....
   addNewFriend: function(userId, friendId, token) {
-    return axios.put(`${urlPrefix}/friends/${userId}/${friendId}`, {
+    return axios.post(`${urlPrefix}/friends/${userId}/${friendId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
-  },
+  },  
+  // addNewFriend: function(userId, friendId) {
+  //   return axios.post(`${urlPrefix}/friends/${userId}/${friendId}`);
+  // },
   getUserByEmail: function (email, token) {
     return axios.get(`${urlPrefix}/getByEmail/${email}`, {
       headers: {
