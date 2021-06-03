@@ -6,7 +6,8 @@ const amadeus = new Amadeus({
     clientSecret: 'JklAHhzmqBzuaU9P'
 });
 
-const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+// const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+const urlPrefix = "http://localhost:3001";
 
 const API = {
   discoverActivities: function (cityLat, cityLong) {
@@ -46,6 +47,15 @@ const API = {
         authorization: `Bearer ${token}`,
       },
     });
+  },
+  updateProfile: function (user, token) {
+    console.log('token: ', token)
+    return axios.put(`http://localhost:3001/edit/${user.id}`, user,
+     {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    })
   },
   getAllTrips: function (token) {
     return axios.get(`${urlPrefix}/api/trips/`, {
@@ -135,6 +145,58 @@ const API = {
 
     //  TO USE CALL LAT {API.getLatLon("Seattle").then(response => console.log(response.data.coord.lat))}
     //  TO USE CALL LON {API.getLatLon("Seattle").then(response => console.log(response.data.coord.lon))}
+
+    // let temp = API.getLatLon(${userState.city});
+
+    // const center = [temp.data.coord.lat, temp.data.coord.lon]
   },
+
+  addTripUser: function (tripId, userId, token) {
+    return axios.put(`${urlPrefix}/api/trips/addUser/${tripId}/${userId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  getTripUsers: function (tripId, token) {
+    return axios.get(`${urlPrefix}/api/trips/allUsers/${tripId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  getAllFriends: function(userId, token) {
+    return axios.get(`${urlPrefix}/friends/${userId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  //getting 403 forbidden error.....
+  addNewFriend: function(userId, friendId, token) {
+    return axios.post(`${urlPrefix}/friends/${userId}/${friendId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },  
+  // addNewFriend: function(userId, friendId) {
+  //   return axios.post(`${urlPrefix}/friends/${userId}/${friendId}`);
+  // },
+  getUserByEmail: function (email, token) {
+    return axios.get(`${urlPrefix}/getByEmail/${email}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+  updateUser: function(userId, token) {
+    return axios.put(`${urlPrefix}/edit/${userId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
 };
 export default API;

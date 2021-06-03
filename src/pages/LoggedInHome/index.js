@@ -29,11 +29,13 @@ export default function LoggedInHome() {
       API.getProfile(token).then(res=>{
         console.log('LoggedInHome / res.data: ', res.data);
         setUserState({
-          token:token,
+          token: token,
           user:{
             email:res.data.email,
             id:res.data.id,
-            username:res.data.username
+            username:res.data.username,
+            first_name: res.data.firstName,
+            last_name: res.data.lastName
           }
         })
         //hardcoded the user id - need to change
@@ -41,7 +43,6 @@ export default function LoggedInHome() {
 
         const userId = res.data.id
         console.log('LoggedInHome / userId: ', userId)
-
         API.getDashboard(userId, token).then(result=>{
           setTripState({
             userTrips:result.data.creator

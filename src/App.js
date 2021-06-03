@@ -15,6 +15,7 @@ import Expenses from "./pages/Expenses";
 import NewTripForm from "./components/NewTripForm";
 import NewActivityForm from "./components/NewActivityForm";
 import NewExpenseForm from "./components/NewExpenseForm";
+import EditProfile from "./pages/EditProfile";
 // import MenuBar from "./components/MenuBar";
 // import SidebarMenu from "./components/SidebarMenu";
 // import Navbar from "./components/Navbar";
@@ -42,6 +43,9 @@ function App() {
             </Route>
             <Route exact path="/profile/:id">
               <Profile />
+            </Route>
+            <Route exact path="/profile/:id/edit">
+              <EditProfile />
             </Route>
             <Route exact path="/home">
               <LoggedInHome />

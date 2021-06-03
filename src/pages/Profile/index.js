@@ -4,7 +4,8 @@ import API from "../../utils/API";
 import Box from "@material-ui/core/Box";
 import { Container, Card } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
-import { getSuggestedQuery } from "@testing-library/dom";
+import { Button } from "@material-ui/core/";
+import { Link, useParams } from "react-router-dom";
 
 export default function Profile() {
   const [userState, setUserState] = useState({
@@ -22,7 +23,7 @@ export default function Profile() {
     if (userState.token) {
       API.getProfile(userState.token)
         .then((res) => {
-          console.log("profile page:", res.data);
+          console.log("Profile / data: ", res.data);
          
         console.log(res.id);
           API.getDashboard(res.data.id, userState.token).then((result) => {
@@ -35,7 +36,7 @@ export default function Profile() {
               username: result.data.username,
               email: result.data.email,
             });
-            console.log(result);
+            console.log('Profile / result: ', result);
           })
       })
         .catch((err) => {
@@ -50,7 +51,7 @@ export default function Profile() {
     }
       }, []);
 
-
+const { id } = useParams();
 
 
   return (
@@ -70,6 +71,7 @@ export default function Profile() {
           <h3>Username: {userState.username}</h3>
           <h3>Location: {userState.location}</h3>
         </Card>
+        <Button component={Link} to={`/profile/${userState.id}/edit`}>Edit Profile</Button>
       </Container>
     </div>
   );
