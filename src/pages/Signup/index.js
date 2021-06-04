@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import Container from "@material-ui/core/Container";
-import { Button } from "@material-ui/core/";
-import { Grid } from "@material-ui/core/";
-import { TextField } from "@material-ui/core/";
-import { Link, useHistory } from "react-router-dom";
-import SplashLogo from "../../components/SplashLogo";
-import API from "../../utils/API";
+import React, { useState, useEffect } from 'react'
+import { TextField, Box, makeStyles, Button, Container, Typography } from '@material-ui/core/';
+import { Link, useHistory, useParams } from "react-router-dom";
+import SplashLogo from '../../components/SplashLogo';
+import API from '../../utils/API';
 
 function Signup() {
+
   //States for controlling the form content
-const history = useHistory();
   const [formState, setFormState] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
     username: "",
     password: "",
@@ -18,88 +17,135 @@ const history = useHistory();
 
   const [userState, setUserState] = useState({
     token: "",
-    user: {},
+    user: {
+
+    },
   });
 
-  const handleInputChange = (event) => {
-    // Getting the value and name of the input which triggered the change
-    const value = event.target.value;
-    const name = event.target.name;
+  const history = useHistory();
 
-    // Updating the input's state
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+  useEffect(()=>{
 
-  const handleFormSubmit = async (event) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-    console.log("Submitting Form");
-    API.createUser(formState).then(res => {
-
-      localStorage.setItem("token", res.data.token);
-      setUserState({
-        ...userState,
-        token: res.data.token,
-        user: {
-          firstName: res.data.user.firstName,
-          lastName: res.data.user.lastName,
-          location: res.data.user.location,
-          email: res.data.user.email,
-          username: res.data.user.username,
-          image: res.data.user.imagePath
+    setUserState({
+        token: "",
+        user:{
+          email: "",
+          id: "",
+          username: "",
         },
-      });
-        history.push('/home');
-    //.then(
-    // setFormState(
-    //   {
-    //     firstName: "",
-    //     lastName: "",
-    //   },
-    //   [])).then(
-    //       history.push('/home')
-     // )
-   }).catch(err=>{
-    switch(err.response.data.err.errors[0].message) {
-      case("Validation isEmail on email failed"):
-      window.alert("Please Enter a Valid Email Address");
-      break;
-      case("Validation len on password failed"):
-      window.alert("Please Enter a Password that is 8 characters or more");
-      break;
-      case("user.email must be unique"):
-      window.alert("This Email Address is already in use");
-      break;
-    }
-   })
-  };
+      })
+    },[])
 
-  //TODO: should create axios request for user login when form submits
-  console.log("creating new user");
+    const handleInputChange = event => {
+      // Getting the value and name of the input which triggered the change
+      const value = event.target.value;
+      const name = event.target.name;
+  
+      // Updating the input's state
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    };
+
+    const handleFormSubmit = event => {
+      // Preventing the default behavior of the form submit (which is to refresh the page)
+      event.preventDefault();
+      console.log("Submitting Form");
+      API.createUser(formState).then(res => {
+  
+        localStorage.setItem("token", res.data.token);
+        setUserState({
+          ...userState,
+          token: res.data.token,
+          user: {
+            firstName: res.data.user.firstName,
+            lastName: res.data.user.lastName,
+            location: res.data.user.location,
+            email: res.data.user.email,
+            username: res.data.user.username,
+            image: res.data.user.imagePath
+          },
+        });
+          history.push('/home');
+      //.then(
+      // setFormState(
+      //   {
+      //     firstName: "",
+      //     lastName: "",
+      //   },
+      //   [])).then(
+      //       history.push('/home')
+       // )
+     }).catch(err=>{
+      switch(err.response.data.err.errors[0].message) {
+        case("Validation isEmail on email failed"):
+        window.alert("Please Enter a Valid Email Address");
+        break;
+        case("Validation len on password failed"):
+        window.alert("Please Enter a Password that is 8 characters or more");
+        break;
+        case("user.email must be unique"):
+        window.alert("This Email Address is already in use");
+        break;
+      }
+     })
+    };
+
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        '& .MuiTextField-root': {
+          marginTop: theme.spacing(2),
+          marginBottom: theme.spacing(2),
+          width: '100%',
+          display: "flex",
+          flexDirection: "column"
+        },
+      },
+      input: {
+        backgroundColor: "rgba(255, 255, 255, 0.3)",
+        height: "50px"
+      },
+      Button: {
+        maxWidth: '500px',
+      }
+  
+    }));
+  
+    const classes = useStyles();
+
 
   // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
 
   return (
     <div>
-      <Container maxWidth="sm">
-        <div>
-          <SplashLogo />
+      <Container maxWidth="md">
+        <Box
+          paddingTop={15}
+          display="flex"
+          width="auto"
+          height={500}
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+        >
 
-          <form className="test" onSubmit={handleFormSubmit}>
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-            >
+          <form 
+          className={classes.root} 
+          onSubmit={handleFormSubmit}
+          fullWidth={true}
+          style={{justifyContent:'center'}}
+          display="flex"
+          flexDirection="column"
+          >
+            <SplashLogo />
+
               <TextField
-                className="firstName"
-                id="outlined-basic"
+                className={classes.root}
+                InputProps={{className: classes.input}}
+                id="outlined-full-width"
                 label="First Name"
-                variant="outlined"
+                variant="filled"
                 value={formState.firstName}
                 name="firstName"
                 onChange={handleInputChange}
@@ -108,9 +154,10 @@ const history = useHistory();
 
               <TextField
                 className="lastName"
+                InputProps={{className: classes.input}}
                 id="outlined-basic"
                 label="Last Name"
-                variant="outlined"
+                variant="filled"
                 value={formState.lastName}
                 name="lastName"
                 onChange={handleInputChange}
@@ -119,9 +166,11 @@ const history = useHistory();
 
               <TextField
                 className="email"
+                InputProps={{className: classes.input}}
+
                 id="outlined-basic"
                 label="Email"
-                variant="outlined"
+                variant="filled"
                 value={formState.email}
                 name="email"
                 onChange={handleInputChange}
@@ -130,9 +179,11 @@ const history = useHistory();
 
               <TextField
                 className="userName"
+                InputProps={{className: classes.input}}
+
                 id="outlined-basic"
                 label="User Name"
-                variant="outlined"
+                variant="filled"
                 value={formState.username}
                 name="username"
                 onChange={handleInputChange}
@@ -141,9 +192,11 @@ const history = useHistory();
 
               <TextField
                 className="password"
+                InputProps={{className: classes.input}}
+
                 id="outlined-basic"
                 label="Password"
-                variant="outlined"
+                variant="filled"
                 value={formState.password}
                 name="password"
                 onChange={handleInputChange}
@@ -154,18 +207,24 @@ const history = useHistory();
                 type="submit"
                 variant="contained"
                 color="primary"
+                style={{minWidth: "100%"}}
                 onClick={handleFormSubmit}
               >
                 Create Account
               </Button>
 
-              <p>or</p>
-            </Grid>
-          </form>
-          <Button variant="outlined" color="primary">
-            <Link to="/">Log In</Link>
+              <p style={{textAlign: "center"}}>or</p>
+          <Button
+            style={{width:'100%'}}
+            color="default"
+            component={Link}
+            to={`/login`}>
+            Login to your account
           </Button>
-        </div>
+          
+          </form>
+          
+        </Box>
       </Container>
     </div>
   );
