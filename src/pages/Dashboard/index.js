@@ -109,7 +109,8 @@ function Dashboard() {
               </Box>
               <Box>
             <Typography variant="h6" color="primary.dark">
-            <h2 style={{fontFamily:'Quando',margin:0}}>Trip to {tripState.trip?.city}</h2>
+            <h2 style={{fontFamily:'Quando',margin:0}}>Trip to {tripState.trip?.city}
+            <Button variant="filled">Add new members to your group</Button></h2>
             </Typography>
             <Typography variant="subtitle1" color="primary">
               {tripState.trip?.start_date} until {tripState.trip?.end_date}
