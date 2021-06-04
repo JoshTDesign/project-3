@@ -126,6 +126,13 @@ export default function LoggedInHome() {
     }
     )
   };
+  const getImage = (img) => {
+    API.getImage(img).then(res=>{
+      return res.data.results[0].links.html
+    }
+    )}
+
+    // console.log(getImage('seattle'))
 
   return (
     <div>
@@ -138,8 +145,13 @@ export default function LoggedInHome() {
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
           {tripState.userTrips.map((trip) => (
             <>
-            <TripBasic link={`/trip/`+trip.id+`/dashboard`} title={trip.city} start={trip.start_date}/>
-            <DeleteBtn onClick={() => removeTrip(trip.id)} />
+            <TripBasic 
+              link={`/trip/`+trip.id+`/dashboard`} 
+              title={trip.city} 
+              start={trip.start_date}
+              onClick={() => removeTrip(trip.id)}
+              img='http://placekitten.com/300/200'/>
+            {/* <DeleteBtn label="Delete trip" onClick={() => removeTrip(trip.id)} /> */}
 
             </>
             ))}

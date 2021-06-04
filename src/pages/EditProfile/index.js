@@ -6,6 +6,8 @@ import {
   Typography,
   TextField,
   Button,
+  makeStyles,
+  Box
 } from "@material-ui/core";
 import MenuBar from "../../components/MenuBar";
 import API from "../../utils/API";
@@ -112,73 +114,125 @@ export default function EditProfile() {
     console.log('EditProfile / NEW userState: ', userState)
   };
 
+
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& .MuiTextField-root': {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+        width: '100%',
+        display: "flex",
+        flexDirection: "column"
+      },
+    },
+    input: {
+      backgroundColor: "rgba(255, 255, 255, 0.3)",
+      height: "50px"
+    },
+    Button: {
+      maxWidth: '500px',
+    }
+
+  }));
+
+  const classes = useStyles();
+
   return (
     <div>
       <MenuBar />
-      <Container maxWidth="sm">
-        <h1>Update Profile Information</h1>
-        <div>
-          <form className="test">
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
+      <Container maxWidth="md">
+        <Box
+            paddingTop={15}
+            display="flex"
+            width="auto"
+            height={500}
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
             >
-              <Typography>First Name:</Typography>
+            <Typography>
+            <h3>Update Profile Information</h3>
+            </Typography>
+
+          <form className="test"
+              className={classes.root} 
+              onSubmit={handleFormSubmit} 
+              fullWidth={true}
+              width="auto"
+              style={{justifyContent:'center'}}
+              display="flex"
+              flexDirection="column"
+          >
               <TextField
+                className={classes.root}
+                InputProps={{className: classes.input}}
                 className="first_name"
-                id="outlined-basic"
-                variant="outlined"
+                id="outlined-full-width" 
+                variant="filled"
+                label="First Name"
                 value={formState.first_name}
                 name="first_name"
+                color="primary"
                 placeholder={userState.first_name}
                 onChange={(e) => setFormState({ ...formState, first_name: e.target.value})}
               />
-              <Typography>LastName:</Typography>
               <TextField
+                className={classes.root}
+                InputProps={{className: classes.input}}
                 className="last_name"
                 id="outlined-basic"
-                variant="outlined"
+                variant="filled"
+                label="Last Name"
                 value={formState.last_name}
                 name="last_name"
                 onChange={handleInputChange}
                 placeholder={userState.last_name}
               />
-              <Typography>Email:</Typography>
               <TextField
+                className={classes.root}
+                InputProps={{className: classes.input}}
                 className="firstName"
                 id="outlined-basic"
-                variant="outlined"
+                variant="filled"
+                label="Email"
                 value={formState.email}
                 name="email"
                 onChange={handleInputChange}
                 placeholder={userState.email}
               />
-              <Typography>Username:</Typography>
               <TextField
+                className={classes.root}
+                InputProps={{className: classes.input}}
                 className="firstName"
                 id="outlined-basic"
-                variant="outlined"
+                variant="filled"
+                label="Username"
                 value={formState.username}
                 name="username"
                 onChange={handleInputChange}
                 placeholder={userState.username}
               />
-              <Typography>Location:</Typography>
               <TextField
+                className={classes.root}
+                InputProps={{className: classes.input}}
                 className="firstName"
                 id="outlined-basic"
-                variant="outlined"
+                variant="filled"
+                label="Location"
                 value={formState.location}
                 name="location"
                 onChange={handleInputChange}
                 placeholder={userState.location}
               />
-              <Button onClick={handleFormSubmit}>Submit</Button>
-            </Grid>
+              <Button 
+                type="submit"
+                variant="contained" 
+                color="primary" 
+                style={{minWidth: "100%"}}
+                onClick={handleFormSubmit}>Update profile
+              </Button>
           </form>
-        </div>
+        </Box>
       </Container>
     </div>
   );

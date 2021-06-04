@@ -8,12 +8,12 @@ import API from '../../utils/API';
 function Login() {
 
   //States for controlling the form content
-  const [formState,setFormState] = useState({
+  const [formState, setFormState] = useState({
     username:"",
     password:""
   })
 
-  const [userState,setUserState] = useState({
+  const [userState, setUserState] = useState({
     token:"",
     user:{
 
@@ -24,28 +24,7 @@ function Login() {
  const history = useHistory();
     
   useEffect(()=>{
-  //   const token = localStorage.getItem("token")
-  //   if(token){
-  //     API.getProfile(token).then(res=>{
-  //       console.log(res.data);
-  //       setUserState({
-  //         token:token,
-  //         user:{
-  //           email:res.data.email,
-  //           id:res.data.id,
-  //           username:res.data.username
-  //         }
-  //       })
-  //   }).catch(err=>{
-  //     console.log("Login / no logged in user")
-  //     setUserState({
-  //       token:"",
-  //       user:{}
-  //     })
-  //   })
-  // } else {
-  //   console.log("Login / no token provided")
-  // }
+
 
   setUserState({
     token: "",
@@ -56,12 +35,6 @@ function Login() {
     },
   })
   },[])
-
-  console.log('Login / userState.token: ', userState.token)
-  //   API.getAllTrips = (useState.token) => {
-  //   console.log(res.data);
-  // }
-
 
   const handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -117,15 +90,10 @@ function Login() {
       },
     },
     input: {
-      // marginLeft: theme.spacing(1),
-      // marginRight: theme.spacing(1),
-      // width: '25ch',
-      backgroundColor: "white",
+      backgroundColor: "rgba(255, 255, 255, 0.3)",
       height: "50px"
     },
     Button: {
-      // marginLeft: theme.spacing(1),
-      // marginRight: theme.spacing(1),
       maxWidth: '500px',
     }
 
@@ -133,35 +101,40 @@ function Login() {
 
   const classes = useStyles();
 
-  const bgColor = () => {
-    document.body.style.backgroundColor = "#4E4E4E";
-  }
-
-  bgColor();
 
   return (
     <div>
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
           <Box
             paddingTop={15}
             display="flex"
             width="auto"
             height={500}
             justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
           >
           
 
-          <form className={classes.root} onSubmit={handleFormSubmit} fullWidth={true}>
+          <form 
+          className={classes.root} 
+          onSubmit={handleFormSubmit} 
+          fullWidth={true}
+          style={{justifyContent:'center'}}
+          display="flex"
+          flexDirection="column"
+          >
           <SplashLogo />
                   
             <TextField 
               className={classes.root}
               InputProps={{className: classes.input}}
               className="userName" 
-              id="outlined-basic" 
+              id="outlined-full-width" 
               label="User Name" 
-              variant="outlined" 
+              variant="filled" 
               value={formState.username}
+              color='primary'
               name="username"
               onChange={handleInputChange}
               placeholder="User Name"
@@ -171,35 +144,39 @@ function Login() {
               className={classes.root}
               InputProps={{className: classes.input}}
               className="password" 
-              id="outlined-basic" 
+              id="outlined-full-width" 
               label="Password" 
-              variant="outlined" 
+              variant="filled" 
+              // color="primary"
               value={formState.password}
               name="password"
               type="password"
               onChange={handleInputChange}
               placeholder="Password"
             />
-            <Link to="/home">
+            {/* <Link to="/home"> */}
             <Button 
               type="submit"
               variant="contained" 
               color="primary" 
-              style={{minWidth: "100%", height:"50px"}}
+              style={{minWidth: "100%"}}
               onClick={handleFormSubmit}
               // onSubmit={handleFormSubmit}
               // component={Link} to="/home"
             >
               Login
-            
             </Button>
-            </Link>
-            <Typography align="center">
-            <p>or</p>
-              <Link to="/signup">
-                  Create Account
-              </Link>
-            </Typography>
+
+            <p style={{textAlign: "center"}}>or</p>
+
+            <Button
+              style={{width:'100%'}}
+              color="default"
+              component={Link}
+              to={`/signup`}>
+              Create Account
+            </Button>
+
 
 
             </form>

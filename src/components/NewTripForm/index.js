@@ -106,6 +106,8 @@ export default function NewTripForm(props) {
           userTrips: res.data,
         });
         history.push(`/home`);
+      }).catch(err=>{
+        console.log(err)
       });
       console.log("NewTripForm / creating new trip!");
     }

@@ -8,7 +8,7 @@ import Clear from '@material-ui/icons/Clear';
 // That way we don't have to define them all individually
 function DeleteBtn(props) {
   return (
-    <Chip icon={<Clear />} label="Delete Trip" color="primary" {...props} role="button" tabIndex="0">
+    <Chip icon={<Clear />} color="primary" {...props} role="button" tabIndex="0">
     </Chip>
 
   );
