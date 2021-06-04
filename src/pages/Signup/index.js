@@ -198,6 +198,7 @@ function Signup() {
                 label="Password"
                 variant="filled"
                 value={formState.password}
+                type="password"
                 name="password"
                 onChange={handleInputChange}
                 placeholder="Password"
