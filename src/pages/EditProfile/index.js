@@ -76,6 +76,7 @@ export default function EditProfile() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log("name: ", name);
     console.log('value:', value)
     setFormState({
       ...formState,

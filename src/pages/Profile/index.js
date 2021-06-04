@@ -59,9 +59,9 @@ const { id } = useParams();
       <MenuBar />
       <Box display="flex" style={{ justifyContent: "center", padding: 10 }}>
         <h1>{userState.username}'s Profile</h1>
-        <Box display="flex">
+        {/* <Box display="flex">
           <Avatar src={userState.image} alt="profile-pic" />
-        </Box>
+        </Box> */}
       </Box>
       <Container maxWidth="md">
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
