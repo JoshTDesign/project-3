@@ -1,5 +1,8 @@
 import { React, useState, useEffect } from "react";
 import Container from "@material-ui/core/Container";
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
 import TripDetailed from "../../components/TripDetailed";
 import { Card, Box } from "@material-ui/core";
 import { Link, useParams, useHistory } from "react-router-dom";
@@ -7,6 +10,7 @@ import API from "../../utils/API";
 // import AddActivityModal from "../../components/AddActivityModal";
 import { makeStyles } from '@material-ui/core/styles';
 import {Modal, Grid, TextField, Button} from '@material-ui/core';
+
 
 // import AddButton from "../AddButton";
 
@@ -51,6 +55,19 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
+      width: '100%',
+      display: "flex",
+      flexDirection: "column"
+    },
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
   paper: {
     position: 'absolute',
     width: 400,
@@ -58,6 +75,13 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     borderRadius: '20px',
+  },
+  input: {
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    height: "50px"
+  },
+  Button: {
+    maxWidth: '500px',
   },
 }));
 
@@ -187,39 +211,120 @@ const history = useHistory();
         Add an activity to your agenda
       </p>
       {/* <AddActivityModal /> */}
-      <form className="test" noValidate autoComplete="off">
+      <form 
+        className={classes.root} 
+        onSubmit={createActivity}
+        fullWidth={true}
+        style={{justifyContent:'center'}}
+        display="flex"
+        flexDirection="column"
+        >
                 <Grid 
                 container direction="column"
                 justify="center"
                 alignItems="center">
-                    <h2>Add new activity</h2>
                     <TextField 
+                        className={classes.root}
+                        InputProps={{className: classes.input}}
                         className="activityName" 
-                        id="outlined-basic" 
+                        id="outlined-full-width"
                         name="activityName"
                         label="Activity Name"
-                        variant="outlined" 
+                        variant="filled" 
                         onChange={handleInputChange} 
                     />
                     <TextField 
-                        className="category" 
-                        id="outlined-basic" 
-                        name="category"
-                        label="Category" 
-                        variant="outlined" 
+                        className={classes.root}
+                        InputProps={{className: classes.input}}
+                        className="activityDescription" 
+                        id="outlined-full-width"
+                        name="description"
+                        label="Activity Description"
+                        variant="filled" 
                         onChange={handleInputChange} 
                     />
                     <TextField 
+                        className={classes.root}
+                        InputProps={{className: classes.input}}
+                        className="address" 
+                        id="outlined-full-width"
+                        name="address"
+                        label="Activity Address"
+                        variant="filled" 
+                        onChange={handleInputChange} 
+                    />
+                    <TextField 
+                        className={classes.root}
+                        InputProps={{className: classes.input}}
                         className="actUrl" 
                         id="outlined-basic" 
                         name="url"
                         label="URL (optional)" 
-                        variant="outlined" 
+                        variant="filled" 
                         onChange={handleInputChange} 
+                    />
+                    <TextField 
+                        className={classes.root}
+                        InputProps={{className: classes.input}}
+                        className="category" 
+                        id="outlined-basic" 
+                        name="category"
+                        label="Category" 
+                        variant="filled" 
+                        onChange={handleInputChange} 
+                    />
+                    <TextField 
+                        className={classes.root}
+                        InputProps={{className: classes.input}}
+                        className="cost" 
+                        id="outlined-basic" 
+                        name="cost"
+                        label="Cost" 
+                        variant="filled" 
+                        onChange={handleInputChange} 
+                    />
+                    <TextField
+                      className={classes.textField}
+                      id="date"
+                      label=""
+                      type="date"
+                      variant="outlined"
+                      name="activity_date"
+                      inputLabelProps={{
+                        shrink: true,
+                      }}
+                      value={formState.startDate}
+                      onChange={handleInputChange}
+                    />
+                     <TextField
+                      id="time"
+                      label="Start Time"
+                      type="time"
+                      defaultValue="07:30"
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      inputProps={{
+                        step: 300, // 5 min
+                      }}
+                    />
+                    <TextField
+                      id="time"
+                      label="End Time"
+                      type="time"
+                      defaultValue="07:30"
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      inputProps={{
+                        step: 300, // 5 min
+                      }}
                     />
                     
 
-                    <Button variant="contained" color="primary" onClick={createActivity}>
+                    <Button variant="filled" color="primary" onClick={createActivity}>
                             <p>create activity</p>                  
                     </Button>
                 </Grid>
@@ -257,6 +362,7 @@ const history = useHistory();
                   description={trip.description}
                   onClick={deleteActivity}
                   id={trip.id}
+                  openActivity={(e)=>{console.log('clicked')}}
                   />
               ))}
             </Card>
