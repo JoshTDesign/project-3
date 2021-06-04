@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Card, Chip, Grid } from "@material-ui/core";
 import DoneIcon from '@material-ui/icons/Done';
@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import { deepOrange, deepPurple } from "@material-ui/core/colors";
+import API from "../../utils/API";
 // import ProfileTile from "../../components/ProfileTile";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,16 +40,50 @@ export default function TripBasic(props) {
   //   trips: [],
   //   tripsFiltered: [],
   // });
-
+  let tripId = props.link.split("/")[2];
   const history = useHistory();
   const classes = useStyles();
 
+  const [userState, setUserState] = useState({
+    token: "",
+    username: "",
+    first_name: "",
+    image_path: "",
+  });
   // const handleclick = (event) => {
   //   event.preventDefault();
   //   console.log(event.target.id);
   //   history.push(`/Trip/${event.target.id}/Dashboard/`);
   // };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      API.getProfile(token)
+        .then((res) => {
+          console.log(res.data)
+          API.getDashboard(res.data.id, token)
+          .then(result => { 
+            API.getTripUsers(tripId, token)
+            .then((newres) => {
+          console.log(newres.data);
+          // tripUsers = newres.data.Trips;
+          // console.log(tripUsers);
+            setUserState({
+              ...userState,
+            token: token,
+              username: result.data.username,
+              first_name: result.data.first_name,
+              image_path: result.data.image_path,
+              otherUsers: newres.data.Trips
+          });
+        })
+          })
+        })
+       
+      } else {console.log("no Token found tripbasic")}
 
+
+  }, []);
 
 
   // TODO: fitler on click and render detailed trip card
@@ -76,19 +111,23 @@ export default function TripBasic(props) {
             
             <Grid item xs>
               <div className={classes.root}>
+
                 <Avatar
-                  alt="Remy Sharp"
-                  src="/broken-image.jpg"
-                  className={classes.orange}
-                  >
-                  J
-                  </Avatar>
+                alt={userState?.first_name}
+                src={userState?.image_path}
+                className={classes.purple}>
+                    {userState?.first_name.charAt(0).toUpperCase()}
+                </Avatar>
+
+                {userState.otherUsers?.map((user, index) => (
                   <Avatar
-                    alt="Remy Sharp"
-                    src="/broken-image.jpg"
-                    className={classes.orange}
-                  />
-                  <Avatar src="/broken-image.jpg" />
+                  key={index}
+                  alt={user.first_name}
+                  src={user.image_path}
+                  className={classes.orange}>
+                    {user.first_name.charAt(0).toUpperCase()}
+                  </Avatar>
+                ))}
                 </div >
             </Grid>
             </Link>
