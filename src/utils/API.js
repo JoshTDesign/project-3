@@ -50,7 +50,7 @@ const API = {
   },
   updateProfile: function (user, token) {
     console.log('token: ', token)
-    return axios.put(`http://localhost:3001/edit/${user.id}`, user,
+    return axios.put(`${urlPrefix}/edit/${user.id}`, user,
      {
       headers: {
         authorization: `Bearer ${token}`

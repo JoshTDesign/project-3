@@ -229,7 +229,7 @@ export default function EditProfile() {
                 variant="contained" 
                 color="primary" 
                 style={{minWidth: "100%"}}
-                onClick={handleFormSubmit}>Submit
+                onClick={handleFormSubmit}>Update profile
               </Button>
           </form>
         </Box>
