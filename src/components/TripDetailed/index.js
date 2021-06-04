@@ -16,7 +16,7 @@ const containerStyle = {
 const style = {
   backgroundColor: '#f3f5f9',
   boxShadow: 'none',
-  borderRadius: '15px',
+  borderRadius: '8px',
   textDecoration: 'none',
   // padding: 15,
   margin: 15,

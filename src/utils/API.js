@@ -3,7 +3,7 @@ const Amadeus = require("amadeus");
 
 const amadeus = new Amadeus({
     clientId: "gKvozgYd9DXLSGj1GEscE7JJqcZW5y9A",
-    clientSecret: 'JklAHhzmqBzuaU9P'
+    clientSecret: 'XnAfg8Rycx3qaX9o'
 });
 
 

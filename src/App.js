@@ -16,15 +16,13 @@ import NewTripForm from "./components/NewTripForm";
 import NewActivityForm from "./components/NewActivityForm";
 import NewExpenseForm from "./components/NewExpenseForm";
 import EditProfile from "./pages/EditProfile";
-// import MenuBar from "./components/MenuBar";
-// import SidebarMenu from "./components/SidebarMenu";
-// import Navbar from "./components/Navbar";
-// import DashNavBtn from "./components/DashNavBtn";
+import Background from "./components/Graphics/mountainbg-full.svg"
 
 function App() {
   return (
     <div>
-      {/* <SidebarMenu /> */}
+      {/* <Background /> */}
+      {/* <div id="mountainbg-full" style={bgStyle}>test</div> */}
       <Router>
         <div>
           {/* <SidebarMenu /> */}
@@ -89,3 +87,11 @@ function App() {
 }
 
 export default App;
+
+const bgStyle = {
+  // display: 'fixed',
+  color: 'red',
+  background: `url(${Background}) repeat-x`,
+  height:'20em',
+
+}

@@ -248,15 +248,13 @@ export default function DiscoverContainer(props) {
   
 
   return (
-    <Grid container spacing={3} maxWidth="md" style={containerStyle}>
-      <Grid item xs={12}>
+    <div>
+      <Box p={2} style={{ textDecoration: "none", padding: 0 }}>
+      <Container maxWidth="md" style={containerStyle}>
         <GeoJsonLayer lat={tripState.lat} lon={tripState.lon}/>
-      </Grid>
       {/* <AddActivityModal createActivity={createActivity} /> */}
 
-      <Grid item xs={12}>
         <h3>Ideas</h3>
-      </Grid>
 
       {activitiesState.activities
         .slice((page - 1) * itemsPerPage, page * itemsPerPage)
@@ -302,6 +300,8 @@ export default function DiscoverContainer(props) {
           classes={{ ul: classes.paginator }}
         ></Pagination>
       </Box>
-    </Grid>
+      </Container>
+    </Box>
+    </div>
   );
 }

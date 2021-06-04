@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { Card, Chip, Grid } from "@material-ui/core";
+import { Card, Chip, Grid, IconButton, CardMedia } from "@material-ui/core";
+import Delete from "@material-ui/icons/Delete";
 import DoneIcon from '@material-ui/icons/Done';
 import Box from "@material-ui/core/box";
 import Typography from "@material-ui/core/Typography";
@@ -32,6 +33,7 @@ const style = {
   borderRadius: '15px',
   textDecoration: 'none',
   padding: 15,
+
 }
 
 export default function TripBasic(props) {
@@ -63,7 +65,7 @@ export default function TripBasic(props) {
     <div>
       <Box p={2}>
         <Card style={style}>
-          
+          <CardMedia image="http://placekitten.com/200/300"/>
           <Grid container  justify="space-between" spacing={2} direction="row">
           
             <Link to={props.link} style={{textDecoration: 'none'}}>
@@ -92,7 +94,13 @@ export default function TripBasic(props) {
                 </div >
             </Grid>
             </Link>
-
+            <IconButton 
+              color="primary.dark" 
+              aria-label="delete card" 
+              component="span"
+              onClick={props.onClick}>
+              <Delete />
+            </IconButton>
             {/* <Grid xs={3}>
                 <Chip
                   label="Delete Trip"
