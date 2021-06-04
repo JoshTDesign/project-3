@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 import {Modal, Grid, TextField, Button} from '@material-ui/core';
 
 function rand() {

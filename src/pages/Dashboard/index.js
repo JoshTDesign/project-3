@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/box";
+//import Container from "@material-ui/core/Container";
+import {Box, Container } from "@material-ui/core";
 import { Button, Typography } from "@material-ui/core";
 import API from "../../utils/API";
 

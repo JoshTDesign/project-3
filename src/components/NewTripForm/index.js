@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core";
+import {Grid} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
+import {Button} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import NavBar from "../../components/Navbar";
 import API from "../../utils/API";
 import { ErrorSharp } from "@material-ui/icons";

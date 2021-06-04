@@ -1,7 +1,7 @@
 import React from "react";
-import Box from "@material-ui/core/box";
-import Card from "@material-ui/core/Card";
-import Typography from "@material-ui/core/Typography";
+import {Box} from "@material-ui/core";
+import {Card} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 
 export default function DiscFood() {
   return (

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import {Grid} from '@material-ui/core';
+import {TextField} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 
 
 
