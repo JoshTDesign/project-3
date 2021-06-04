@@ -153,6 +153,13 @@ const API = {
       },
     });
   },
+  getAllExpenseByTrip: function (tripId, token){
+    return axios.get(`${urlPrefix}/api/expenses/trip/${tripId}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+  },
   createExpense: function (expenseData, token) {
     return axios.post(`${urlPrefix}/api/expenses/`, expenseData, {
       headers: {
