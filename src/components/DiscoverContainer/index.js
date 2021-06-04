@@ -255,11 +255,12 @@ export default function DiscoverContainer(props) {
       {/* <AddActivityModal createActivity={createActivity} /> */}
 
         <h3>Ideas</h3>
-
+      <div style={{display:'flex', flexWrap:'wrap', justifyContent:'space-between'}}>
       {activitiesState.activities
         .slice((page - 1) * itemsPerPage, page * itemsPerPage)
         .map((activity) => (
-          <Grid item xs={6}>
+          <div style={{width:'48%', display:'inline'}}>
+          <div xs={5}>
             <DiscTodo
               name={activity.name}
               pictures={activity.pictures[0]}
@@ -272,8 +273,10 @@ export default function DiscoverContainer(props) {
               {/* <AddActivityModal id={activity.id} createActivity={createActivity} /> */}
 
               {/* <DeleteBtn onClick={test} id={activity.id}/> */}
-          </Grid>
+          </div>
+          </div>
         ))}
+        </div>
 
       {/* <p>{{anotherName}}</p> */}
       {/* {activitiesState.activities.map((activity) => (
