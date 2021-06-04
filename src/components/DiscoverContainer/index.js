@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import Container from "@material-ui/core/Container";
+import {Container } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import TripHeader from "../../components/TripHeader";
@@ -10,10 +10,10 @@ import DiscTodo from "../../components/DiscTodo";
 import GeoJsonLayer from "../Map/index.js";
 import Typography from "@material-ui/core/Typography";
 import API from "../../utils/API";
-import { makeStyles } from "@material-ui/core/styles";
-import Pagination from "@material-ui/lab/Pagination";
-import Divider from "@material-ui/core/Divider";
-import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
+import {Divider} from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import DeleteBtn from "../../components/DeleteBtn";
 import AddActivityModal from "../../components/AddActivityModal";
 

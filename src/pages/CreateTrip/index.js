@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline"; // imports a global reset for css styling
-import Container from "@material-ui/core/Container";
+//import CssBaseline from "@material-ui/core/CssBaseline"; // imports a global reset for css styling
+import {Container, CssBaseline } from "@material-ui/core";
 import NewTripForm from "../../components/NewTripForm";
 import SidebarMenu from "../../components/SidebarMenu";
 import AddButton from "../../components/AddButton";

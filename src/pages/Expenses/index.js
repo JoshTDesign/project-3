@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import {
   TextField,
   Box,
@@ -10,7 +10,7 @@ import {
   InputLabel,
   InputAdornment,
   OutlinedInput,
-} from "@material-ui/core/";
+} from "@material-ui/core";
 // import { render } from "@testing-library/react";
 import { useParams } from "react-router-dom";
 import API from "../../utils/API";

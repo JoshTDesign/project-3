@@ -2,7 +2,7 @@ import React from "react";
 // import Box from "@material-ui/core/box";
 import { Card } from "@material-ui/core";
 import { Typography, Chip } from "@material-ui/core";
-import DoneIcon from '@material-ui/icons/Done';
+import {DoneIcon} from '@material-ui/icons';
 import TripHeader from "../../components/TripHeader";
 import DeleteBtn from "../../components/DeleteBtn";
 

@@ -1,7 +1,7 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
-import AddButton from "../../components/AddButton";
+import {Container} from "@material-ui/core";
+import {Paper} from "@material-ui/core";
+import {AddButton} from "../../components";
 import TripBasic from "../../components/TripBasic";
 
 

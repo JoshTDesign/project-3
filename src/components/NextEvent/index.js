@@ -1,6 +1,6 @@
 import React from "react";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
+import {Fab} from "@material-ui/core";
+import {AddIcon} from "@material-ui/icons";
 import { Box, Typography } from "@material-ui/core";
 // import NewTripForm from "../../components/NewTripForm";
 import { Link } from "react-router-dom";
