@@ -7,12 +7,6 @@ import API from "../../utils/API";
 
 import MenuBar from "../../components/MenuBar";
 import { withStyles } from "@material-ui/core/styles";
-// import TripHeader from "../../components/TripHeader";
-// import Trips from "../../pages/Trips";
-// import Agenda from "../Agenda";
-// import Discover from "../../pages/Discover";
-// import Expenses from "../../pages/Expenses";
-// import NavBar from "../../components/Navbar";
 
 const btnStyle = {
   background: "white",
@@ -44,7 +38,6 @@ const linkStyle = {
 function Dashboard() {
   const [state, setState] = useState({
     currentPage: "Dashboard",
-    // header: "",
   });
 
   const [userState, setUserState] = useState({
@@ -56,8 +49,6 @@ function Dashboard() {
   trip:[]
   }
 )
-
-
 
   useEffect(()=>{
     const token = localStorage.getItem("token")
@@ -97,20 +88,7 @@ function Dashboard() {
   
   console.log('Dashboard / useParams tripId: ', useParams());
 
-
-  // const handlePageChange = (event, page) => {
-  //   setState({
-  //     ...state,
-  //     currentPage: page,
-  //     // currentHeader: header,
-  //   });
-  // };
-
   console.log(userState.token);
-
-  // API.getAllTrips = () => {
-  //   console.log(res.data);
-  // }
 
   return (
       
@@ -134,8 +112,7 @@ function Dashboard() {
             <h2 style={{fontFamily:'Quando',margin:0}}>Trip to {tripState.trip?.city}</h2>
             </Typography>
             <Typography variant="subtitle1" color="primary">
-              {tripState.trip?.start_date} until
-              {tripState.trip?.end_date}
+              {tripState.trip?.start_date} until {tripState.trip?.end_date}
             </Typography>
             </Box>
           </Box>
@@ -155,7 +132,6 @@ function Dashboard() {
             </Link>
           </Box>
       </Container>
-      // </div>
   );
 }
 
