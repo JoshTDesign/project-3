@@ -11,7 +11,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#1EDBF5',
-      dark: '#0C1D33'
+      dark: '#3F9BA5'
     },
     background: {
       default: "#f3f5f9",
@@ -19,18 +19,24 @@ const theme = createMuiTheme({
     }
   },
   shape: {
-    borderRadius:20
+    borderRadius:12
   },
   textField: {
-    
+    borderRadius:12,
   },
   typography: {
     fontFamily: [
-      'Montserrat',
+      'Fira Sans',
       'Roboto',
       'open sans',
       'sans-serif'
     ].join(','),
+    h1: {
+      fontFamily: [
+        'Quando', 
+        'serif'
+      ].join(','),
+     }
   },
 });
 

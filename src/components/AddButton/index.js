@@ -9,7 +9,7 @@ const btnStyle = {
   bottom: '15px',
   right: '15px',
 }
-export default function AddButton() {
+export default function AddButton(props) {
 
   return (
     <>

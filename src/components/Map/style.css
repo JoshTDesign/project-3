@@ -1,4 +1,5 @@
 .mapboxgl-map{
-    width:50vw;
+    width:auto;
     height:50vh;
+    border-Radius:12px;
 }

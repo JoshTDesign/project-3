@@ -1,10 +1,11 @@
 import React from 'react'
+import Typography from '@material-ui/core/Typography';
 
 export default function SplashLogo() {
     return (
-        <div>
+        <Typography style={{textAlign: 'center'}}>
             <h1>Rally</h1>
-        </div>
+        </Typography>
     )
 }
 

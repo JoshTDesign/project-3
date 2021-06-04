@@ -14,6 +14,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Pagination from "@material-ui/lab/Pagination";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
+import DeleteBtn from "../../components/DeleteBtn";
+import AddActivityModal from "../../components/AddActivityModal";
 
 const containerStyle = {
   backgroundColor: "white",
@@ -76,6 +78,10 @@ export default function DiscoverContainer(props) {
   const [activitiesState, setActivitiesState] = useState({
     activities: [],
   });
+
+  const [getActivity, setGetActivity] = useState({
+    thisActivity: [],
+  })
 
   const classes = useStyles();
   const itemsPerPage = 6;
@@ -142,30 +148,56 @@ export default function DiscoverContainer(props) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   console.log(tripState.city);
-  // //     API.getLatLon(tripState.city).then(res => {
-  // //         thisLon = res.data.coord.lon;
-  // //         thisLat = res.data.coord.lat;
-  // //         console.log('getting lat lon:', thisLon, thisLat)
-  // //         setTripState({
-  // //             ...tripState,
-  // //             lat:thisLat,
-  // //             lon:thisLon
-  // //         })
-  // //     }).then( () => {
-  // //         getActivities(thisLat,thisLon)
-  // //         }
-  // //     )
-  // //     },[])
+//   const tempId = 23642;
 
-  const handleAddActivity = () => {
-    console.log("Submit new activity");
-    let activityData = "test";
-    API.createActivity(activityData, userState.token).then(() => {
-      console.log("submitted");
-    });
-  };
+//   const getCard = () => {
+//     console.log(amadeus.shopping.activities.get(23642)).then(res=>{
+//       console.log(res.data)
+//     })
+//   }
+
+//   getCard();
+// const createActivity = () => {
+//   getCard(tempId);
+// }
+
+
+  // const createActivity = id => {
+  //   console.log('create event function / trip id is:'+id +' user id is:'+userState.user.id)
+    
+  //   newActivity = getCard(tempId)
+
+  //   API.createActivity(formState, userState.token).then(res=>{
+  //     console.log(formState)
+  //     console.log(id)
+  //     console.log(res.data)
+  //     API.getActivityById(id, userState.token).then(result=>{
+  //       console.log(result.data)
+  //       setTripState({
+  //         // ...tripState,
+        
+  //         trip: result.data.activities,
+  //       })
+    
+  //   }).catch(err=>{
+  //     console.log(err)
+  //   })
+  // }).catch(error=>{
+  //   console.log(error)
+  // });
+  // };
+
+  // const handleAddActivity = () => {
+  //   console.log("Submit new activity");
+  //   let activityData = "test";
+  //   API.createActivity(activityData, userState.token).then(() => {
+  //     console.log("submitted");
+  //   });
+  // };
+
+  const createActivity = () => {
+    console.log('Create activity from card')
+  }
 
   const { id } = useParams();
 
@@ -183,15 +215,46 @@ export default function DiscoverContainer(props) {
       });
   };
 
-  return (
-    <Grid container spacing={3} maxWidth="md" style={containerStyle}>
-      <Grid item xs={12}>
-        <GeoJsonLayer lat={tripState.lat} lon={tripState.lon}/>
-      </Grid>
 
-      <Grid item xs={12}>
+  const search = (needId, array) => {
+    for (var i=0; i < array.length; i++) {
+        if (array[i].id == needId) {
+            return array[i];
+        }
+    }
+  }
+
+
+  const handleBtn = (event) => {
+  const foundCard = search(event.target.parentElement.parentElement.parentElement.id, activitiesState.activities)
+  // const newCard = {
+  //   activityName:foundCard.name,
+  //   desciption:foundCard.shortDescription,
+  //   tripId:id
+  // }
+  console.log(foundCard);
+
+  setGetActivity ({
+    ...getActivity,
+    thisActivity: foundCard
+  })
+  console.log(getActivity.thisActivity)
+  }
+
+  
+
+  
+
+  
+
+  return (
+    <div>
+      <Box p={2} style={{ textDecoration: "none", padding: 0 }}>
+      <Container maxWidth="md" style={containerStyle}>
+        <GeoJsonLayer lat={tripState.lat} lon={tripState.lon}/>
+      {/* <AddActivityModal createActivity={createActivity} /> */}
+
         <h3>Ideas</h3>
-      </Grid>
 
       {activitiesState.activities
         .slice((page - 1) * itemsPerPage, page * itemsPerPage)
@@ -200,8 +263,15 @@ export default function DiscoverContainer(props) {
             <DiscTodo
               name={activity.name}
               pictures={activity.pictures[0]}
-              test={handleAddActivity}
-            />
+              shortDescription={activity.shortDescription}
+              id={activity.id}
+              handleBtn={handleBtn}
+              data-value={activity.id}
+              nameLabel={getActivity.thisActivity.name}
+              />
+              {/* <AddActivityModal id={activity.id} createActivity={createActivity} /> */}
+
+              {/* <DeleteBtn onClick={test} id={activity.id}/> */}
           </Grid>
         ))}
 
@@ -215,7 +285,7 @@ export default function DiscoverContainer(props) {
           />
         </Grid>
       ))} */}
-      <AddButton />
+      {/* <AddButton link="/newActivityForm"/> */}
       <Divider />
       <Box component="span">
         <Pagination
@@ -230,6 +300,8 @@ export default function DiscoverContainer(props) {
           classes={{ ul: classes.paginator }}
         ></Pagination>
       </Box>
-    </Grid>
+      </Container>
+    </Box>
+    </div>
   );
 }

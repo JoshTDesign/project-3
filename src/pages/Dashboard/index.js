@@ -119,17 +119,24 @@ function Dashboard() {
 
           <Box
             display="flex"
+            flexDirection="column"
             style={{ justifyContent: "space-between", padding: 0 }}
           >
+              <Box>
             <Typography>
               <Link to="/home">
               <h5>My Trips</h5>
               </Link>
-            <h2 style={{fontFamily:'Quando'}}>Trip to {tripState.trip?.city}</h2>
+              </Typography>
+              </Box>
+              <Box>
+            <Typography variant="h6" color="primary.dark">
+            <h2 style={{fontFamily:'Quando',margin:0}}>Trip to {tripState.trip?.city}</h2>
             </Typography>
-            <Box>
-              <p>{tripState.trip?.start_date}</p>
-              <p>{tripState.trip?.end_date}</p>
+            <Typography variant="subtitle1" color="primary">
+              {tripState.trip?.start_date} until
+              {tripState.trip?.end_date}
+            </Typography>
             </Box>
           </Box>
 
