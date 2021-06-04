@@ -12,7 +12,7 @@ import AddActivityModal from '../../components/AddActivityModal'
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    // maxWidth: 345,
   },
 });
 
