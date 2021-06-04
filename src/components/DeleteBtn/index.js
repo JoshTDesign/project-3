@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import { Chip } from '@material-ui/core';
-import Clear from '@material-ui/icons/Clear';
+import {Clear } from '@material-ui/icons';
 
 
 // The ...props means, spread all of the passed props onto this element

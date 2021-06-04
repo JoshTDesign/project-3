@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import Box from "@material-ui/core/Box";
 import { Container, Card } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
-import { Button } from "@material-ui/core/";
+import { Button } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 
 export default function Profile() {

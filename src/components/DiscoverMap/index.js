@@ -1,6 +1,6 @@
 import { React, useEffect } from 'react';
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/box";
+import {Container} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import MultiContainer from '../MultiContainer';
 import API from '../../utils/API';
 
