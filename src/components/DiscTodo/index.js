@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import AddActivityModal from '../../components/AddActivityModal'
 
 
 const useStyles = makeStyles({
@@ -19,7 +20,7 @@ export default function DiscTodo(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} id={props.id}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -35,10 +36,15 @@ export default function DiscTodo(props) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary" onClick={props.test}>
+      <CardActions onClick={props.handleBtn}>
+        {/* <Button data-value={props.id} size="small" color="primary">
           + Add to my agenda
-        </Button>
+        </Button> */}
+        <AddActivityModal 
+          data-value={props.id} 
+          createActivity={props.createActivity}
+          nameLabel={props.nameLabel} />
+
       </CardActions>
     </Card>
   );

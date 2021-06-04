@@ -139,7 +139,7 @@ export default function LoggedInHome() {
           {tripState.userTrips.map((trip) => (
             <>
             <TripBasic link={`/trip/`+trip.id+`/dashboard`} title={trip.city} start={trip.start_date}/>
-            <DeleteBtn onClick={() => removeTrip(trip.id)} />
+            <DeleteBtn label="Delete trip" onClick={() => removeTrip(trip.id)} />
 
             </>
             ))}

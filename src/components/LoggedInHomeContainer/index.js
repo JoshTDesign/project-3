@@ -13,7 +13,7 @@ export default function LoggedInHomeContainer() {
             {/* <TripBasic /> */}
             <TripBasic />
             {/* {props.children} */}
-          <AddButton style={{ justifyContent: "flex-end" }} />
+          <AddButton link="/newTripForm"/>
         </Paper>
       </Container>
     </div>
