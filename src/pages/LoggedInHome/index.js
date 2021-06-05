@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Container, Card} from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
-import DeleteBtn from "../../components/DeleteBtn";
+// import DeleteBtn from "../../components/DeleteBtn";
 import Box from "@material-ui/core/Box";
 // import SidebarMenu from "../../components/SidebarMenu";
 import API from '../../utils/API'

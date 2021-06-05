@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-export default function ActivityDetailed() {
-    return (
-        <div>
+// export default function ActivityDetailed() {
+//     return (
+//         <div>
             
-        </div>
-    )
-}
+//         </div>
+//     )
+// }

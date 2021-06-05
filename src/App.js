@@ -1,9 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-// import API from "./utils/API";
-// import CssBaseline from '@material-ui/core/CssBaseline'; // imports a global reset for css styling
-// import CreateTrip from "./pages/CreateTrip";
 import LoggedInHome from "./pages/LoggedInHome";
 import Dashboard from "./pages/Dashboard";
 import Discover from "./pages/Discover";
@@ -21,14 +18,9 @@ import Background from "./components/Graphics/mountainbg-full.svg"
 function App() {
   return (
     <div>
-      {/* <Background /> */}
       {/* <div id="mountainbg-full" style={bgStyle}>test</div> */}
       <Router>
         <div>
-          {/* <SidebarMenu /> */}
-          {/* <MenuBar /> */}
-          {/* <DashNavBtn /> */}
-
           <Switch>
             <Route exact path="/">
               <Login />

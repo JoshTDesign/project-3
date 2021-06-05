@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { TextField, Box, makeStyles, Button, Container, Typography } from '@material-ui/core/';
-import { Link, useHistory, useParams } from "react-router-dom";
+import { TextField, Box, makeStyles, Button, Container } from '@material-ui/core/';
+import { Link, useHistory } from "react-router-dom";
 import SplashLogo from '../../components/SplashLogo';
 import API from '../../utils/API';
 
@@ -129,7 +129,7 @@ function Login() {
             <TextField 
               className={classes.root}
               InputProps={{className: classes.input}}
-              className="userName" 
+              // className="userName" 
               id="outlined-full-width" 
               label="User Name" 
               variant="filled" 
@@ -143,7 +143,7 @@ function Login() {
             <TextField 
               className={classes.root}
               InputProps={{className: classes.input}}
-              className="password" 
+              // className="password" 
               id="outlined-full-width" 
               label="Password" 
               variant="filled" 
