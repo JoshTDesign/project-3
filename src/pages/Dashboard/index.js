@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { Button, Typography, Box, Container } from "@material-ui/core";
 import AddMemberDialog from "../../components/AddMemberDialog"
 import API from "../../utils/API";
@@ -104,7 +104,7 @@ const handleAddMember = (email) => {
     })
   } else {
     console.log("no token provided")
-    history.push('/login');
+    // history.push('/login');
   }
   },[])
 
