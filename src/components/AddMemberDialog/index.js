@@ -22,7 +22,7 @@ export default function FormDialog(props) {
 const addMember = (addId) => {
     API.addTripUser(props.tripStateId, addId, props.userStateToken).then(res=>{
         console.log('user added: ' + res.data.id)
-        alert("A new traveller has been added to your trip!")
+        alert("A new traveler has been added to your trip!")
     }).catch(err=>{
         console.log(err)
     })
@@ -54,7 +54,7 @@ const addMember = (addId) => {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Add a traveller
+        Add a traveler
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add a fellow traveller</DialogTitle>
