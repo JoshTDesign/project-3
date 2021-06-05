@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import LoggedInHome from "./pages/LoggedInHome";
 import Dashboard from "./pages/Dashboard";
@@ -70,6 +70,9 @@ function App() {
             <Route exact path="/Trip/:id/Dashboard/newexpenseform">
               <Dashboard />
               <NewExpenseForm />
+            </Route>
+            <Route path="*">
+              <Redirect to="/login"/>
             </Route>
           </Switch>
         </div>

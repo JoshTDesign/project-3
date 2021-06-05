@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 //import Container from "@material-ui/core/Container";
 import {Box, Container } from "@material-ui/core";
 import { Button, Typography } from "@material-ui/core";
@@ -49,7 +49,7 @@ function Dashboard() {
   trip:[]
   }
 )
-
+  const history = useHistory();
   useEffect(()=>{
     const token = localStorage.getItem("token")
 
@@ -81,6 +81,7 @@ function Dashboard() {
     })
   } else {
     console.log("no token provided")
+    history.push('/login');
   }
   },[])
 

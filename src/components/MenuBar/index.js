@@ -139,7 +139,7 @@ const menuStyle = {
         <Divider />
         {/* <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem> */}
         <MenuItem component={Link} to={`/profile/${userState.id}`}>Profile</MenuItem>
-        <MenuItem>My Friends</MenuItem>
+        {/* <MenuItem>My Friends</MenuItem> */}
         <MenuItem component={Link} to={`/login`}>Log Out</MenuItem>
       </Drawer>
     </div>

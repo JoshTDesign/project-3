@@ -25,6 +25,7 @@ function Login() {
     
   useEffect(()=>{
 
+    localStorage.setItem("token", "");
 
   setUserState({
     token: "",
