@@ -140,14 +140,7 @@ export default function TripBasic(props) {
               onClick={props.onClick}>
               <Delete />
             </IconButton>
-            {/* <Grid xs={3}>
-                <Chip
-                  label="Delete Trip"
-                  clickable
-                  color="primary"
-                  deleteIcon={<DoneIcon />}
-                />
-            </Grid> */}
+
           
         </Grid>
         </Card>
