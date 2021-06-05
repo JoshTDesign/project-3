@@ -6,7 +6,7 @@ import { Button, Typography } from "@material-ui/core";
 import API from "../../utils/API";
 
 import MenuBar from "../../components/MenuBar";
-import { withStyles } from "@material-ui/core/styles";
+// import { withStyles } from "@material-ui/core/styles";
 
 const btnStyle = {
   background: "white",
@@ -23,7 +23,7 @@ const btnStyle = {
   fontWeight: "bold",
   width: "32%",
   textDecoration: "none",
-  color: "#333333",
+  // color: "#333333",
 };
 
 const selectedBtn = {
@@ -36,9 +36,9 @@ const linkStyle = {
 };
 
 function Dashboard() {
-  const [state, setState] = useState({
-    currentPage: "Dashboard",
-  });
+  // const [state, setState] = useState({
+  //   currentPage: "Dashboard",
+  // });
 
   const [userState, setUserState] = useState({
     token: "",

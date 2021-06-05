@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   Container,
-  Grid,
+  // Grid,
   Typography,
   TextField,
   Button,
@@ -31,7 +31,7 @@ export default function EditProfile() {
     location: "",
   });
 
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const history = useHistory();
 
@@ -165,7 +165,7 @@ export default function EditProfile() {
               flexDirection="column"
           >
               <TextField
-                className={classes.root}
+                // className={classes.root}
                 InputProps={{className: classes.input}}
                 className="first_name"
                 id="outlined-full-width" 
@@ -178,7 +178,7 @@ export default function EditProfile() {
                 onChange={(e) => setFormState({ ...formState, first_name: e.target.value})}
               />
               <TextField
-                className={classes.root}
+                // className={classes.root}
                 InputProps={{className: classes.input}}
                 className="last_name"
                 id="outlined-basic"
@@ -190,9 +190,9 @@ export default function EditProfile() {
                 placeholder={userState.last_name}
               />
               <TextField
-                className={classes.root}
+                // className={classes.root}
                 InputProps={{className: classes.input}}
-                className="firstName"
+                className="email"
                 id="outlined-basic"
                 variant="filled"
                 label="Email"
@@ -202,9 +202,9 @@ export default function EditProfile() {
                 placeholder={userState.email}
               />
               <TextField
-                className={classes.root}
+                // className={classes.root}
                 InputProps={{className: classes.input}}
-                className="firstName"
+                className="username"
                 id="outlined-basic"
                 variant="filled"
                 label="Username"
@@ -214,9 +214,9 @@ export default function EditProfile() {
                 placeholder={userState.username}
               />
               <TextField
-                className={classes.root}
+                // className={classes.root}
                 InputProps={{className: classes.input}}
-                className="firstName"
+                className="location"
                 id="outlined-basic"
                 variant="filled"
                 label="Location"

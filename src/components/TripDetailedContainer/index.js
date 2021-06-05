@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
 import {Container} from "@material-ui/core";
-import {Accordion} from '@material-ui/core';
-import {AccordionSummary} from '@material-ui/core';
-import {AccordionDetails} from '@material-ui/core';
+// import {Accordion} from '@material-ui/core';
+// import {AccordionSummary} from '@material-ui/core';
+// import {AccordionDetails} from '@material-ui/core';
 import TripDetailed from "../../components/TripDetailed";
 import { Card, Box, FormControl, InputLabel, Input, InputAdornment } from "@material-ui/core";
 import { Link, useParams, useHistory } from "react-router-dom";

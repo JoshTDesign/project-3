@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import {Grid} from "@material-ui/core";
 import {TextField} from "@material-ui/core";
@@ -8,7 +8,7 @@ import {Button} from "@material-ui/core";
 import {Typography} from "@material-ui/core";
 import NavBar from "../../components/Navbar";
 import API from "../../utils/API";
-import { ErrorSharp } from "@material-ui/icons";
+// import { ErrorSharp } from "@material-ui/icons";
 
 // TODO: Need to create POST request in form submit handler
 
@@ -52,10 +52,10 @@ export default function NewTripForm(props) {
     },
   });
 
-  const [userState, setUserState] = useState({
-    // token: "",
-    user: {},
-  });
+  // const [userState, setUserState] = useState({
+  //   // token: "",
+  //   user: {},
+  // });
 
   const history = useHistory();
 
@@ -112,58 +112,6 @@ export default function NewTripForm(props) {
       console.log("NewTripForm / creating new trip!");
     }
   };
-
-  //   const handleFormSubmit = (event) => {
-  //     event.preventDefault();
-  //     const { name, value } = event.target;
-  //     let errors = formState.errors;
-
-  //     if (validateForm(formState.errors)) {
-  //       switch (name) {
-  //         case "tripName":
-  //           errors.tripName = value.length < 2 ? "Please enter a trip name" : "";
-  //           break;
-  //         case "city":
-  //           errors.city = value.length < 2 ? "Please enter a valid city" : "";
-  //           break;
-  //         default:
-  //           break;
-  //       }
-  //       setFormState({
-  //         errors,
-  //         tripName: errors.tripName,
-  //         city: errors.city
-  //       });
-  //       console.log("NTF / errors: ", errors);
-  //     } else {
-  //       API.createTrip(formState, formState.token).then((res) => {
-  //         setTripState({
-  //           ...tripState,
-  //           userTrips: res.data,
-  //         });
-  //         history.push(`/home`);
-  //       });
-  //       console.log("NewTripForm / creating new trip!");
-  //     }
-  //   };
-
-  //   const handleFormSubmit = (event) => {
-  //     event.preventDefault();
-
-  //     console.log("NewTripForm / formState: ", formState);
-  //     // if(validateForm(formState.errors)) {
-
-  //     API.createTrip(formState, formState.token).then((res) => {
-  //       setTripState({
-  //         ...tripState,
-  //         userTrips: res.data,
-  //       });
-  //       history.push(`/home`);
-  //     });
-  //     console.log("NewTripForm / creating new trip!");
-  //     // } else {
-  //     // console.error('Invalid form')
-  //   };
 
   const classes = useStyles();
 
@@ -222,7 +170,6 @@ export default function NewTripForm(props) {
             name="city"
             value={formState.city}
             required
-            // helperText={formState.errors.city}
             onChange={handleInputChange}
           />
           <TextField
@@ -252,22 +199,6 @@ export default function NewTripForm(props) {
             value={formState.url}
             onChange={handleInputChange}
           />
-
-          <Button
-            variant="contained"
-            color="primary"
-            onSubmit={props.handleSubmit}
-          >
-            <Link to="#">Add team members</Link>
-          </Button>
-
-          <Button
-            variant="contained"
-            color="primary"
-            onSubmit={props.handleSubmit}
-          >
-            <Link to="#">Add photo</Link>
-          </Button>
 
           <Button
             variant="contained"

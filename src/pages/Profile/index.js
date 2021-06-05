@@ -3,7 +3,6 @@ import MenuBar from "../../components/MenuBar";
 import API from "../../utils/API";
 import Box from "@material-ui/core/Box";
 import { Container, Card } from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
 import { Button } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 
@@ -59,9 +58,6 @@ const { id } = useParams();
       <MenuBar />
       <Box display="flex" style={{ justifyContent: "center", padding: 10 }}>
         <h1>{userState.username}'s Profile</h1>
-        {/* <Box display="flex">
-          <Avatar src={userState.image} alt="profile-pic" />
-        </Box> */}
       </Box>
       <Container maxWidth="md">
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
