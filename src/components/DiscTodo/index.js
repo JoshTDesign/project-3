@@ -5,7 +5,7 @@ import {CardActionArea} from '@material-ui/core';
 import {CardActions} from '@material-ui/core';
 import {CardContent} from '@material-ui/core';
 import {CardMedia} from '@material-ui/core';
-import {Button} from '@material-ui/core';
+// import {Button} from '@material-ui/core';
 import {Typography} from '@material-ui/core';
 import AddActivityModal from '../../components/AddActivityModal'
 
