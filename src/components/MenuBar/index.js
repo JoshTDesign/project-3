@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import {Avatar} from "@material-ui/core";
 import {MenuItem} from "@material-ui/core";
 import {Divider} from "@material-ui/core";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import API from "../../utils/API";
 const drawerWidth = 250;
 
@@ -84,7 +84,7 @@ console.log(userState.image_path);
   };
 
   
-let { id } = useParams();
+// let { id } = useParams();
 
 const menuStyle = {
   backgroundColor: "rgba(255, 255, 255, 0.6)",
@@ -139,7 +139,7 @@ const menuStyle = {
         <Divider />
         {/* <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem> */}
         <MenuItem component={Link} to={`/profile/${userState.id}`}>Profile</MenuItem>
-        <MenuItem>My Friends</MenuItem>
+        {/* <MenuItem>My Friends</MenuItem> */}
         <MenuItem component={Link} to={`/login`}>Log Out</MenuItem>
       </Drawer>
     </div>

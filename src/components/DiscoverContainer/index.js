@@ -1,21 +1,21 @@
 import { React, useState, useEffect } from "react";
 import {Container } from "@material-ui/core";
-import { Link, useParams } from "react-router-dom";
-import { Grid } from "@material-ui/core";
-import TripHeader from "../../components/TripHeader";
+import { useParams } from "react-router-dom";
+// import { Grid } from "@material-ui/core";
+// import TripHeader from "../../components/TripHeader";
 // import TripDetailed from "../../components/TripDetailed";
-import DiscFood from "../../components/DiscFood";
-import AddButton from "../../components/AddButton";
+// import DiscFood from "../../components/DiscFood";
+// import AddButton from "../../components/AddButton";
 import DiscTodo from "../../components/DiscTodo";
 import GeoJsonLayer from "../Map/index.js";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import API from "../../utils/API";
 import { makeStyles } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import {Divider} from "@material-ui/core";
 import { Box } from "@material-ui/core";
-import DeleteBtn from "../../components/DeleteBtn";
-import AddActivityModal from "../../components/AddActivityModal";
+// import DeleteBtn from "../../components/DeleteBtn";
+// import AddActivityModal from "../../components/AddActivityModal";
 
 const containerStyle = {
   backgroundColor: "white",
@@ -44,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
 
 //   const Amadeus = require("amadeus")
 
-let test = {};
+// let test = {};
 const Amadeus = require("amadeus");
-const axios = require("axios");
+// const axios = require("axios");
 
 const amadeus = new Amadeus({
   clientId: "gKvozgYd9DXLSGj1GEscE7JJqcZW5y9A",
@@ -59,9 +59,9 @@ let thisLat = "118.2437";
 export default function DiscoverContainer(props) {
   /*--------------------------*/
 
-  const style = {
-    height: "100vh",
-  };
+  // const style = {
+  //   height: "100vh",
+  // };
 
   const [userState, setUserState] = useState({
     token: "",
@@ -86,9 +86,9 @@ export default function DiscoverContainer(props) {
   const classes = useStyles();
   const itemsPerPage = 6;
   const [page, setPage] = useState(1);
-  const [noOfPages] = useState(
-    Math.ceil(activitiesState.activities.length / itemsPerPage)
-  );
+  // const [noOfPages] = useState(
+  //   Math.ceil(activitiesState.activities.length / itemsPerPage)
+  // );
 
   const handlePageChange = (event, value) => {
     event.preventDefault();
@@ -148,56 +148,9 @@ export default function DiscoverContainer(props) {
     }
   }, []);
 
-//   const tempId = 23642;
-
-//   const getCard = () => {
-//     console.log(amadeus.shopping.activities.get(23642)).then(res=>{
-//       console.log(res.data)
-//     })
-//   }
-
-//   getCard();
-// const createActivity = () => {
-//   getCard(tempId);
-// }
-
-
-  // const createActivity = id => {
-  //   console.log('create event function / trip id is:'+id +' user id is:'+userState.user.id)
-    
-  //   newActivity = getCard(tempId)
-
-  //   API.createActivity(formState, userState.token).then(res=>{
-  //     console.log(formState)
-  //     console.log(id)
-  //     console.log(res.data)
-  //     API.getActivityById(id, userState.token).then(result=>{
-  //       console.log(result.data)
-  //       setTripState({
-  //         // ...tripState,
-        
-  //         trip: result.data.activities,
-  //       })
-    
-  //   }).catch(err=>{
-  //     console.log(err)
-  //   })
-  // }).catch(error=>{
-  //   console.log(error)
-  // });
-  // };
-
-  // const handleAddActivity = () => {
-  //   console.log("Submit new activity");
-  //   let activityData = "test";
-  //   API.createActivity(activityData, userState.token).then(() => {
-  //     console.log("submitted");
-  //   });
-  // };
-
-  const createActivity = () => {
-    console.log('Create activity from card')
-  }
+  // const createActivity = () => {
+  //   console.log('Create activity from card')
+  // }
 
   const { id } = useParams();
 
@@ -218,7 +171,7 @@ export default function DiscoverContainer(props) {
 
   const search = (needId, array) => {
     for (var i=0; i < array.length; i++) {
-        if (array[i].id == needId) {
+        if (array[i].id === needId) {
             return array[i];
         }
     }
