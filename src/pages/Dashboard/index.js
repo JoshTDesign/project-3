@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-//import Container from "@material-ui/core/Container";
-import {Box, Container } from "@material-ui/core";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Box, Container } from "@material-ui/core";
+import AddMemberDialog from "../../components/AddMemberDialog"
 import API from "../../utils/API";
 
 import MenuBar from "../../components/MenuBar";
@@ -35,6 +34,8 @@ const linkStyle = {
   color: "#333333",
 };
 
+
+
 function Dashboard() {
   // const [state, setState] = useState({
   //   currentPage: "Dashboard",
@@ -49,7 +50,29 @@ function Dashboard() {
   trip:[]
   }
 )
-  const history = useHistory();
+
+
+// api to add user to current trip
+const addMember = (addId) => {
+  API.addTripUser(tripState.trip.id, addId, userState.token)
+}
+// api to get another member by email
+const getUser = async (email) => {
+  const request = await API.getUserByEmail(email, userState.token)
+  const data = await request;
+  return data;
+}
+
+const handleAddMember = (email) => {
+  getUser(email).then(res=>{
+    addMember(res.data.id)}).then(response=>{
+      console.log(response)
+    });
+};
+
+
+
+
   useEffect(()=>{
     const token = localStorage.getItem("token")
 
@@ -81,15 +104,12 @@ function Dashboard() {
     })
   } else {
     console.log("no token provided")
-    history.push('/login');
+    // history.push('/login');
   }
   },[])
 
   let { id } = useParams();
   
-  console.log('Dashboard / useParams tripId: ', useParams());
-
-  console.log(userState.token);
 
   return (
       
@@ -107,11 +127,15 @@ function Dashboard() {
               <h5>My Trips</h5>
               </Link>
               </Typography>
+
               </Box>
               <Box>
             <Typography variant="h6" color="primary.dark">
             <h2 style={{fontFamily:'Quando',margin:0}}>Trip to {tripState.trip?.city}
-            <Button variant="filled">Add new members to your group</Button></h2>
+            <AddMemberDialog
+                tripStateId = {tripState.trip.id}
+                userStateToken = {userState.token}
+                /></h2>
             </Typography>
             <Typography variant="subtitle1" color="primary">
               {tripState.trip?.start_date} until {tripState.trip?.end_date}
