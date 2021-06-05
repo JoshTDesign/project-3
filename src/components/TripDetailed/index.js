@@ -1,10 +1,10 @@
 import React from "react";
-// import Box from "@material-ui/core/box";
-import { Card } from "@material-ui/core";
-import { Typography, Chip } from "@material-ui/core";
+import { Typography, Card, AccordionSummary, Accordion, AccordionDetails, makeStyles } from "@material-ui/core";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {DoneIcon} from '@material-ui/icons';
 import TripHeader from "../../components/TripHeader";
 import DeleteBtn from "../../components/DeleteBtn";
+
 
 const containerStyle = {
   // background: 'white',
@@ -22,28 +22,72 @@ const style = {
   margin: 15,
 }
 
-export default function TripDetailed(props) {
-  return (
-    <Card style={style} 
-    //onClick={props.handleclick} 
-    id={props.id}>
-      <div style={containerStyle}>
-      
-        <Typography display="inline">
-          <h4>
-          {props.event}
-          </h4>
-          <p>
-          {props.description}
-          </p>
-          <p>
-          {props.start} {props.end}
-          </p>
-        </Typography>
-          {props.image}
-      </div>
-      <DeleteBtn label="Delete activity" onClick={props.onClick}/>
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(21),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+}));
 
-    </Card>
+// export default function TripDetailed(props) {
+//   return (
+//     <Card style={style} 
+//     //onClick={props.handleclick} 
+//     id={props.id}>
+//       <div style={containerStyle}>
+      
+//         <Typography display="inline">
+//           <h4>
+//           {props.event}
+//           </h4>
+//           <p>
+//           {props.description}
+//           </p>
+//           <p>
+//           {props.start} {props.end}
+//           </p>
+//         </Typography>
+//           {props.image}
+//       </div>
+//       <IconButton 
+//               color="primary.dark" 
+//               aria-label="delete card" 
+//               component="span"
+//               onClick={props.onClick}>
+//               <Delete />
+//        </IconButton>
+//     </Card>
+//   );
+// }
+
+export default function TripDetailed(props) {
+  const classes = useStyles();
+
+  return (
+<div className={classes.root}>
+<Card style={style} 
+    //onClick={props.handleclick} 
+id={props.id}>
+      <div style={containerStyle}>
+      <Accordion style={{boxShadow:'none', backgroundColor:'rgb(243,245,249)'}}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+        <Typography className={classes.heading}>{props.event}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography>
+          {props.description}
+        </Typography>
+      </AccordionDetails>
+      </Accordion>
+      </div>
+</Card>
+</div>
   );
 }

@@ -4,7 +4,7 @@ import {Container} from "@material-ui/core";
 // import {AccordionSummary} from '@material-ui/core';
 // import {AccordionDetails} from '@material-ui/core';
 import TripDetailed from "../../components/TripDetailed";
-import { Card, Box } from "@material-ui/core";
+import { Card, Box, FormControl, InputLabel, Input, InputAdornment } from "@material-ui/core";
 import { Link, useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
 // import AddActivityModal from "../../components/AddActivityModal";
@@ -100,8 +100,14 @@ export default function TripDetailedContainer(props) {
 
   const [formState, setFormState] = useState({
     activityName: "",
+    description: "",
+    address: "",
+    activityUrl: "",
     category: "",
-    url: "",
+    cost: "",
+    activity_date: "",
+    start_time: "",
+    end_time: "",
     token: "",
     UserId: "",
     tripId: id,
@@ -132,9 +138,9 @@ export default function TripDetailedContainer(props) {
   };
 
   const deleteActivity = (event) => {
-    let thisId = event.target.parentElement.parentElement.id
+    let thisId = event.target.parentElement.id
     console.log(thisId)
-    console.log('delete event function / activity id is:'+thisId +' user id is:'+userState.user.id)
+    console.log('delete event function / activity id is:' + thisId + ' user id is:'+userState.user.id)
     API.deleteActivity(thisId, userState.user.id, userState.token).then(res=>{
       API.getActivityById(id, userState.token).then(result=>{
         console.log(result.data.activities)
@@ -231,6 +237,7 @@ const history = useHistory();
                         name="activityName"
                         label="Activity Name"
                         variant="filled" 
+                        size="small"
                         onChange={handleInputChange} 
                     />
                     <TextField 
@@ -241,6 +248,7 @@ const history = useHistory();
                         name="description"
                         label="Activity Description"
                         variant="filled" 
+                        size="small"
                         onChange={handleInputChange} 
                     />
                     <TextField 
@@ -251,6 +259,7 @@ const history = useHistory();
                         name="address"
                         label="Activity Address"
                         variant="filled" 
+                        size="small"
                         onChange={handleInputChange} 
                     />
                     <TextField 
@@ -258,9 +267,11 @@ const history = useHistory();
                         InputProps={{className: classes.input}}
                         className="actUrl" 
                         id="outlined-basic" 
-                        name="url"
+                        name="activityUrl"
                         label="URL (optional)" 
                         variant="filled" 
+                        type="url"
+                        size="small"
                         onChange={handleInputChange} 
                     />
                     <TextField 
@@ -271,18 +282,23 @@ const history = useHistory();
                         name="category"
                         label="Category" 
                         variant="filled" 
+                        size="small"
                         onChange={handleInputChange} 
                     />
-                    <TextField 
+                    <FormControl fullWidth className={classes.margin}>
+                      <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+                      <Input
                         className={classes.root}
                         InputProps={{className: classes.input}}
-                        className="cost" 
-                        id="outlined-basic" 
+                        id="outlined-adornment-amount"
                         name="cost"
-                        label="Cost" 
-                        variant="filled" 
+                        type="number"
+                        variant="filled"
+                        size="small" 
                         onChange={handleInputChange} 
-                    />
+                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                      />
+                    </FormControl>
                     <TextField
                       className={classes.textField}
                       id="date"
@@ -294,30 +310,37 @@ const history = useHistory();
                         shrink: true,
                       }}
                       value={formState.startDate}
+                      size="small"
                       onChange={handleInputChange}
                     />
                      <TextField
-                      id="time"
+                      id="startTime"
                       label="Start Time"
                       type="time"
+                      name="start_time"
                       defaultValue="07:30"
                       className={classes.textField}
                       InputLabelProps={{
                         shrink: true,
                       }}
+                      size="small"
+                      onChange={handleInputChange}
                       inputProps={{
                         step: 300, // 5 min
                       }}
                     />
                     <TextField
-                      id="time"
+                      id="endTime"
                       label="End Time"
                       type="time"
+                      name="end_time"
                       defaultValue="07:30"
                       className={classes.textField}
                       InputLabelProps={{
                         shrink: true,
                       }}
+                      size="small"
+                      onChange={handleInputChange}
                       inputProps={{
                         step: 300, // 5 min
                       }}
