@@ -7,10 +7,12 @@ import Box from "@material-ui/core/Box";
 // import SidebarMenu from "../../components/SidebarMenu";
 import API from '../../utils/API'
 import MenuBar from "../../components/MenuBar";
+import { useHistory } from "react-router-dom";
 // import NewTripForm from '../../components/NewTripForm';
 
 export default function LoggedInHome() {
 
+  const history = useHistory();
   const [userState,setUserState] = useState({
     token:"",
     user:{
@@ -25,7 +27,7 @@ export default function LoggedInHome() {
   const getUser = () => {
     const token = localStorage.getItem("token")  
     console.log('LoggedInHome / token: ', token)
-
+    if(token) {
       API.getProfile(token).then(res=>{
         console.log('LoggedInHome / res.data: ', res.data);
         setUserState({
@@ -50,6 +52,9 @@ export default function LoggedInHome() {
           console.log('LoggedInHome / res.data: ', result.data)
         })
       })
+    } else{
+      history.push('/login');
+    }
 };
 
 

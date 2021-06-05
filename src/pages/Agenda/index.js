@@ -45,6 +45,7 @@ let { id } = useParams();
     Trip:[],
   })
 
+  const history = useHistory();
   let {thisId} = useParams()
   useEffect(()=>{
     const token = localStorage.getItem("token")
@@ -78,6 +79,7 @@ let { id } = useParams();
         })
       } else {
         console.log("no token provided")
+        history.push('/login');
       }
 
 

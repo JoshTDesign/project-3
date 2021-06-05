@@ -12,7 +12,7 @@ import {
   OutlinedInput,
 } from "@material-ui/core";
 // import { render } from "@testing-library/react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
 import DeleteBtn from "../../components/DeleteBtn";
 
@@ -61,9 +61,10 @@ function Expenses() {
     token: "",
     user: {},
   });
+  const history = useHistory();
   useEffect(() => {
     const token = localStorage.getItem("token");
-
+    
     if (token) {
       API.getProfile(token).then((res) => {
         console.log(res.data);
@@ -77,6 +78,8 @@ function Expenses() {
         });
         fetchExpenses();
       });
+    } else {
+      history.push('/login');
     }
   }, []);
 

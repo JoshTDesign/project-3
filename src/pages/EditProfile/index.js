@@ -71,6 +71,7 @@ export default function EditProfile() {
         });
     } else {
       console.log("EditProfile / no token");
+      history.push('/login');
     }
   }, []);
 

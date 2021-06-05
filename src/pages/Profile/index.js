@@ -4,10 +4,12 @@ import API from "../../utils/API";
 import Box from "@material-ui/core/Box";
 import { Container, Card } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
-import { Button } from "@material-ui/core";
-import { Link, useParams } from "react-router-dom";
+import { Button } from "@material-ui/core/";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 export default function Profile() {
+const history = useHistory();
+  
   const [userState, setUserState] = useState({
     token: "",
     id: "",
@@ -20,7 +22,9 @@ export default function Profile() {
 
   useEffect( () => {
     userState.token = localStorage.getItem("token");
+    console.log("hello?",userState.token);
     if (userState.token) {
+      console.log("shouldnt be here");
       API.getProfile(userState.token)
         .then((res) => {
           console.log("Profile / data: ", res.data);
@@ -48,6 +52,7 @@ export default function Profile() {
         });
     } else {
       console.log("profile page: no token");
+      history.push('/login');
     }
       }, []);
 
