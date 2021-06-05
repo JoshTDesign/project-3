@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Drawer from "@material-ui/core/Drawer";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import {AppBar} from "@material-ui/core";
+import {Drawer} from "@material-ui/core";
+import {Toolbar} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Avatar from "@material-ui/core/Avatar";
-import MenuItem from "@material-ui/core/MenuItem";
-import Divider from "@material-ui/core/Divider";
-import { Link, useParams } from "react-router-dom";
+import {Avatar} from "@material-ui/core";
+import {MenuItem} from "@material-ui/core";
+import {Divider} from "@material-ui/core";
+import { Link } from "react-router-dom";
 import API from "../../utils/API";
 const drawerWidth = 250;
 
@@ -84,7 +84,7 @@ console.log(userState.image_path);
   };
 
   
-let { id } = useParams();
+// let { id } = useParams();
 
 const menuStyle = {
   backgroundColor: "rgba(255, 255, 255, 0.6)",
@@ -139,7 +139,7 @@ const menuStyle = {
         <Divider />
         {/* <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem> */}
         <MenuItem component={Link} to={`/profile/${userState.id}`}>Profile</MenuItem>
-        <MenuItem>My Friends</MenuItem>
+        {/* <MenuItem>My Friends</MenuItem> */}
         <MenuItem component={Link} to={`/login`}>Log Out</MenuItem>
       </Drawer>
     </div>

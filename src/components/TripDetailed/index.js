@@ -1,10 +1,10 @@
 import React from "react";
-import { Typography, Card } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { Typography, Card, AccordionSummary, Accordion, AccordionDetails, makeStyles } from "@material-ui/core";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {DoneIcon} from '@material-ui/icons';
+import TripHeader from "../../components/TripHeader";
+import DeleteBtn from "../../components/DeleteBtn";
+
 
 const containerStyle = {
   // background: 'white',

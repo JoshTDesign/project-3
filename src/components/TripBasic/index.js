@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Card, Chip, Grid, IconButton, CardMedia } from "@material-ui/core";
-import Delete from "@material-ui/icons/Delete";
-import DoneIcon from '@material-ui/icons/Done';
-import Box from "@material-ui/core/box";
-import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
-import { makeStyles } from "@material-ui/core/styles";
+import {Delete} from "@material-ui/icons";
+import {DoneIcon} from '@material-ui/icons';
+import {Box} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
+import {Avatar} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import { deepOrange, deepPurple } from "@material-ui/core/colors";
 import API from "../../utils/API";
 // import ProfileTile from "../../components/ProfileTile";

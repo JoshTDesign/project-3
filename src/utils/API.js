@@ -174,8 +174,8 @@ const API = {
       },
     });
   },
-  deleteExpense: function (ExpenseId, userId, token) {
-    return axios.delete(`${urlPrefix}/api/expenses/${ExpenseId}/${userId}`, {
+  deleteExpense: function (ExpenseId, token) {
+    return axios.delete(`${urlPrefix}/api/expenses/${ExpenseId}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },

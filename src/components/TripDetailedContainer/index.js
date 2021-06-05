@@ -1,14 +1,14 @@
 import { React, useState, useEffect } from "react";
-import Container from "@material-ui/core/Container";
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import {Container} from "@material-ui/core";
+// import {Accordion} from '@material-ui/core';
+// import {AccordionSummary} from '@material-ui/core';
+// import {AccordionDetails} from '@material-ui/core';
 import TripDetailed from "../../components/TripDetailed";
 import { Card, Box, FormControl, InputLabel, Input, InputAdornment } from "@material-ui/core";
 import { Link, useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
 // import AddActivityModal from "../../components/AddActivityModal";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 import {Modal, Grid, TextField, Button} from '@material-ui/core';
 
 

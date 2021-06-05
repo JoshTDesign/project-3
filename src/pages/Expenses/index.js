@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import {
   TextField,
   Box,
@@ -10,10 +10,11 @@ import {
   InputLabel,
   InputAdornment,
   OutlinedInput,
-} from "@material-ui/core/";
+} from "@material-ui/core";
 // import { render } from "@testing-library/react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
+import DeleteBtn from "../../components/DeleteBtn";
 
 const containerStyle = {
   backgroundColor: "white",
@@ -60,9 +61,10 @@ function Expenses() {
     token: "",
     user: {},
   });
+  const history = useHistory();
   useEffect(() => {
     const token = localStorage.getItem("token");
-
+    
     if (token) {
       API.getProfile(token).then((res) => {
         console.log(res.data);
@@ -76,6 +78,8 @@ function Expenses() {
         });
         fetchExpenses();
       });
+    } else {
+      history.push('/login');
     }
   }, []);
 
@@ -107,12 +111,19 @@ function Expenses() {
     });
   };
 
+  const deleteExpense = (id) => {
+API.deleteExpense(id,userState.token).then((res) =>{
+  fetchExpenses();
+})
+  }
+
   const renderExpensesRow = () => {
     return expenses.map((expense) => {
       return (
         <div>
           <Card>
             {expense.name} $ {expense.cost}, {expense.participants}
+            <DeleteBtn label="Delete expense" onClick={()=>{deleteExpense(expense.id)}}/>
           </Card>
         </div>
       );

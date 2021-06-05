@@ -8,27 +8,28 @@
 //   const {id} = useParams()
 //   console.log('id: ',id);
 
-  return (
-    <div>
-      <Container maxWidth="sm">
-        <Box
-          display="flex"
-          style={{ justifyContent: "space-around", padding: 10 }}
-        >
-          <Button style={{width: "30%"}} variant="outlined" color="primary" onClick={() => props.handlePageChange("Trips")}>
-            <Link to="/Dashboard/Trips">Trips</Link>
-          </Button>
-          <Button style={{width: "30%"}} variant="outlined" color="primary" onClick={() => props.handlePageChange("Discover")}>
-            <Link to="/Dashboard/Discover">Discover</Link>
-          </Button>
-          <Button style={{width: "30%"}} variant="outlined" color="primary" onClick={() => props.handlePageChange("Expenses")}>
-            <Link to="/Dashboard/Expenses">Expenses</Link>
-          </Button>
-        </Box>
-      </Container>
-    </div>
-  );
-
+// =======================================
+  // return (
+  //   <div>
+  //     <Container maxWidth="sm">
+  //       <Box
+  //         display="flex"
+  //         style={{ justifyContent: "space-around", padding: 10 }}
+  //       >
+  //         <Button style={{width: "30%"}} variant="outlined" color="primary" onClick={() => props.handlePageChange("Trips")}>
+  //           <Link to="/Dashboard/Trips">Trips</Link>
+  //         </Button>
+  //         <Button style={{width: "30%"}} variant="outlined" color="primary" onClick={() => props.handlePageChange("Discover")}>
+  //           <Link to="/Dashboard/Discover">Discover</Link>
+  //         </Button>
+  //         <Button style={{width: "30%"}} variant="outlined" color="primary" onClick={() => props.handlePageChange("Expenses")}>
+  //           <Link to="/Dashboard/Expenses">Expenses</Link>
+  //         </Button>
+  //       </Box>
+  //     </Container>
+  //   </div>
+  // );
+// =======================================
 
 
 // import React from 'react';
