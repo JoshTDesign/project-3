@@ -7,7 +7,8 @@ import {Container} from '@material-ui/core';
 import {useHistory} from "react-router-dom";
 // import Box from '@material-ui/core/Box';
 const containerStyle = {
-    height: '100vh',
+    color: "#333333",
+    textAlign: "center",
   };
 
 export default function Discover() {

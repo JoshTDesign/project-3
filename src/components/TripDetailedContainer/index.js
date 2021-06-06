@@ -4,11 +4,13 @@ import {Container} from "@material-ui/core";
 // import {AccordionSummary} from '@material-ui/core';
 // import {AccordionDetails} from '@material-ui/core';
 import TripDetailed from "../../components/TripDetailed";
-import { Card, Box, FormControl, Typography, InputLabel, Input, InputAdornment } from "@material-ui/core";
+import { Card, Box, FormControl, Typography, InputLabel, Input, Icon, InputAdornment } from "@material-ui/core";
 import { Link, useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
-import { makeStyles } from '@material-ui/core';
-import {Modal, Grid, TextField, Button} from '@material-ui/core';
+import { makeStyles, Chip } from '@material-ui/core';
+import {Modal, Grid, TextField, Button, Fab} from '@material-ui/core';
+import AddIcon from "@material-ui/icons/Add";
+
 
 
 // import AddButton from "../AddButton";
@@ -376,9 +378,16 @@ const history = useHistory();
           <Container maxWidth="md" style={containerStyle}>
 
                 <div>
-                  <button type="button" onClick={handleOpen}>
+                  {/* <button type="button" onClick={handleOpen}>
                     Add to my agenda
                   </button>
+                  <> */}
+                <Icon
+                    style={{ fontSize: 50, marginLeft:30 }}
+                    color="primary"
+                    onClick={handleOpen}
+                >add_circle</Icon>
+
                   <Modal
                     open={open}
                     onClose={handleClose}
@@ -396,9 +405,12 @@ const history = useHistory();
                   onClick={deleteActivity}
                   id={trip.id}
                   openActivity={(e)=>{console.log('clicked')}}
+                  start_time={trip.start_time}
+                  date={trip.activity_date}
                   />
               ))}
             </Card>
+
           </Container>
         </Link>
       </Box>

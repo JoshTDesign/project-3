@@ -119,18 +119,22 @@ function Expenses() {
   const renderExpensesRow = () => {
     return expenses.map((expense) => {
       return (
-        <div style={{borderRadius:'10px', background:'#E8F0FA', width:'100%', marginBottom:2, width:'auto', marginRight:10, marginLeft:10}}>
+        <div style={{borderRadius:'10px', background:'rgb(243,245,249)', width:'100%', marginBottom:2, width:'auto', marginRight:10, marginLeft:10}}>
             <div style={{display:'flex', alignItems: 'center', justifyContent:'space-between', padding:10}}>
-            {expense.name} $ {expense.cost}, {expense.participants}
-            {/* <IconButton 
-              color="primary.deepOrange" 
-              aria-label="delete card" 
-              component="span"
-              onClick={()=>{deleteExpense(expense.id)}}> */}
-              <Delete onClick={()=>{deleteExpense(expense.id)}} />
-            {/* </IconButton> */}
+              <div style={{display:'flex', alignItems: 'center', justifyContent:'space-between'}}>
+                <div style={{border:'1p solid red'}}>
+                <Typography variant="button">
+                {expense.name} <Typography variant="caption" color="primary">{expense.participants}</Typography>
+                </Typography>
+                </div>
             </div>
-            {/* <DeleteBtn label="Delete expense" onClick={()=>{deleteExpense(expense.id)}}/> */}
+                <div style={{display:'flex', alignItems: 'center', justifyContent:'space-between'}}>
+                  <div>
+                  ${expense.cost}
+                  </div>
+                  <Delete onClick={()=>{deleteExpense(expense.id)}} />
+                </div>
+        </div>
         </div>
       );
     });
@@ -139,6 +143,7 @@ function Expenses() {
   return (
     
         <Container maxWidth="md" style={containerStyle}>
+          
           <div style={{ 
             marginLeft:24, 
             marginRight:24, 
@@ -149,71 +154,69 @@ function Expenses() {
             paddingBottom:20
             }}>
           
-          <div style={{paddingTop:50}}>
-          <Typography variant="h6" color="primary.dark" style={{fontFamily:'Quando', marginLeft:'10px'}}>
-          Total Spent:$ {totalExpenses}          
-          </Typography>
-          </div>
-          <Divider />
-          <div style={{display:'flex', flexWrap:'wrap'}}>
-            <div style={{padding:'30px', flex:'flex-basis', width:'auto'}}>
-            <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-            <OutlinedInput
-              // className={classes.root}
-              // InputProps={{className: classes.input}}
-              id="outlined-adornment-amount"
-              variant="filled"
-              size="small"
-              onChange={(event) => setInputValue(parseInt(event.target.value))}
-              value={inputValue ? inputValue : 0}
-              startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
-              }
-              // labelWidth={60}
-            />
-          {/* </FormControl> */}
-          <br></br><br></br><InputLabel>Name of activity</InputLabel>
-            <TextField
-            // className={classes.root}
-            // InputProps={{className: classes.input}}
-            id="outlined-full-width" 
-            variant="filled" 
-            size="small"
-            value={inputActivity ? inputActivity : ""}
-            onChange={(event) => setInputActivity(event.target.value)}
-            style={{minWidth: "100%"}}
-          />
-          {/* <FormControl className={classes.margin} variant="outlined"> */}
-          <br></br><br></br>
-
-          <InputLabel htmlFor="filled-size-small">Participants</InputLabel>
-          <TextField
-            variant="filled"
-            id="filled-size-small"
-            value={participants ? participants : ""}
-            size="small"
-            onChange={(event) => setParticipants(event.target.value)}
-            style={{minWidth: "100%"}}
-          /><br></br><br></br>
-            <Button 
-              variant='contained' 
-              color='primary' 
-              onClick={handleClick}
-              style={{minWidth: "100%"}}>
-                Submit
-              </Button>
+            <div style={{paddingTop:50}}>
+            <Typography variant="h6" color="primary.dark" style={{fontFamily:'Quando', marginLeft:'10px'}}>
+            Total Spent:$ {totalExpenses}          
+            </Typography>
             </div>
-            <Divider orientation='vertical'/>
+            
+              <Divider />
+            
+            <div style={{display:'flex', flexWrap:'wrap'}}>
+              <div style={{padding:'30px', flex:'flex-basis', width:'auto'}}>
+                <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+                <OutlinedInput
+                // className={classes.root}
+                // InputProps={{className: classes.input}}
+                id="outlined-adornment-amount"
+                variant="filled"
+                size="small"
+                onChange={(event) => setInputValue(parseInt(event.target.value))}
+                value={inputValue ? inputValue : 0}
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+                // labelWidth={60}
+                />
+                {/* </FormControl> */}
+                <br></br><br></br><InputLabel>Name of activity</InputLabel>
+                <TextField
+                id="outlined-full-width" 
+                variant="filled" 
+                size="small"
+                value={inputActivity ? inputActivity : ""}
+                onChange={(event) => setInputActivity(event.target.value)}
+                style={{minWidth: "100%"}}
+                />
+                {/* <FormControl className={classes.margin} variant="outlined"> */}
+                <br></br><br></br>
 
-            <div style={{flexGrow:'2', paddingTop:40}}>
-            <div>{renderExpensesRow()}</div>
+                <InputLabel htmlFor="filled-size-small">Participants</InputLabel>
+                <TextField
+                variant="filled"
+                id="filled-size-small"
+                value={participants ? participants : ""}
+                size="small"
+                onChange={(event) => setParticipants(event.target.value)}
+                style={{minWidth: "100%"}}
+                /><br></br><br></br>
+                <Button 
+                  variant='contained' 
+                  color='primary' 
+                  onClick={handleClick}
+                  style={{minWidth: "100%"}}>
+                    Submit
+                  </Button>
+              </div>
+              <Divider orientation='vertical'/>
+
+              <div style={{flexGrow:'2', paddingTop:40}}>
+              <div>{renderExpensesRow()}</div>
+              </div>
             </div>
-          
           </div>    
 
-          </div>
         </Container>
-    
   );
 }
 

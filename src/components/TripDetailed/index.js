@@ -77,8 +77,10 @@ id={props.id}>
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          style={{border: '1px solid red', display:'flex', flexDirection:'column'}}
         >
-        <Typography className={classes.heading}>{props.event}</Typography>
+        <Typography style={{border:'1px solid pink'}} variant="caption" color="primary.dark">{props.start_time}{props.date}</Typography>
+        <Typography style={{border:'1px solid pink'}} className={classes.heading}>{props.event}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>
