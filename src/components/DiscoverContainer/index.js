@@ -15,7 +15,6 @@ import { Pagination } from "@material-ui/lab";
 import {Divider} from "@material-ui/core";
 import { Box } from "@material-ui/core";
 // import DeleteBtn from "../../components/DeleteBtn";
-// import AddActivityModal from "../../components/AddActivityModal";
 
 const containerStyle = {
   backgroundColor: "white",
@@ -205,7 +204,7 @@ export default function DiscoverContainer(props) {
       <Box p={2} style={{ textDecoration: "none", padding: 0 }}>
       <Container maxWidth="md" style={containerStyle}>
         <GeoJsonLayer lat={tripState.lat} lon={tripState.lon}/>
-      {/* <AddActivityModal createActivity={createActivity} /> */}
+      {/* <AddActivityDialog createActivity={createActivity} /> */}
 
         <h3>Ideas</h3>
       <div style={{display:'flex', flexWrap:'wrap', justifyContent:'space-between'}}>
@@ -219,11 +218,14 @@ export default function DiscoverContainer(props) {
               pictures={activity.pictures[0]}
               shortDescription={activity.shortDescription}
               id={activity.id}
-              handleBtn={handleBtn}
+              // handleBtn={handleBtn}
               data-value={activity.id}
               nameLabel={getActivity.thisActivity.name}
+              userStateToken={userState.token}
+              tripId={id}
+              userStateId={userState.user.id}
               />
-              {/* <AddActivityModal id={activity.id} createActivity={createActivity} /> */}
+              {/* <AddActivityDialog id={activity.id} createActivity={createActivity} /> */}
 
               {/* <DeleteBtn onClick={test} id={activity.id}/> */}
           </div>

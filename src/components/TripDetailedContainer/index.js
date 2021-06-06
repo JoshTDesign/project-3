@@ -4,10 +4,9 @@ import {Container} from "@material-ui/core";
 // import {AccordionSummary} from '@material-ui/core';
 // import {AccordionDetails} from '@material-ui/core';
 import TripDetailed from "../../components/TripDetailed";
-import { Card, Box, FormControl, InputLabel, Input, InputAdornment } from "@material-ui/core";
+import { Card, Box, FormControl, Typography, InputLabel, Input, InputAdornment } from "@material-ui/core";
 import { Link, useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
-// import AddActivityModal from "../../components/AddActivityModal";
 import { makeStyles } from '@material-ui/core';
 import {Modal, Grid, TextField, Button} from '@material-ui/core';
 
@@ -118,6 +117,8 @@ export default function TripDetailedContainer(props) {
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
 
+
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -210,25 +211,26 @@ const history = useHistory();
     }
   }, []);
 
+ 
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Add activity</h2>
-      <p id="simple-modal-description">
-        Add an activity to your agenda
-      </p>
-      {/* <AddActivityModal /> */}
-      <form 
+      <Typography variant="h6" id="simple-modal-title">Add an activity to your agenda</Typography>
+
+      {/* <AddActivityDialog /> */}
+      {/* <form 
         className={classes.root} 
         onSubmit={createActivity}
         fullWidth={true}
         style={{justifyContent:'center'}}
         display="flex"
         flexDirection="column"
-        >
-                <Grid 
+        > */}
+                {/* <Grid 
                 container direction="column"
                 justify="center"
-                alignItems="center">
+                alignItems="center"> */}
+                  <div>
                     <TextField 
                         className={classes.root}
                         InputProps={{className: classes.input}}
@@ -238,6 +240,7 @@ const history = useHistory();
                         label="Activity Name"
                         variant="filled" 
                         size="small"
+                        required="true"
                         onChange={handleInputChange} 
                     />
                     <TextField 
@@ -262,6 +265,8 @@ const history = useHistory();
                         size="small"
                         onChange={handleInputChange} 
                     />
+                    </div>
+                    <div>
                     <TextField 
                         className={classes.root}
                         InputProps={{className: classes.input}}
@@ -299,6 +304,8 @@ const history = useHistory();
                         startAdornment={<InputAdornment position="start">$</InputAdornment>}
                       />
                     </FormControl>
+                    </div>
+                    <div>
                     <TextField
                       className={classes.textField}
                       id="date"
@@ -306,6 +313,7 @@ const history = useHistory();
                       type="date"
                       variant="outlined"
                       name="activity_date"
+                      required="true"
                       inputLabelProps={{
                         shrink: true,
                       }}
@@ -318,6 +326,7 @@ const history = useHistory();
                       label="Start Time"
                       type="time"
                       name="start_time"
+                      required="true"
                       defaultValue="07:30"
                       className={classes.textField}
                       InputLabelProps={{
@@ -345,13 +354,14 @@ const history = useHistory();
                         step: 300, // 5 min
                       }}
                     />
-                    
-
+                    </div>
+                    <div>
                     <Button variant="filled" color="primary" onClick={createActivity}>
                             <p>create activity</p>                  
                     </Button>
-                </Grid>
-            </form>
+                    </div>
+                {/* </Grid> */}
+            {/* </form> */}
     </div>
   );
 

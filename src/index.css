@@ -7,7 +7,10 @@ html {
 body {
   background: linear-gradient(to bottom, #edf4fc, #b6cadc) repeat-x;
   background-attachment: fixed;  height: 100vh;
-
+  /* background: url("./public/mountainbg-full.png");
+  background-size:contain;
+  background-position:top;
+  background: cover; */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

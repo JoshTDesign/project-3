@@ -3,7 +3,7 @@ import { Container, Fab } from '@material-ui/core';
 import TripDetailedContainer from '../../components/TripDetailedContainer';
 import API from '../../utils/API';
 import { useParams, useHistory } from "react-router-dom";
-import AddActivityModal from '../../components/AddActivityModal';
+import AddActivityDialog from '../../components/AddActivityDialog';
 
 // import NewTripForm from "../../components/NewTripForm";
 

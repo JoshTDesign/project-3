@@ -15,13 +15,13 @@ const btnStyle = {
   borderTopLeftRadius: 20,
   textAlign: 'center',
   border: 0,
-  color: "#333333",
+  color: "#05484F",
   height: 48,
   padding: "0 30px",
-  fontFamily: "Montserrat",
   fontWeight: "bold",
   width: "32%",
   textDecoration: "none",
+  letterSpacing:'.2em'
   // color: "#333333",
 };
 
@@ -129,19 +129,26 @@ const handleAddMember = (email) => {
               </Typography>
 
               </Box>
-              <Box>
-            <Typography variant="h6" color="primary.dark">
-            <h2 style={{fontFamily:'Quando',margin:0}}>Trip to {tripState.trip?.city}
+                <div>
+                <Typography variant="h4" style={{fontFamily:'Quando', display:'inline',margin:0,color:'#05484F'}}>
+                  Trip to {tripState.trip?.city}
+                </Typography>
+                <Typography variant="subtitle2" color="secondary" style={{alignSelf:'flex-end', marginBottom:'20px'}}>
+                  {tripState.trip?.start_date} until {tripState.trip?.end_date}
+                </Typography>
+                </div>
+            <div>
             <AddMemberDialog
                 tripStateId = {tripState.trip.id}
                 userStateToken = {userState.token}
-                /></h2>
-            </Typography>
-            <Typography variant="subtitle1" color="primary">
-              {tripState.trip?.start_date} until {tripState.trip?.end_date}
-            </Typography>
-            </Box>
+                />
+            </div>
+            
           </Box>
+
+          <Box>
+
+            </Box>
 
           <Box
             display="flex"
