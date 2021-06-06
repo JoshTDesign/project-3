@@ -1,50 +1,66 @@
-import { React, useState } from 'react';
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
-import API from '../../utils/API';
+import { React, useState } from "react";
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
+import API from "../../utils/API";
 
 export default function FormDialog(props) {
   const [open, setOpen] = useState(false);
 
   const [formState, setFormState] = useState({
-      email:"",
-  })
+    email: "",
+  });
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
-    handleAddMember(formState.email)
+    handleAddMember(formState.email);
     setOpen(false);
   };
 
   //api to add user to current trip
-const addMember = (addId) => {
-    API.addTripUser(props.tripStateId, addId, props.userStateToken).then(res=>{
-        console.log('user added: ' + res.data.id)
-        alert("A new traveler has been added to your trip!")
-    }).catch(err=>{
-        console.log(err)
-    })
-  }
+  const addMember = (addId) => {
+    API.addTripUser(props.tripStateId, addId, props.userStateToken)
+      .then((res) => {
+        // console.log("user added: " + res.data.id);
+        alert("A new traveler has been added to your trip!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   //api to get another member by email
   const getUser = async () => {
-    const request = await API.getUserByEmail(formState.email, props.userStateToken)
+    const request = await API.getUserByEmail(
+      formState.email,
+      props.userStateToken
+    );
     const data = await request;
     return data;
-  }
-  
+  };
+
   const handleAddMember = () => {
-    const newMember = getUser(formState.email).then(res=>{
-        addMember(res.data.id)}).then(response=>{
-        console.log(response)
+    const newMember = getUser(formState.email)
+      .then((res) => {
+        addMember(res.data.id);
+      })
+      .then((response) => {
+        // console.log(response);
       });
   };
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-    console.log(formState.email)
+    // console.log(formState.email);
     setFormState({
       ...formState,
       [name]: value,
@@ -53,14 +69,24 @@ const addMember = (addId) => {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{marginLeft:'10px'}}>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+        style={{ marginLeft: "10px" }}
+      >
         Add a traveler
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
         <DialogTitle id="form-dialog-title">Add a fellow traveller</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Enter the email address of the person you with to add to your travel group.
+            Enter the email address of the person you with to add to your travel
+            group.
           </DialogContentText>
           <TextField
             autoFocus

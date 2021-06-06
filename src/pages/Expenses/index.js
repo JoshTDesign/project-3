@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core";
-import {Delete} from "@material-ui/icons";
+// import { makeStyles } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
 import {
   TextField,
-  Card,
   Container,
   Button,
-  FormControl,
-  Input,
+  // FormControl,
+  // Input,
   InputLabel,
   InputAdornment,
   OutlinedInput,
   Typography,
   Divider,
-  IconButton,
+  // IconButton,
 } from "@material-ui/core";
 // import { render } from "@testing-library/react";
 import { useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
-import DeleteBtn from "../../components/DeleteBtn";
+// import DeleteBtn from "../../components/DeleteBtn";
 
 const containerStyle = {
   height: "auto",
@@ -28,29 +27,8 @@ const containerStyle = {
   textAlign: "center",
 };
 
-const boxStyle = {
-  textAlign: "center",
-};
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  textField: {
-    width: "25ch",
-  },
-}));
-
 function Expenses() {
   const params = useParams();
-  const classes = useStyles();
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [inputValue, setInputValue] = useState(null);
   const [inputActivity, setInputActivity] = useState(null);
@@ -63,7 +41,7 @@ function Expenses() {
   const history = useHistory();
   useEffect(() => {
     const token = localStorage.getItem("token");
-    
+
     if (token) {
       API.getProfile(token).then((res) => {
         console.log(res.data);
@@ -78,7 +56,7 @@ function Expenses() {
         fetchExpenses();
       });
     } else {
-      history.push('/login');
+      history.push("/login");
     }
   }, []);
 
@@ -111,52 +89,69 @@ function Expenses() {
   };
 
   const deleteExpense = (id) => {
-    API.deleteExpense(id,userState.token).then((res) =>{
+    API.deleteExpense(id, userState.token).then((res) => {
       fetchExpenses();
-    })
-  }
+    });
+  };
 
   const renderExpensesRow = () => {
     return expenses.map((expense) => {
       return (
-        <div style={{borderRadius:'10px', background:'#E8F0FA', width:'100%', marginBottom:2, width:'auto', marginRight:10, marginLeft:10}}>
-            <div style={{display:'flex', alignItems: 'center', justifyContent:'space-between', padding:10}}>
+        <div
+          style={{
+            borderRadius: "10px",
+            background: "#E8F0FA",
+            width: "100%, auto",
+            marginBottom: 2,
+            marginRight: 10,
+            marginLeft: 10,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: 10,
+            }}
+          >
             {expense.name} $ {expense.cost}, {expense.participants}
-            {/* <IconButton 
-              color="primary.deepOrange" 
-              aria-label="delete card" 
-              component="span"
-              onClick={()=>{deleteExpense(expense.id)}}> */}
-              <Delete onClick={()=>{deleteExpense(expense.id)}} />
-            {/* </IconButton> */}
-            </div>
-            {/* <DeleteBtn label="Delete expense" onClick={()=>{deleteExpense(expense.id)}}/> */}
+            <Delete
+              onClick={() => {
+                deleteExpense(expense.id);
+              }}
+            />
+          </div>
         </div>
       );
     });
   };
 
   return (
-    
-        <Container maxWidth="md" style={containerStyle}>
-          <div style={{ 
-            marginLeft:24, 
-            marginRight:24, 
-            background:'white',
-            borderBottomRightRadius:20,
-            borderBottomLeftRadius:20,
-            minHeight:'50vh',
-            paddingBottom:20
-            }}>
-          
-          <div style={{paddingTop:50}}>
-          <Typography variant="h6" color="primary.dark" style={{fontFamily:'Quando', marginLeft:'10px'}}>
-          Total Spent:$ {totalExpenses}          
+    <Container maxWidth="md" style={containerStyle}>
+      <div
+        style={{
+          marginLeft: 24,
+          marginRight: 24,
+          background: "white",
+          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 20,
+          minHeight: "50vh",
+          paddingBottom: 20,
+        }}
+      >
+        <div style={{ paddingTop: 50 }}>
+          <Typography
+            variant="h6"
+            color="primary.dark"
+            style={{ fontFamily: "Quando", marginLeft: "10px" }}
+          >
+            Total Spent:$ {totalExpenses}
           </Typography>
-          </div>
-          <Divider />
-          <div style={{display:'flex', flexWrap:'wrap'}}>
-            <div style={{padding:'30px', flex:'flex-basis', width:'auto'}}>
+        </div>
+        <Divider />
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          <div style={{ padding: "30px", flex: "flex-basis", width: "auto" }}>
             <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
             <OutlinedInput
               // className={classes.root}
@@ -171,49 +166,50 @@ function Expenses() {
               }
               // labelWidth={60}
             />
-          {/* </FormControl> */}
-          <br></br><br></br><InputLabel>Name of activity</InputLabel>
+            <br></br>
+            <br></br>
+            <InputLabel>Name of activity</InputLabel>
             <TextField
-            // className={classes.root}
-            // InputProps={{className: classes.input}}
-            id="outlined-full-width" 
-            variant="filled" 
-            size="small"
-            value={inputActivity ? inputActivity : ""}
-            onChange={(event) => setInputActivity(event.target.value)}
-            style={{minWidth: "100%"}}
-          />
-          {/* <FormControl className={classes.margin} variant="outlined"> */}
-          <br></br><br></br>
+              // className={classes.root}
+              // InputProps={{className: classes.input}}
+              id="outlined-full-width"
+              variant="filled"
+              size="small"
+              value={inputActivity ? inputActivity : ""}
+              onChange={(event) => setInputActivity(event.target.value)}
+              style={{ minWidth: "100%" }}
+            />
+            <br></br>
+            <br></br>
 
-          <InputLabel htmlFor="filled-size-small">Participants</InputLabel>
-          <TextField
-            variant="filled"
-            id="filled-size-small"
-            value={participants ? participants : ""}
-            size="small"
-            onChange={(event) => setParticipants(event.target.value)}
-            style={{minWidth: "100%"}}
-          /><br></br><br></br>
-            <Button 
-              variant='contained' 
-              color='primary' 
+            <InputLabel htmlFor="filled-size-small">Participants</InputLabel>
+            <TextField
+              variant="filled"
+              id="filled-size-small"
+              value={participants ? participants : ""}
+              size="small"
+              onChange={(event) => setParticipants(event.target.value)}
+              style={{ minWidth: "100%" }}
+            />
+            <br></br>
+            <br></br>
+            <Button
+              variant="contained"
+              color="primary"
               onClick={handleClick}
-              style={{minWidth: "100%"}}>
-                Submit
-              </Button>
-            </div>
-            <Divider orientation='vertical'/>
-
-            <div style={{flexGrow:'2', paddingTop:40}}>
-            <div>{renderExpensesRow()}</div>
-            </div>
-          
-          </div>    
-
+              style={{ minWidth: "100%" }}
+            >
+              Submit
+            </Button>
           </div>
-        </Container>
-    
+          <Divider orientation="vertical" />
+
+          <div style={{ flexGrow: "2", paddingTop: 40 }}>
+            <div>{renderExpensesRow()}</div>
+          </div>
+        </div>
+      </div>
+    </Container>
   );
 }
 
