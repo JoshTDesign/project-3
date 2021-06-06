@@ -53,7 +53,7 @@ function Signup() {
   const handleFormSubmit = (event) => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    console.log("Submitting Form");
+    // console.log("Submitting Form");
     API.createUser(formState)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
@@ -70,15 +70,7 @@ function Signup() {
           },
         });
         history.push("/home");
-        //.then(
-        // setFormState(
-        //   {
-        //     firstName: "",
-        //     lastName: "",
-        //   },
-        //   [])).then(
-        //       history.push('/home')
-        // )
+
       })
       .catch((err) => {
         switch (err.response.data.err.errors[0].message) {
@@ -132,15 +124,15 @@ function Signup() {
           height={500}
           justifyContent="center"
           alignItems="center"
-          flexDirection="column"
+          // flexDirection="column"
         >
           <form
             className={classes.root}
             onSubmit={handleFormSubmit}
-            fullWidth={true}
+            fullwidth="true"
             style={{ justifyContent: "center" }}
             display="flex"
-            flexDirection="column"
+            // flexDirection="column"
           >
             <SplashLogo />
 
@@ -159,7 +151,7 @@ function Signup() {
             <TextField
               className="lastName"
               InputProps={{ className: classes.input }}
-              id="outlined-basic"
+              // id="outlined-basic"
               label="Last Name"
               variant="filled"
               value={formState.lastName}
@@ -171,7 +163,7 @@ function Signup() {
             <TextField
               className="email"
               InputProps={{ className: classes.input }}
-              id="outlined-basic"
+              // id="outlined-basic"
               label="Email"
               variant="filled"
               value={formState.email}
@@ -183,7 +175,7 @@ function Signup() {
             <TextField
               className="userName"
               InputProps={{ className: classes.input }}
-              id="outlined-basic"
+              // id="outlined-basic"
               label="User Name"
               variant="filled"
               value={formState.username}
@@ -195,7 +187,7 @@ function Signup() {
             <TextField
               className="password"
               InputProps={{ className: classes.input }}
-              id="outlined-basic"
+              // id="outlined-basic"
               label="Password"
               variant="filled"
               value={formState.password}
@@ -203,6 +195,7 @@ function Signup() {
               name="password"
               onChange={handleInputChange}
               placeholder="Password"
+              autoComplete="off"
             />
 
             <Button
