@@ -17,7 +17,7 @@ const theme = createMuiTheme({
       main: '#0A4950'
     },
     background: {
-      default: "#f3f5f9",
+      default: "#E8F0FA",
       paper: "white"
     }
   },
@@ -42,19 +42,6 @@ const theme = createMuiTheme({
      }
   },
 });
-
-// Function to change webpage background color
-function changeBodyBg(color){
-    document.body.style.background = color;
-}
-
-//test to see if user logged in - temp hardcoded
-const loggedIn = true; 
-
-//if loggedout out - change the color
-if (loggedIn === false) {
-  changeBodyBg('#0c1d33');
-}
 
 console.log(theme);
 

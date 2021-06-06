@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Container, Card} from "@material-ui/core";
+import {Container, Card, Typography} from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
 // import DeleteBtn from "../../components/DeleteBtn";
@@ -140,13 +140,14 @@ export default function LoggedInHome() {
     // console.log(getImage('seattle'))
 
   return (
-    <div>
-      {/* <SidebarMenu /> */}
-      <MenuBar />
-      <Box display="flex" style={{ justifyContent: "center", padding: 10 }}>
-        <h1>{userState.user.username}'s Trips</h1>
-      </Box>
+
       <Container maxWidth="md">
+      <MenuBar />
+        <div style={{marginTop:'80px', marginBottom: '20px', marginLeft: '10px'}}>
+        <Typography variant="h4" style={{ fontFamily:'Quando', display:'inline', color:'#05484F'}}>
+        {userState.user.username}'s Trips
+        </Typography>
+        </div>
         <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
           {tripState.userTrips.map((trip) => (
             <>
@@ -164,7 +165,7 @@ export default function LoggedInHome() {
         <AddButton style={{ justifyContent: "flex-end" }} />
         </Card>
       </Container>
-    </div>
+  
   );
 }
 

@@ -4,10 +4,9 @@ import {AppBar} from "@material-ui/core";
 import {Drawer} from "@material-ui/core";
 import {Toolbar} from "@material-ui/core";
 import {Typography} from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import {Avatar} from "@material-ui/core";
-import {MenuItem} from "@material-ui/core";
+import { MenuItem, IconButton } from "@material-ui/core";
 import {Divider} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
@@ -91,6 +90,7 @@ console.log(userState.image_path);
 const menuStyle = {
   backgroundColor: "rgba(255, 255, 255, 0)",
   boxShadow: 'none',
+  color: 'white',
 }
 
   return (

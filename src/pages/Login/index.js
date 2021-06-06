@@ -3,6 +3,7 @@ import { TextField, Box, makeStyles, Button, Container } from '@material-ui/core
 import { Link, useHistory } from "react-router-dom";
 import RallyLogo from '../../assets/RallyLogo.svg';
 import API from '../../utils/API';
+import Background from "../../assets/mountainbg-full.svg"
 
 
 function Login() {

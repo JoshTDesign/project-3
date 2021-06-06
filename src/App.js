@@ -20,7 +20,8 @@ function App() {
     <div style={{
       backgroundImage: `url(${Background})`, 
       backgroundRepeat:'repeat-x',
-      backgroundSize: 'auto 160px'}}>
+      backgroundSize: 'auto 160px',
+      }}>
       <Router>
         <div>
           <Switch>
