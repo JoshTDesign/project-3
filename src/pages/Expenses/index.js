@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core";
-import {Delete} from "@material-ui/icons";
+// import { makeStyles } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
 import {
   TextField,
-  Card,
   Container,
   Button,
-  FormControl,
-  Input,
+  // FormControl,
+  // Input,
   InputLabel,
   InputAdornment,
   OutlinedInput,
   Typography,
   Divider,
-  IconButton,
+  // IconButton,
 } from "@material-ui/core";
 // import { render } from "@testing-library/react";
 import { useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
-import DeleteBtn from "../../components/DeleteBtn";
+// import DeleteBtn from "../../components/DeleteBtn";
 
 const containerStyle = {
   height: "auto",
@@ -28,29 +27,8 @@ const containerStyle = {
   textAlign: "center",
 };
 
-const boxStyle = {
-  textAlign: "center",
-};
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  textField: {
-    width: "25ch",
-  },
-}));
-
 function Expenses() {
   const params = useParams();
-  const classes = useStyles();
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [inputValue, setInputValue] = useState(null);
   const [inputActivity, setInputActivity] = useState(null);
@@ -63,7 +41,7 @@ function Expenses() {
   const history = useHistory();
   useEffect(() => {
     const token = localStorage.getItem("token");
-    
+
     if (token) {
       API.getProfile(token).then((res) => {
         console.log(res.data);
@@ -78,7 +56,7 @@ function Expenses() {
         fetchExpenses();
       });
     } else {
-      history.push('/login');
+      history.push("/login");
     }
   }, []);
 
@@ -111,10 +89,10 @@ function Expenses() {
   };
 
   const deleteExpense = (id) => {
-    API.deleteExpense(id,userState.token).then((res) =>{
+    API.deleteExpense(id, userState.token).then((res) => {
       fetchExpenses();
-    })
-  }
+    });
+  };
 
   const renderExpensesRow = () => {
     return expenses.map((expense) => {
@@ -174,12 +152,13 @@ function Expenses() {
                 onChange={(event) => setInputValue(parseInt(event.target.value))}
                 value={inputValue ? inputValue : 0}
                 startAdornment={
-                  <InputAdornment position="start">$</InputAdornment>
-                }
-                // labelWidth={60}
+                  <InputAdornment position="start">$</InputAdornment>}
                 />
-                {/* </FormControl> */}
-                <br></br><br></br><InputLabel>Name of activity</InputLabel>
+
+                <br></br>
+                <br></br>
+                
+                <InputLabel>Name of activity</InputLabel>
                 <TextField
                 id="outlined-full-width" 
                 variant="filled" 
@@ -188,8 +167,9 @@ function Expenses() {
                 onChange={(event) => setInputActivity(event.target.value)}
                 style={{minWidth: "100%"}}
                 />
-                {/* <FormControl className={classes.margin} variant="outlined"> */}
-                <br></br><br></br>
+
+                <br></br>
+                <br></br>
 
                 <InputLabel htmlFor="filled-size-small">Participants</InputLabel>
                 <TextField

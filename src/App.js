@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 import LoggedInHome from "./pages/LoggedInHome";
 import Dashboard from "./pages/Dashboard";
@@ -13,15 +18,17 @@ import NewTripForm from "./components/NewTripForm";
 import NewActivityForm from "./components/NewActivityForm";
 import NewExpenseForm from "./components/NewExpenseForm";
 import EditProfile from "./pages/EditProfile";
-import Background from "./assets/mountainbg-full.svg"
+import Background from "./assets/mountainbg-full.svg";
 
 function App() {
   return (
-    <div style={{
-      backgroundImage: `url(${Background})`, 
-      backgroundRepeat:'repeat-x',
-      backgroundSize: 'auto 160px',
-      }}>
+    <div
+      style={{
+        backgroundImage: `url(${Background})`,
+        backgroundRepeat: "repeat-x",
+        backgroundSize: "auto 160px",
+      }}
+    >
       <Router>
         <div>
           <Switch>
@@ -75,7 +82,7 @@ function App() {
               <NewExpenseForm />
             </Route>
             <Route path="*">
-              <Redirect to="/login"/>
+              <Redirect to="/login" />
             </Route>
           </Switch>
         </div>
@@ -86,14 +93,14 @@ function App() {
 
 export default App;
 
-const bgStyle = {
-  // display: 'fixed',
-  color: 'red',
-  background: `url(${Background}) repeat-x`,
-  height:'20em',
-  position:'absolute',
-  margin: 'auto',
-  width: '600px',
-  top:'0px',
-  alpha:'-1',
-}
+// const bgStyle = {
+//   // display: 'fixed',
+//   color: "red",
+//   background: `url(${Background}) repeat-x`,
+//   height: "20em",
+//   position: "absolute",
+//   margin: "auto",
+//   width: "600px",
+//   top: "0px",
+//   alpha: "-1",
+// };

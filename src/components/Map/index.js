@@ -1,40 +1,39 @@
-import {Component} from 'react';
-import ReactMapboxGl, { GeoJSONLayer } from 'react-mapbox-gl'; 
-import "./style.css"
+import { Component } from "react";
+import ReactMapboxGl, { GeoJSONLayer } from "react-mapbox-gl";
+import "./style.css";
 
 // tslint:disable-next-line:no-var-requires
-const { token, styles } = require('./config.json');
+const { token, styles } = require("./config.json");
 // tslint:disable-next-line:no-var-requires
-const geojson = require('./geojson.json');
-const Amadeus = require ("amadeus");
+const geojson = require("./geojson.json");
+// const Amadeus = require ("amadeus");
 
-const amadeus = new Amadeus({
-  clientId: "Da21Ae2eHv9GeCs1AfSbCzbNHWp0ArNW",
-  clientSecret: "5w5HxeLoEQzzxcdC",
-});
+// const amadeus = new Amadeus({
+//   clientId: "Da21Ae2eHv9GeCs1AfSbCzbNHWp0ArNW",
+//   clientSecret: "5w5HxeLoEQzzxcdC",
+// });
 
 const Map = ReactMapboxGl({ accessToken: token });
 
 const mapStyle = {
-  flex: 1
+  flex: 1,
 };
 
 const symbolLayout = {
-  'text-field': '{place}',
-  'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-  'text-offset': [0, 0.6],
-  'text-anchor': 'top'
+  "text-field": "{place}",
+  "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+  "text-offset": [0, 0.6],
+  "text-anchor": "top",
 };
 const symbolPaint = {
-  'text-color': 'white'
+  "text-color": "white",
 };
 
-const circleLayout = { visibility: 'visible' };
+const circleLayout = { visibility: "visible" };
 const circlePaint = {
-  'circle-color': 'white'
+  "circle-color": "white",
 };
 class GeoJsonLayer extends Component {
-
   // tslint:disable-next-line:no-any
   onClickCircle = (evt) => {
     console.log(evt);

@@ -1,19 +1,14 @@
 import React from "react";
-import {Fab} from "@material-ui/core";
-import {AddIcon} from "@material-ui/icons";
 import { Box, Typography } from "@material-ui/core";
-// import NewTripForm from "../../components/NewTripForm";
-import { Link } from "react-router-dom";
 
 const styles = {
-  backgroundColor: '#333333',
-  color: 'white',
-  position: 'fixed',
-  bottom: '25px',
-}
+  backgroundColor: "#333333",
+  color: "white",
+  position: "fixed",
+  bottom: "25px",
+};
 
 export default function NextEvent(props) {
-
   return (
     <div style={styles}>
       <Box p={2}>
