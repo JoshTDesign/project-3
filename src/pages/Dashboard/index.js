@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { Button, Typography, Box, Container } from "@material-ui/core";
+import { Button, Typography, Box, Container, makeStyles } from "@material-ui/core";
 import AddMemberDialog from "../../components/AddMemberDialog"
 import API from "../../utils/API";
-
+import {Avatar} from "@material-ui/core";
+import { deepOrange, deepPurple } from "@material-ui/core/colors";
 import MenuBar from "../../components/MenuBar";
-// import { withStyles } from "@material-ui/core/styles";
+
+
+
+
+
 
 const btnStyle = {
   background: "white",
@@ -41,6 +46,7 @@ function Dashboard() {
   //   currentPage: "Dashboard",
   // });
 
+  
   const [userState, setUserState] = useState({
     token: "",
     user: {},
@@ -109,39 +115,35 @@ const handleAddMember = (email) => {
   },[])
 
   let { id } = useParams();
-  
+
 
   return (
       
       <Container maxWidth="md">
-              <MenuBar />
+        <MenuBar />
+        <div style={{marginTop:'80px', marginBottom: '15px', marginLeft: '10px'}}>
+          <Link to="/home">
+        <Typography variant="subtitle" color="primary.dark">
+          My Trips
+        </Typography>
+          </Link>
+        </div>
+        <div style={{marginBottom: '15px', marginLeft: '10px', display:'flex', alignItems:'flex-end', flexWrap:'wrap'}}>
+        <Typography variant="h4" color="primary.dark" style={{fontFamily:'Quando'}}>
+          Trip to {tripState.trip?.city}
+        </Typography>
+        <Typography variant="subtitle1" color="primary.dark" style={{marginLeft:'10px'}}>
+          {tripState.trip?.start_date} until {tripState.trip?.end_date}
+        </Typography>
+          </div>
+        <div style={{marginBottom:'20px'}}>
+          <AddMemberDialog
+            tripStateId = {tripState.trip.id}
+            userStateToken = {userState.token}
+            />
+            {/* <p>${userState.otherUsers[0].user.first_name}</p> */}
 
-          <Box
-            display="flex"
-            flexDirection="column"
-            style={{ justifyContent: "space-between", padding: 0 }}
-          >
-              <Box>
-            <Typography>
-              <Link to="/home">
-              <h5>My Trips</h5>
-              </Link>
-              </Typography>
-
-              </Box>
-              <Box>
-            <Typography variant="h6" color="primary.dark">
-            <h2 style={{fontFamily:'Quando',margin:0}}>Trip to {tripState.trip?.city}
-            <AddMemberDialog
-                tripStateId = {tripState.trip.id}
-                userStateToken = {userState.token}
-                /></h2>
-            </Typography>
-            <Typography variant="subtitle1" color="primary">
-              {tripState.trip?.start_date} until {tripState.trip?.end_date}
-            </Typography>
-            </Box>
-          </Box>
+        </div>
 
           <Box
             display="flex"

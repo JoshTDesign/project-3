@@ -133,13 +133,15 @@ export default function TripBasic(props) {
                 </div >
             </Grid>
             </Link>
+            <div style={{display:'flex', alignItems: 'center'}}>
             <IconButton 
-              color="primary.dark" 
+              color="primary.deepOrange" 
               aria-label="delete card" 
               component="span"
               onClick={props.onClick}>
               <Delete />
             </IconButton>
+            </div>
 
           
         </Grid>

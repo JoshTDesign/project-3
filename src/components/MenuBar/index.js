@@ -4,13 +4,13 @@ import {AppBar} from "@material-ui/core";
 import {Drawer} from "@material-ui/core";
 import {Toolbar} from "@material-ui/core";
 import {Typography} from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import {Avatar} from "@material-ui/core";
-import {MenuItem} from "@material-ui/core";
+import { MenuItem, IconButton } from "@material-ui/core";
 import {Divider} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
+import RallyIcon from "../../assets/R-logo-white.svg"
 const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
         position: "relative",
-        width: drawerWidth
+        width: drawerWidth,
+        background: '#043133'
   },
   varient: {
 
@@ -87,8 +88,9 @@ console.log(userState.image_path);
 // let { id } = useParams();
 
 const menuStyle = {
-  backgroundColor: "rgba(255, 255, 255, 0.6)",
+  backgroundColor: "rgba(255, 255, 255, 0)",
   boxShadow: 'none',
+  color: 'white',
 }
 
   return (
@@ -127,6 +129,7 @@ const menuStyle = {
       onClose={handleToggle}
       width={200}
       classes={{paper: classes.drawerPaper}}
+      
       // variant="persistent"
       >
         {/* <div
@@ -134,13 +137,15 @@ const menuStyle = {
           [classes.toolbarMargin]: variant === 'persistent'
         })} */}
       {/* /> */}
-        
-        <MenuItem component={Link} to={`/home`}>Home</MenuItem>
-        <Divider />
+      <img src={RallyIcon} style={{width:'100px', marginLeft:'65px'}}/>
+        <Divider light="true"/>
+
+        <MenuItem style={{color:'white'}} component={Link} to={`/home`}>Home</MenuItem>
+        <Divider/>
         {/* <MenuItem component={Link} to={`/Trip/${id}/Dashboard`}>Dashboard</MenuItem> */}
-        <MenuItem component={Link} to={`/profile/${userState.id}`}>Profile</MenuItem>
+        <MenuItem style={{color:'white'}} component={Link} to={`/profile/${userState.id}`}>Profile</MenuItem>
         {/* <MenuItem>My Friends</MenuItem> */}
-        <MenuItem component={Link} to={`/login`}>Log Out</MenuItem>
+        <MenuItem style={{color:'white'}} component={Link} to={`/login`}>Log Out</MenuItem>
       </Drawer>
     </div>
   );

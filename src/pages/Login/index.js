@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { TextField, Box, makeStyles, Button, Container } from '@material-ui/core/';
 import { Link, useHistory } from "react-router-dom";
-import SplashLogo from '../../components/SplashLogo';
+import RallyLogo from '../../assets/RallyLogo.svg';
 import API from '../../utils/API';
+import Background from "../../assets/mountainbg-full.svg"
 
 
 function Login() {
@@ -125,7 +126,8 @@ function Login() {
           display="flex"
           flexDirection="column"
           >
-          <SplashLogo />
+          <img src={RallyLogo}/>
+
                   
             <TextField 
               className={classes.root}

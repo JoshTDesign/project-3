@@ -53,7 +53,7 @@ const addMember = (addId) => {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{marginLeft:'10px'}}>
         Add a traveler
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

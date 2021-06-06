@@ -1,13 +1,12 @@
 html {
   height: 100vh;
-  background: linear-gradient(to bottom, #edf4fc, #b6cadc) repeat-x;
+  /* background-image: #E7F0FA; */
   background-attachment: fixed;
 }
 
 body {
-  background: linear-gradient(to bottom, #edf4fc, #b6cadc) repeat-x;
+  /* background: linear-gradient(to bottom, #edf4fc, #b6cadc) repeat-x; */
   background-attachment: fixed;  height: 100vh;
-
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
