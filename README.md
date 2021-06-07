@@ -1,5 +1,3 @@
-
- 
 # Rally-Travel-App
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -21,16 +19,16 @@
 *[Email](#email)
 
 ## Description: 
-We created our application to make it easier for groups of people to plan vacations easier within their group. Our application provides users and friends a the all in one where you wont have to use multiple  applications to track, agendas, find activities, or expenses.
+We created our application to make it easier for groups of friends and families to plan vacations easier within their group. Our application provides users and friends an all in one application where you, as the user is able to track the groups itinerary, find new activities to add to the agenda, and keep track of your budget. With our application you can do it all.
 
 ## Install:
 
 ```
-Use the deployed link to our application
+Use the deployed link to our application down below 
 ```
 
 ## Usage:
-This applicaiton is our final project of our full stack course to display and show off what we have learned and apply it to this project
+This application is our final project of our full stack course to display and show off what we have learned and apply it to this project. 
 
 ## Contribution:
 Andrew Yu,  Trevor Ekberg, Joy Rhee, Josh Taylor
