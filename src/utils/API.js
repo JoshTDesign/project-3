@@ -50,7 +50,7 @@ const API = {
     });
   },
   updateProfile: function (user, token) {
-    console.log('token: ', token)
+    // console.log('token: ', token)
     return axios.put(`${urlPrefix}/edit/${user.id}`, user,
      {
       headers: {

@@ -69,6 +69,15 @@ export default function LoggedInHome() {
             userTrips: result.data.creator,
           });
           // console.log("LoggedInHome / res.data: ", result.data);
+          setUserState({
+            token: token,
+            user: {
+              id: result.data.id,
+              username: result.data.username,
+              first_name: result.data.firstName,
+              last_name: result.data.lastName
+            }
+          })
         });
       });
     } else {

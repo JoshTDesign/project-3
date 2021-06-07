@@ -39,7 +39,7 @@ export default function Agenda() {
     if (token) {
       API.getProfile(token)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setUserState({
             token: token,
             user: {

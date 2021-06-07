@@ -98,6 +98,7 @@ export default function TripDetailedContainer(props) {
 
 
 
+
     const [activityName, setActivityName] = useState(null);
     const [description, setDescription] = useState(null);
     const [address, setAddress] = useState(null);
