@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, CssBaseline } from "@material-ui/core";
 import SidebarMenu from "../../components/SidebarMenu";
 import AddButton from "../../components/AddButton";
+import { useHistory } from "react-router-dom";
 
 class CreateTrip extends Component {
   state = {
