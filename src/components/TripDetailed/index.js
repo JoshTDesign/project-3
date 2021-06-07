@@ -54,7 +54,7 @@ export default function TripDetailed(props) {
         >
 
         <div style={{width:'100%'}}>
-        <Typography style={{borderBottom:'1px solid #1EDBF5', color:'#1EDBF5', textTransform:'uppercase'}} variant="subtitle2" color="primary.dark">{props.date}</Typography>
+        <Typography style={{borderBottom:'1px solid #1EDBF5', color:'#1EDBF5', textTransform:'uppercase'}} variant="subtitle2" color="secondary">{props.date}</Typography>
         <Typography style={{paddingTop: 10}} className={classes.heading}>{props.event}</Typography>
 
         </div>
@@ -69,7 +69,7 @@ export default function TripDetailed(props) {
           <div>
         <Button
           id={props.id}
-          color="primary.light"
+          color="primary"
           variant="contained"
           size="small"
           aria-label="delete card"
