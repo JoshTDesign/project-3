@@ -102,7 +102,7 @@ export default function AddActivityDialog(props) {
         Add to my agenda
       </Button>
       <Dialog
-        fullWidth="true"
+        fullwidth="true"
         maxWidth="sm"
         open={open}
         onClose={handleClose}

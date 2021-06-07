@@ -129,7 +129,7 @@ export default function MenuBar() {
           alt="logo"
           style={{ width: "auto", margin: '-5px', height:170  }}
         />
-        <Divider light="true" />
+        <Divider light={true} />
 
         <MenuItem style={{ color: "white" }} component={Link} to={`/home`}>
           Home
