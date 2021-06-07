@@ -4,11 +4,11 @@ import API from "../../utils/API";
 import Box from "@material-ui/core/Box";
 import { Container, Card } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function Profile() {
-const history = useHistory();
-  
+  const history = useHistory();
+
   const [userState, setUserState] = useState({
     token: "",
     id: "",
@@ -19,18 +19,18 @@ const history = useHistory();
     email: "",
   });
 
-  useEffect( () => {
+  useEffect(() => {
     userState.token = localStorage.getItem("token");
-    console.log("hello?",userState.token);
+    // console.log("hello?",userState.token);
+
+    // if valid token, api call to get user info
     if (userState.token) {
-      console.log("shouldnt be here");
+      // console.log("shouldnt be here");
       API.getProfile(userState.token)
         .then((res) => {
-          console.log("Profile / data: ", res.data);
-         
-        console.log(res.id);
+          // console.log("Profile / data: ", res.data);
           API.getDashboard(res.data.id, userState.token).then((result) => {
-            console.log(result.data);
+            // console.log(result.data);
             setUserState({
               id: result.data.id,
               first_name: result.data.first_name,
@@ -39,9 +39,9 @@ const history = useHistory();
               username: result.data.username,
               email: result.data.email,
             });
-            console.log('Profile / result: ', result);
-          })
-      })
+            // console.log('Profile / result: ', result);
+          });
+        })
         .catch((err) => {
           console.log("profile page: no user");
           setUserState({
@@ -51,12 +51,9 @@ const history = useHistory();
         });
     } else {
       console.log("profile page: no token");
-      history.push('/login');
+      history.push("/login");
     }
-      }, []);
-
-const { id } = useParams();
-
+  }, []);
 
   return (
     <div>
@@ -72,7 +69,9 @@ const { id } = useParams();
           <h3>Username: {userState.username}</h3>
           <h3>Location: {userState.location}</h3>
         </Card>
-        <Button component={Link} to={`/profile/${userState.id}/edit`}>Edit Profile</Button>
+        <Button component={Link} to={`/profile/${userState.id}/edit`}>
+          Edit Profile
+        </Button>
       </Container>
     </div>
   );
