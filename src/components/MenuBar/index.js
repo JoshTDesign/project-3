@@ -10,7 +10,7 @@ import { MenuItem, IconButton } from "@material-ui/core";
 import { Divider } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import API from "../../utils/API";
-import RallyIcon from "../../assets/R-logo-white.svg";
+import RallyIcon from "../../assets/mountainbg-dark-01.svg";
 const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
@@ -114,7 +114,7 @@ export default function MenuBar() {
       <Drawer
         open={drawerState.drawerIsOpen}
         onClose={handleToggle}
-        width={200}
+        width={250}
         classes={{ paper: classes.drawerPaper }}
 
         // variant="persistent"
@@ -127,7 +127,7 @@ export default function MenuBar() {
         <img
           src={RallyIcon}
           alt="logo"
-          style={{ width: "100px", marginLeft: "65px" }}
+          style={{ width: "auto", margin: '-5px', height:170  }}
         />
         <Divider light="true" />
 

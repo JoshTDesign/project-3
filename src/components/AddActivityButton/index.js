@@ -8,7 +8,7 @@ const btnStyle = {
   bottom: "15px",
   right: "15px",
 };
-export default function AddButton(props) {
+export default function AddActivityButton(props) {
   return (
     <>
       <Fab
@@ -16,9 +16,9 @@ export default function AddButton(props) {
         color="primary"
         aria-label="add"
         component={Link}
-        to="/newTripForm"
+        to="/newActivityForm"
       >
-        <AddIcon  />
+        <AddIcon />
       </Fab>
     </>
   );

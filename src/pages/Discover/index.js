@@ -3,8 +3,9 @@ import DiscoverContainer from "../../components/DiscoverContainer";
 import { Container } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 const containerStyle = {
-  height: "100vh",
-};
+    color: "#333333",
+    textAlign: "center",
+  };
 
 export default function Discover() {
   const history = useHistory();
