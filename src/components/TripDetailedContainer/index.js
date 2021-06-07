@@ -97,7 +97,7 @@ export default function TripDetailedContainer(props) {
     userTrips: [],
   });
   let { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const [formState, setFormState] = useState({
     activityName: "",
@@ -199,7 +199,7 @@ export default function TripDetailedContainer(props) {
     if (token) {
       API.getProfile(token)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setUserState({
             token: token,
             user: {
