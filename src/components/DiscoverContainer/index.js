@@ -49,8 +49,8 @@ const Amadeus = require("amadeus");
 // const axios = require("axios");
 
 const amadeus = new Amadeus({
-  clientId: "gKvozgYd9DXLSGj1GEscE7JJqcZW5y9A",
-  clientSecret: "XnAfg8Rycx3qaX9o",
+  clientId: process.env.AMADEUS_CLIENT_ID,
+  clientSecret: process.env.AMADEUS_CLIENT_SECRET,
 });
 
 let thisLon = "34.0522";

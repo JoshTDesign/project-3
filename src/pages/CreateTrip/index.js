@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 //import CssBaseline from "@material-ui/core/CssBaseline"; // imports a global reset for css styling
 import {Container, CssBaseline } from "@material-ui/core";
 import NewTripForm from "../../components/NewTripForm";
 import SidebarMenu from "../../components/SidebarMenu";
 import AddButton from "../../components/AddButton";
+import { useHistory } from "react-router-dom";
 
-
-
+  const history = useHistory();
 class CreateTrip extends Component {
   state = {
     addNew: false,
