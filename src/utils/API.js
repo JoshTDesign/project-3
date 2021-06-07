@@ -1,13 +1,14 @@
 const axios = require("axios");
 const Amadeus = require("amadeus");
+const env = require("dotenv");
 
 const amadeus = new Amadeus({
-    clientId: "gKvozgYd9DXLSGj1GEscE7JJqcZW5y9A",
-    clientSecret: 'XnAfg8Rycx3qaX9o'
+    clientId: process.env.REACT_APP_AMADEUS_CLIENT_ID,
+    clientSecret: process.env.REACT_APP_AMADEUS_CLIENT_SECRET
 });
 
-//const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
-const urlPrefix = "http://localhost:3001";
+const urlPrefix = "https://rendezvous-apiroutes.herokuapp.com";
+// const urlPrefix = "http://localhost:3001";
 
 
 const API = {

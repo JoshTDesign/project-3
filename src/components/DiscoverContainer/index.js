@@ -9,6 +9,7 @@ import { Pagination } from "@material-ui/lab";
 import { Divider } from "@material-ui/core";
 import { Box } from "@material-ui/core";
 
+const env = require("dotenv");
 const containerStyle = {
   backgroundColor: "white",
   height: "100vh",
@@ -40,8 +41,8 @@ const Amadeus = require("amadeus");
 // const axios = require("axios");
 
 const amadeus = new Amadeus({
-  clientId: process.env.AMADEUS_CLIENT_ID,
-  clientSecret: process.env.AMADEUS_CLIENT_SECRET,
+  clientId: process.env.REACT_APP_AMADEUS_CLIENT_ID,
+  clientSecret: process.env.REACT_APP_AMADEUS_CLIENT_SECRET,
 });
 
 let thisLon = "34.0522";
