@@ -73,7 +73,7 @@ export default function NewTripForm(props) {
     const value = event.target.value;
     const name = event.target.name;
 
-    console.log("NewTripForm / name,value: ", name, value);
+    // console.log("NewTripForm / name,value: ", name, value);
 
     setFormState({
       ...formState,
