@@ -37,7 +37,6 @@ export default function TripDetailed(props) {
   const classes = useStyles();
 
   return (
-<<<<<<< HEAD
 <div className={classes.root}>
 <Card style={style} 
     //onClick={props.handleclick} 
@@ -62,27 +61,5 @@ id={props.id}>
       </div>
 </Card>
 </div>
-=======
-    <div className={classes.root}>
-      <Card style={style} id={props.id}>
-        <div style={containerStyle}>
-          <Accordion
-            style={{ boxShadow: "none", backgroundColor: "rgb(243,245,249)" }}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={classes.heading}>{props.event}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{props.description}</Typography>
-            </AccordionDetails>
-          </Accordion>
-        </div>
-      </Card>
-    </div>
->>>>>>> develop
   );
 }

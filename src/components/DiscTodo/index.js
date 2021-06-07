@@ -55,7 +55,6 @@ export default function DiscTodo(props) {
           height="200"
           image={props.pictures}
         />
-<<<<<<< HEAD
         <div style={{display:'flex', justifyContent:'flex-start'}}>
         <IconButton
           className={clsx(classes.expand, {
@@ -71,18 +70,6 @@ export default function DiscTodo(props) {
         {/* <Button data-value={props.id} size="small" color="primary">
           + Add to my agenda
         </Button> */}
-=======
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.shortDescription}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions onClick={props.handleBtn}>
->>>>>>> develop
         <AddActivityDialog 
           data-value={props.id} 
           createActivity={props.createActivity}

@@ -110,12 +110,7 @@ export default function DiscoverContainer(props) {
             },
           });
         })
-<<<<<<< HEAD
         .then((results) => {
-=======
-        // API call to get trip by id
-        .then((resultss) => {
->>>>>>> develop
           API.getTripById(id, token).then((res) => {
             // console.log("getting trp:", res.data);
             // console.log("city?", res.data.city);
@@ -124,12 +119,7 @@ export default function DiscoverContainer(props) {
               trip: res.data,
               city: res.data.city,
             });
-<<<<<<< HEAD
             console.log(tripState.trip);
-=======
-            // console.log("set trip state:", tripState.city);
-            // API to get location from trip info
->>>>>>> develop
             API.getLatLon(res.data.city)
               .then((res) => {
                 thisLon = res.data.coord.lon;
@@ -202,88 +192,111 @@ export default function DiscoverContainer(props) {
     console.log(getActivity.thisActivity);
   };
 
-  return (
-    <div>
-      <Box p={2} style={{ textDecoration: "none", padding: 0 }}>
-<<<<<<< HEAD
+//   return (
+//     <div>
+//       <Box p={2} style={{ textDecoration: "none", padding: 0 }}>
+//         <Container maxWidth="md" style={containerStyle}>
+//           <GeoJsonLayer lat={tripState.lat} lon={tripState.lon}/>
+//             {/* <AddActivityDialog createActivity={createActivity} /> */}
+//           <Typography variant="h5" style={{paddingTop:30, paddingBottom:15}}>
+//             Things to do
+//           </Typography>
+//           <div style={{display:'flex', flexWrap:'wrap', justifyContent:'space-between'}}>
+//             {activitiesState.activities
+//               .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+//               .map((activity) => (
+//             <div style={{width:'50%', display:'inline'}}>
+//               <div xs={5}>
+//                 <DiscTodo
+//                   name={activity.name}
+//                   pictures={activity.pictures[0]}
+//                   shortDescription={activity.shortDescription}
+//                   id={activity.id}
+//                   // handleBtn={handleBtn}
+//                   data-value={activity.id}
+//                   nameLabel={getActivity.thisActivity.name}
+//                   link={activity.bookingLink}
+//                   userStateToken={userState.token}
+//                   tripId={id}
+//                   userStateId={userState.user.id}
+//                 />
+//                 {/* <AddActivityDialog id={activity.id} createActivity={createActivity} /> */}
+//                 {/* <DeleteBtn onClick={test} id={activity.id}/> */}
+//               </div>
+//               <Divider />
+//               <Box component="span">
+//                 <Pagination
+//                   count={4}
+//                   page={page}
+//                   onChange={handlePageChange}
+//                   defaultPage={1}
+//                   color="primary"
+//                   size="large"
+//                   showFirstButton
+//                   showLastButton
+//                   classes={{ ul: classes.paginator }}
+//                 ></Pagination>
+//                 </Box>
+//             </div>
+//           </div>
+//         </Container>
+//       </Box>
+//     </div>
+//   );
+// }
+
+
+return (
+  <div>
+    <Box p={2} style={{ textDecoration: "none", padding: 0 }}>
       <Container maxWidth="md" style={containerStyle}>
-        <GeoJsonLayer lat={tripState.lat} lon={tripState.lon}/>
-      {/* <AddActivityDialog createActivity={createActivity} /> */}
-        <Typography variant="h5" style={{paddingTop:30, paddingBottom:15}}>
-          Things to do
-        </Typography>
-      <div style={{display:'flex', flexWrap:'wrap', justifyContent:'space-between'}}>
-      {activitiesState.activities
-        .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-        .map((activity) => (
-          <div style={{width:'50%', display:'inline'}}>
-          <div xs={5}>
-            <DiscTodo
-              name={activity.name}
-              pictures={activity.pictures[0]}
-              shortDescription={activity.shortDescription}
-              id={activity.id}
-              // handleBtn={handleBtn}
-              data-value={activity.id}
-              nameLabel={getActivity.thisActivity.name}
-              link={activity.bookingLink}
-              userStateToken={userState.token}
-              tripId={id}
-              userStateId={userState.user.id}
-              />
-              {/* <AddActivityDialog id={activity.id} createActivity={createActivity} /> */}
+        <GeoJsonLayer lat={tripState.lat} lon={tripState.lon} />
 
-              {/* <DeleteBtn onClick={test} id={activity.id}/> */}
-=======
-        <Container maxWidth="md" style={containerStyle}>
-          <GeoJsonLayer lat={tripState.lat} lon={tripState.lon} />
-
-          <h3>Ideas</h3>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
-            {activitiesState.activities
-              .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-              .map((activity) => (
-                <div style={{ width: "48%", display: "inline" }}>
-                  <div xs={5}>
-                    <DiscTodo
-                      name={activity.name}
-                      pictures={activity.pictures[0]}
-                      shortDescription={activity.shortDescription}
-                      id={activity.id}
-                      // handleBtn={handleBtn}
-                      data-value={activity.id}
-                      nameLabel={getActivity.thisActivity.name}
-                      userStateToken={userState.token}
-                      tripId={id}
-                      userStateId={userState.user.id}
-                    />
-                  </div>
+        <h3>Ideas</h3>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
+        >
+          {activitiesState.activities
+            .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+            .map((activity) => (
+              <div style={{ width: "48%", display: "inline" }}>
+                <div xs={5}>
+                  <DiscTodo
+                    name={activity.name}
+                    pictures={activity.pictures[0]}
+                    shortDescription={activity.shortDescription}
+                    id={activity.id}
+                    // handleBtn={handleBtn}
+                    data-value={activity.id}
+                    nameLabel={getActivity.thisActivity.name}
+                    userStateToken={userState.token}
+                    tripId={id}
+                    userStateId={userState.user.id}
+                  />
                 </div>
-              ))}
->>>>>>> develop
-          </div>
-          <Divider />
-          <Box component="span">
-            <Pagination
-              count={4}
-              page={page}
-              onChange={handlePageChange}
-              defaultPage={1}
-              color="primary"
-              size="large"
-              showFirstButton
-              showLastButton
-              classes={{ ul: classes.paginator }}
-            ></Pagination>
-          </Box>
-        </Container>
-      </Box>
-    </div>
-  );
+              </div>
+            ))}
+        </div>
+        <Divider />
+        <Box component="span">
+          <Pagination
+            count={4}
+            page={page}
+            onChange={handlePageChange}
+            defaultPage={1}
+            color="primary"
+            size="large"
+            showFirstButton
+            showLastButton
+            classes={{ ul: classes.paginator }}
+          ></Pagination>
+        </Box>
+      </Container>
+    </Box>
+  </div>
+);
 }

@@ -1,18 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Container } from "@material-ui/core";
 import TripDetailed from "../../components/TripDetailed";
-<<<<<<< HEAD
-import { Card, Box, FormControl, Typography, InputLabel, Input, Icon, InputAdornment } from "@material-ui/core";
-import { Link, useParams, useHistory } from "react-router-dom";
-import API from "../../utils/API";
-import { makeStyles, Chip } from '@material-ui/core';
-import {Modal, Grid, TextField, Button, Fab} from '@material-ui/core';
-import AddIcon from "@material-ui/icons/Add";
-
-
-
-// import AddButton from "../AddButton";
-=======
 import {
   Card,
   Box,
@@ -26,7 +14,6 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
 import { makeStyles } from "@material-ui/core";
 import { Modal, TextField, Button } from "@material-ui/core";
->>>>>>> develop
 
 const containerStyle = {
   backgroundColor: "white",
