@@ -80,6 +80,8 @@ const useStyles = makeStyles((theme) => ({
   input: {
     backgroundColor: "rgba(255, 255, 255, 0.3)",
     height: "50px",
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
   Button: {
     maxWidth: "500px",
@@ -87,34 +89,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TripDetailedContainer(props) {
-  const [userState, setUserState] = useState({
-    token: "",
-    user: {},
-  });
 
   const [tripState, setTripState] = useState({
     trip: [],
     userTrips: [],
   });
   let { id } = useParams();
-  console.log(id);
 
-  const [formState, setFormState] = useState({
-    activityName: "",
-    description: "",
-    address: "",
-    activityUrl: "",
-    category: "",
-    cost: "",
-    activity_date: "",
-    start_time: "",
-    end_time: "",
-    token: "",
-    UserId: "",
-    tripId: id,
-  });
 
-  const classes = useStyles();
+
+    const [activityName, setActivityName] = useState(null);
+    const [description, setDescription] = useState(null);
+    const [address, setAddress] = useState(null);
+    const [activityUrl, setActivityUrl] = useState(null);
+    const [category, setCategory] = useState(null);
+    const [cost, setCost] = useState(0);
+    const [activity_date, setActivity_date] = useState(null);
+    const [start_time, setStart_time] = useState(null);
+    const [end_time, setEnd_time] = useState(null);
+    const [token, setToken] = useState("");
+    const [UserId, setUserId] = useState("");
+    const [TripId, setTripId] = useState("");
+    const [userState, setUserState] = useState({
+      token: "",
+      user: {},
+    });
+
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
@@ -127,16 +127,17 @@ export default function TripDetailedContainer(props) {
     setOpen(false);
   };
 
-  const handleInputChange = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
+  // const handleInputChange = (event) => {
+  //   const value = event.target.value;
+  //   const name = event.target.name;
 
-    console.log(name, value);
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+  //   console.log(name, value);
+  //   setFormState({
+  //     ...formState,
+  //     [name]: value,
+  //   });
+  // };
+
 
   const deleteActivity = (event) => {
     let thisId = event.target.parentElement.id;
@@ -165,18 +166,39 @@ export default function TripDetailedContainer(props) {
     );
   };
   const history = useHistory();
+  
 
+  
+  
   const createActivity = () => {
-    // console.log(
-    //   "create event function / trip id is:" +
-    //     id +
-    //     " user id is:" +
-    //     userState.user.id
-    // );
-    // console.log(formState);
+    console.log(
+      "create event function / trip id is:" +
+        id +
+        " user id is:" +
+        userState.user.id
+    );
+
+
+
+    const newActivity = {
+      UserId: userState.user.id,
+      activityName: activityName,
+      description: description,
+      address: address,
+      activityUrl: activityUrl,
+      category: category,
+      cost: cost,
+      activity_date: activity_date,
+      start_time: start_time,
+      end_time: end_time,
+      tripId: id,
+      token: userState.token,
+    }
+
+    console.log(newActivity);
 
     // api call to create new activity
-    API.createActivity(formState, userState.token)
+    API.createActivity(newActivity, userState.token)
       .then((res) => {
         API.getActivityById(id, userState.token)
           .then((result) => {
@@ -190,8 +212,25 @@ export default function TripDetailedContainer(props) {
             console.log(err);
           });
       })
-      .then(handleClose);
+      .then(formReset());
   };
+
+  const formReset = () => {
+    setActivityName(null);
+    setDescription(null);
+    setAddress(null);
+    setActivityUrl(null);
+    setCategory(null);
+    setCost(0);
+    setActivity_date(null)
+    setStart_time(null)
+    setEnd_time(null)
+    setToken("");
+    setUserId("");
+    setTripId("");
+
+    handleClose();
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -199,7 +238,7 @@ export default function TripDetailedContainer(props) {
     if (token) {
       API.getProfile(token)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setUserState({
             token: token,
             user: {
@@ -230,8 +269,11 @@ export default function TripDetailedContainer(props) {
     }
   }, []);
 
+
+  const classes = useStyles();
+
   const body = (
-    <div style={modalStyle} className={classes.paper}>
+    <div style={modalStyle} className={classes.paper} >
       <Typography variant="h6" id="simple-modal-title">
         Add an activity to your agenda
       </Typography>
@@ -247,7 +289,8 @@ export default function TripDetailedContainer(props) {
           variant="filled"
           size="small"
           required="true"
-          onChange={handleInputChange}
+          fullWidth="true"
+          onChange={(event) => setActivityName(event.target.value)}
         />
         <TextField
           className={classes.root}
@@ -258,7 +301,8 @@ export default function TripDetailedContainer(props) {
           label="Activity Description"
           variant="filled"
           size="small"
-          onChange={handleInputChange}
+          fullWidth="true"
+          onChange={(event) => setDescription(event.target.value)}
         />
         <TextField
           className={classes.root}
@@ -269,7 +313,8 @@ export default function TripDetailedContainer(props) {
           label="Activity Address"
           variant="filled"
           size="small"
-          onChange={handleInputChange}
+          fullWidth="true"
+          onChange={(event) => setAddress(event.target.value)}
         />
       </div>
       <div>
@@ -283,7 +328,8 @@ export default function TripDetailedContainer(props) {
           variant="filled"
           type="url"
           size="small"
-          onChange={handleInputChange}
+          fullWidth="true"
+          onChange={(event) => setActivityUrl(event.target.value)}
         />
         <TextField
           className={classes.root}
@@ -294,7 +340,8 @@ export default function TripDetailedContainer(props) {
           label="Category"
           variant="filled"
           size="small"
-          onChange={handleInputChange}
+          fullWidth="true"
+          onChange={(event) => setCategory(event.target.value)}
         />
         <FormControl fullWidth className={classes.margin}>
           <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
@@ -304,9 +351,11 @@ export default function TripDetailedContainer(props) {
             id="outlined-adornment-amount"
             name="cost"
             type="number"
+            defaultValue="0"
             variant="filled"
             size="small"
-            onChange={handleInputChange}
+            fullWidth="true"
+            onChange={(event) => setCost(event.target.value)}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
           />
         </FormControl>
@@ -320,14 +369,14 @@ export default function TripDetailedContainer(props) {
           variant="outlined"
           name="activity_date"
           required="true"
+          fullWidth="true"
           inputLabelProps={{
             shrink: true,
           }}
-          value={formState.startDate}
           size="small"
-          onChange={handleInputChange}
+          onChange={(event) => setActivity_date(event.target.value)}
         />
-        <TextField
+        <Input
           id="startTime"
           label="Start Time"
           type="time"
@@ -335,39 +384,45 @@ export default function TripDetailedContainer(props) {
           required="true"
           defaultValue="07:30"
           className={classes.textField}
+          fullWidth="true"
           InputLabelProps={{
             shrink: true,
           }}
           size="small"
-          onChange={handleInputChange}
+          onChange={(event) => setStart_time(event.target.value)}
           inputProps={{
             step: 300, // 5 min
           }}
         />
-        <TextField
+        <Input
           id="endTime"
           label="End Time"
           type="time"
           name="end_time"
           defaultValue="07:30"
-          className={classes.textField}
+          className={classes.root}
+          InputProps={{ className: classes.input }}
+          fullWidth="true"
           InputLabelProps={{
             shrink: true,
           }}
           size="small"
-          onChange={handleInputChange}
+          onChange={(event) => setEnd_time(event.target.value)}
           inputProps={{
             step: 300, // 5 min
           }}
         />
       </div>
       <div>
-        <Button variant="filled" color="primary" onClick={createActivity}>
+        <Button variant="contained" fullWidth="true" color="primary" onClick={createActivity}>
           <p>create activity</p>
         </Button>
       </div>
     </div>
   );
+
+
+
 
   return (
     <div>
@@ -377,27 +432,19 @@ export default function TripDetailedContainer(props) {
           style={{ textDecoration: "none", borderRadius: "none" }}
         >
           <Container maxWidth="md" style={containerStyle}>
-
-                <div>
-                  {/* <button type="button" onClick={handleOpen}>
-                    Add to my agenda
-                  </button>
-                  <> */}
-                <Icon
-                    style={{ fontSize: 50, marginLeft:30 }}
-                    color="primary"
-                    onClick={handleOpen}
-                >add_circle</Icon>
-
-                  <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                  >
-                    {body}
-                  </Modal>
-                </div>
+            <div>
+              <Button variant="contained" color="primary" style={{marginLeft:'20px'}} onClick={handleOpen}>
+                Add to my agenda
+              </Button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                {body}
+              </Modal>
+            </div>
             <Card elevation={3} style={style}>
               {tripState.trip.map((trip) => (
                 <TripDetailed
@@ -405,13 +452,13 @@ export default function TripDetailedContainer(props) {
                   description={trip.description}
                   onClick={deleteActivity}
                   id={trip.id}
-                  openActivity={(e)=>{console.log('clicked')}}
                   start_time={trip.start_time}
-                  date={trip.activity_date}
-                  />
+                  date={trip.date}
+                  openActivity={(e) => {
+                  }}
+                />
               ))}
             </Card>
-
           </Container>
         </Link>
       </Box>

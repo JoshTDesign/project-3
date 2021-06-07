@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Card, Grid, IconButton, CardMedia } from "@material-ui/core";
+import { Card, Grid, IconButton, CardMedia, Icon } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import { Box } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -79,6 +79,7 @@ export default function TripBasic(props) {
 
   return (
     <div>
+
       <Box p={2}>
         <Card style={style}>
           <CardMedia image="http://placekitten.com/200/300" />

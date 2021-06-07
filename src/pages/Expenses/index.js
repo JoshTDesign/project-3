@@ -134,7 +134,7 @@ function Expenses() {
           
             <div style={{paddingTop:50}}>
             <Typography variant="h6" color="primary.dark" style={{fontFamily:'Quando', marginLeft:'10px'}}>
-            Total Spent:$ {totalExpenses}          
+            Total Spent: ${totalExpenses}          
             </Typography>
             </div>
             

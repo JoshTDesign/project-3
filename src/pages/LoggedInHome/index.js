@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, Typography } from "@material-ui/core";
+import { Container, Card, Typography, Icon } from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
 import API from "../../utils/API";
 import MenuBar from "../../components/MenuBar";
 import { useHistory } from "react-router-dom";
+
+
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 50 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
 
 export default function LoggedInHome() {
   const history = useHistory();
@@ -16,6 +33,17 @@ export default function LoggedInHome() {
   const [tripState, setTripState] = useState({
     userTrips: [],
   });
+
+  const [modalStyle] = useState(getModalStyle);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // api call to get user
   const getUser = () => {
@@ -80,6 +108,7 @@ export default function LoggedInHome() {
     });
   };
 
+
   // console.log(getImage('seattle'))
 
   return (
@@ -95,7 +124,13 @@ export default function LoggedInHome() {
           {userState.user.username}'s Trips
         </Typography>
       </div>
+
       <Card elevation={3} variant="outlined" style={{ padding: 10 }}>
+
+
+         {tripState.userTrips == null &&
+         <Typography variant='h4' style={{fontFamily: "Quando"}}>There's nothing here. Add your first</Typography>
+         }
         {tripState.userTrips.map((trip) => (
           <>
             <TripBasic
@@ -108,7 +143,10 @@ export default function LoggedInHome() {
           </>
         ))}
 
-        <AddButton style={{ justifyContent: "flex-end" }} />
+
+
+        {/* <AddButton style={{ justifyContent: "flex-end" }} /> */}
+        <AddButton />
       </Card>
     </Container>
   );

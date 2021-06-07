@@ -9,6 +9,8 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import SplashLogo from "../../components/SplashLogo";
 import API from "../../utils/API";
+import RallyLogo from "../../assets/RallyLogo.svg";
+
 
 function Signup() {
   //States for controlling the form content
@@ -118,7 +120,7 @@ function Signup() {
     <div>
       <Container maxWidth="md">
         <Box
-          paddingTop={15}
+          paddingTop={50}
           display="flex"
           width="auto"
           height={500}
@@ -134,7 +136,7 @@ function Signup() {
             display="flex"
             // flexDirection="column"
           >
-            <SplashLogo />
+            <img src={RallyLogo} alt="logo" />
 
             <TextField
               className={classes.root}
