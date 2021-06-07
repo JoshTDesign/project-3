@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
-import {Grid} from "@material-ui/core";
-import {TextField} from "@material-ui/core";
-import {Button} from "@material-ui/core";
-import {Typography} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import NavBar from "../../components/Navbar";
 import API from "../../utils/API";
-// import { ErrorSharp } from "@material-ui/icons";
-
-// TODO: Need to create POST request in form submit handler
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// form validation for required inputs
 const validateForm = (errors) => {
   let valid = true;
   Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
@@ -72,8 +69,6 @@ export default function NewTripForm(props) {
     });
   }, []);
 
-  let { id } = useParams();
-
   const handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
@@ -92,24 +87,28 @@ export default function NewTripForm(props) {
     let city = formState.city;
     let errors = formState.errors;
 
+    // form input validation
     if (tripName.length < 1 || city.length < 1) {
-        alert('Please complete required fields')
+      alert("Please complete required fields");
       setFormState({
         errors,
         tripName: "",
         city: "",
       });
     } else {
-      API.createTrip(formState, formState.token).then((res) => {
-        setTripState({
-          ...tripState,
-          userTrips: res.data,
+      // if all input fields are valid, api call to create new trip
+      API.createTrip(formState, formState.token)
+        .then((res) => {
+          setTripState({
+            ...tripState,
+            userTrips: res.data,
+          });
+          history.push(`/home`);
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        history.push(`/home`);
-      }).catch(err=>{
-        console.log(err)
-      });
-      console.log("NewTripForm / creating new trip!");
+      // console.log("NewTripForm / creating new trip!");
     }
   };
 

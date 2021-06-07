@@ -1,6 +1,6 @@
 import React from "react";
-import {Container} from "@material-ui/core";
-import {Paper} from "@material-ui/core";
+import { Container } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import AddButton from "../../components/AddButton";
 import TripBasic from "../../components/TripBasic";
 
@@ -9,9 +9,7 @@ export default function MultiContainer() {
     <div>
       <Container maxWidth="sm">
         <Paper elevation={3} variant="outlined" style={{ padding: 10 }}>
-            {/* <TripBasic /> */}
-            <TripBasic />
-            {/* {props.children} */}
+          <TripBasic />
           <AddButton style={{ justifyContent: "flex-end" }} />
         </Paper>
       </Container>

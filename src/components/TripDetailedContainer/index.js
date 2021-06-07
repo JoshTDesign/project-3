@@ -1,18 +1,19 @@
 import { React, useState, useEffect } from "react";
-import {Container} from "@material-ui/core";
-// import {Accordion} from '@material-ui/core';
-// import {AccordionSummary} from '@material-ui/core';
-// import {AccordionDetails} from '@material-ui/core';
+import { Container } from "@material-ui/core";
 import TripDetailed from "../../components/TripDetailed";
-import { Card, Box, FormControl, InputLabel, Input, InputAdornment } from "@material-ui/core";
+import {
+  Card,
+  Box,
+  FormControl,
+  Typography,
+  InputLabel,
+  Input,
+  InputAdornment,
+} from "@material-ui/core";
 import { Link, useParams, useHistory } from "react-router-dom";
 import API from "../../utils/API";
-// import AddActivityModal from "../../components/AddActivityModal";
-import { makeStyles } from '@material-ui/core';
-import {Modal, Grid, TextField, Button} from '@material-ui/core';
-
-
-// import AddButton from "../AddButton";
+import { makeStyles } from "@material-ui/core";
+import { Modal, TextField, Button } from "@material-ui/core";
 
 const containerStyle = {
   backgroundColor: "white",
@@ -56,12 +57,12 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiTextField-root': {
+    "& .MuiTextField-root": {
       marginTop: theme.spacing(2),
       marginBottom: theme.spacing(2),
-      width: '100%',
+      width: "100%",
       display: "flex",
-      flexDirection: "column"
+      flexDirection: "column",
     },
   },
   heading: {
@@ -69,19 +70,19 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
   },
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: 400,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    borderRadius: '20px',
+    borderRadius: "20px",
   },
   input: {
     backgroundColor: "rgba(255, 255, 255, 0.3)",
-    height: "50px"
+    height: "50px",
   },
   Button: {
-    maxWidth: '500px',
+    maxWidth: "500px",
   },
 }));
 
@@ -96,7 +97,7 @@ export default function TripDetailedContainer(props) {
     userTrips: [],
   });
   let { id } = useParams();
-  console.log(id)
+  console.log(id);
 
   const [formState, setFormState] = useState({
     activityName: "",
@@ -130,7 +131,7 @@ export default function TripDetailedContainer(props) {
     const value = event.target.value;
     const name = event.target.name;
 
-    console.log(name, value)
+    console.log(name, value);
     setFormState({
       ...formState,
       [name]: value,
@@ -138,40 +139,59 @@ export default function TripDetailedContainer(props) {
   };
 
   const deleteActivity = (event) => {
-    let thisId = event.target.parentElement.id
-    console.log(thisId)
-    console.log('delete event function / activity id is:' + thisId + ' user id is:'+userState.user.id)
-    API.deleteActivity(thisId, userState.user.id, userState.token).then(res=>{
-      API.getActivityById(id, userState.token).then(result=>{
-        console.log(result.data.activities)
-        setTripState({
-          trip: result.data.activities,
-        })
-      console.log('API req sent // ',res.data)
-  }).catch(err=>{
-    console.log(err)
-  })
-})
-}
-const history = useHistory();
-
+    let thisId = event.target.parentElement.id;
+    console.log(thisId);
+    console.log(
+      "delete event function / activity id is:" +
+        thisId +
+        " user id is:" +
+        userState.user.id
+    );
+    // api call to delete activity
+    API.deleteActivity(thisId, userState.user.id, userState.token).then(
+      (res) => {
+        API.getActivityById(id, userState.token)
+          .then((result) => {
+            // console.log(result.data.activities);
+            setTripState({
+              trip: result.data.activities,
+            });
+            // console.log("API req sent // ", res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    );
+  };
+  const history = useHistory();
 
   const createActivity = () => {
-    console.log('create event function / trip id is:'+ id +' user id is:'+userState.user.id)
-    console.log(formState)
-    API.createActivity(formState, userState.token).then(res=>{
-      API.getActivityById(id, userState.token).then(result=>{
-        console.log(result.data.activities)
-        setTripState({
-          trip: result.data.activities,
-        })
-      console.log('API req sent // ',res.data)
-  }).catch(err=>{
-    console.log(err)
-  })
-}).then(handleClose)
-}
+    // console.log(
+    //   "create event function / trip id is:" +
+    //     id +
+    //     " user id is:" +
+    //     userState.user.id
+    // );
+    // console.log(formState);
 
+    // api call to create new activity
+    API.createActivity(formState, userState.token)
+      .then((res) => {
+        API.getActivityById(id, userState.token)
+          .then((result) => {
+            console.log(result.data.activities);
+            setTripState({
+              trip: result.data.activities,
+            });
+            // console.log("API req sent // ", res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .then(handleClose);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -191,11 +211,11 @@ const history = useHistory();
         })
         .then(
           API.getActivityById(id, token).then((res) => {
-            console.log('TripDetailedContainer / res.data: ', res.data)
-              setTripState({
-                ...tripState,
-                trip: res.data.activities,
-              });
+            // console.log("TripDetailedContainer / res.data: ", res.data);
+            setTripState({
+              ...tripState,
+              trip: res.data.activities,
+            });
           })
         )
         .catch((err) => {
@@ -212,149 +232,142 @@ const history = useHistory();
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Add activity</h2>
-      <p id="simple-modal-description">
+      <Typography variant="h6" id="simple-modal-title">
         Add an activity to your agenda
-      </p>
-      {/* <AddActivityModal /> */}
-      <form 
-        className={classes.root} 
-        onSubmit={createActivity}
-        fullWidth={true}
-        style={{justifyContent:'center'}}
-        display="flex"
-        flexDirection="column"
-        >
-                <Grid 
-                container direction="column"
-                justify="center"
-                alignItems="center">
-                    <TextField 
-                        className={classes.root}
-                        InputProps={{className: classes.input}}
-                        className="activityName" 
-                        id="outlined-full-width"
-                        name="activityName"
-                        label="Activity Name"
-                        variant="filled" 
-                        size="small"
-                        onChange={handleInputChange} 
-                    />
-                    <TextField 
-                        className={classes.root}
-                        InputProps={{className: classes.input}}
-                        className="activityDescription" 
-                        id="outlined-full-width"
-                        name="description"
-                        label="Activity Description"
-                        variant="filled" 
-                        size="small"
-                        onChange={handleInputChange} 
-                    />
-                    <TextField 
-                        className={classes.root}
-                        InputProps={{className: classes.input}}
-                        className="address" 
-                        id="outlined-full-width"
-                        name="address"
-                        label="Activity Address"
-                        variant="filled" 
-                        size="small"
-                        onChange={handleInputChange} 
-                    />
-                    <TextField 
-                        className={classes.root}
-                        InputProps={{className: classes.input}}
-                        className="actUrl" 
-                        id="outlined-basic" 
-                        name="activityUrl"
-                        label="URL (optional)" 
-                        variant="filled" 
-                        type="url"
-                        size="small"
-                        onChange={handleInputChange} 
-                    />
-                    <TextField 
-                        className={classes.root}
-                        InputProps={{className: classes.input}}
-                        className="category" 
-                        id="outlined-basic" 
-                        name="category"
-                        label="Category" 
-                        variant="filled" 
-                        size="small"
-                        onChange={handleInputChange} 
-                    />
-                    <FormControl fullWidth className={classes.margin}>
-                      <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
-                      <Input
-                        className={classes.root}
-                        InputProps={{className: classes.input}}
-                        id="outlined-adornment-amount"
-                        name="cost"
-                        type="number"
-                        variant="filled"
-                        size="small" 
-                        onChange={handleInputChange} 
-                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                      />
-                    </FormControl>
-                    <TextField
-                      className={classes.textField}
-                      id="date"
-                      label=""
-                      type="date"
-                      variant="outlined"
-                      name="activity_date"
-                      inputLabelProps={{
-                        shrink: true,
-                      }}
-                      value={formState.startDate}
-                      size="small"
-                      onChange={handleInputChange}
-                    />
-                     <TextField
-                      id="startTime"
-                      label="Start Time"
-                      type="time"
-                      name="start_time"
-                      defaultValue="07:30"
-                      className={classes.textField}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      size="small"
-                      onChange={handleInputChange}
-                      inputProps={{
-                        step: 300, // 5 min
-                      }}
-                    />
-                    <TextField
-                      id="endTime"
-                      label="End Time"
-                      type="time"
-                      name="end_time"
-                      defaultValue="07:30"
-                      className={classes.textField}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      size="small"
-                      onChange={handleInputChange}
-                      inputProps={{
-                        step: 300, // 5 min
-                      }}
-                    />
-                    
+      </Typography>
 
-                    <Button variant="filled" color="primary" onClick={createActivity}>
-                            <p>create activity</p>                  
-                    </Button>
-                </Grid>
-            </form>
+      <div>
+        <TextField
+          className={classes.root}
+          InputProps={{ className: classes.input }}
+          // className="activityName"
+          id="outlined-full-width"
+          name="activityName"
+          label="Activity Name"
+          variant="filled"
+          size="small"
+          required="true"
+          onChange={handleInputChange}
+        />
+        <TextField
+          className={classes.root}
+          InputProps={{ className: classes.input }}
+          // className="activityDescription"
+          id="outlined-full-width"
+          name="description"
+          label="Activity Description"
+          variant="filled"
+          size="small"
+          onChange={handleInputChange}
+        />
+        <TextField
+          className={classes.root}
+          InputProps={{ className: classes.input }}
+          // className="address"
+          id="outlined-full-width"
+          name="address"
+          label="Activity Address"
+          variant="filled"
+          size="small"
+          onChange={handleInputChange}
+        />
+      </div>
+      <div>
+        <TextField
+          className={classes.root}
+          InputProps={{ className: classes.input }}
+          // className="actUrl"
+          id="outlined-basic"
+          name="activityUrl"
+          label="URL (optional)"
+          variant="filled"
+          type="url"
+          size="small"
+          onChange={handleInputChange}
+        />
+        <TextField
+          className={classes.root}
+          InputProps={{ className: classes.input }}
+          // className="category"
+          id="outlined-basic"
+          name="category"
+          label="Category"
+          variant="filled"
+          size="small"
+          onChange={handleInputChange}
+        />
+        <FormControl fullWidth className={classes.margin}>
+          <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+          <Input
+            className={classes.root}
+            InputProps={{ className: classes.input }}
+            id="outlined-adornment-amount"
+            name="cost"
+            type="number"
+            variant="filled"
+            size="small"
+            onChange={handleInputChange}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          />
+        </FormControl>
+      </div>
+      <div>
+        <TextField
+          className={classes.textField}
+          id="date"
+          label=""
+          type="date"
+          variant="outlined"
+          name="activity_date"
+          required="true"
+          inputLabelProps={{
+            shrink: true,
+          }}
+          value={formState.startDate}
+          size="small"
+          onChange={handleInputChange}
+        />
+        <TextField
+          id="startTime"
+          label="Start Time"
+          type="time"
+          name="start_time"
+          required="true"
+          defaultValue="07:30"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          size="small"
+          onChange={handleInputChange}
+          inputProps={{
+            step: 300, // 5 min
+          }}
+        />
+        <TextField
+          id="endTime"
+          label="End Time"
+          type="time"
+          name="end_time"
+          defaultValue="07:30"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          size="small"
+          onChange={handleInputChange}
+          inputProps={{
+            step: 300, // 5 min
+          }}
+        />
+      </div>
+      <div>
+        <Button variant="filled" color="primary" onClick={createActivity}>
+          <p>create activity</p>
+        </Button>
+      </div>
     </div>
   );
-
 
   return (
     <div>
@@ -364,20 +377,19 @@ const history = useHistory();
           style={{ textDecoration: "none", borderRadius: "none" }}
         >
           <Container maxWidth="md" style={containerStyle}>
-
-                <div>
-                  <button type="button" onClick={handleOpen}>
-                    Add to my agenda
-                  </button>
-                  <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                  >
-                    {body}
-                  </Modal>
-                </div>
+            <div>
+              <button type="button" onClick={handleOpen}>
+                Add to my agenda
+              </button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+              >
+                {body}
+              </Modal>
+            </div>
             <Card elevation={3} style={style}>
               {tripState.trip.map((trip) => (
                 <TripDetailed
@@ -385,8 +397,10 @@ const history = useHistory();
                   description={trip.description}
                   onClick={deleteActivity}
                   id={trip.id}
-                  openActivity={(e)=>{console.log('clicked')}}
-                  />
+                  openActivity={(e) => {
+                    console.log("clicked");
+                  }}
+                />
               ))}
             </Card>
           </Container>
@@ -394,7 +408,6 @@ const history = useHistory();
       </Box>
 
       {/* Model content */}
-    
     </div>
   );
 }

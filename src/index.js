@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { MuiThemeProvider, createMuiTheme, CssBaseLine } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 
@@ -13,8 +13,11 @@ const theme = createMuiTheme({
       main: '#1EDBF5',
       dark: '#3F9BA5'
     },
+    secondary: {
+      main: '#0A4950'
+    },
     background: {
-      default: "#f3f5f9",
+      default: "#E8F0FA",
       paper: "white"
     }
   },
@@ -39,19 +42,6 @@ const theme = createMuiTheme({
      }
   },
 });
-
-// Function to change webpage background color
-function changeBodyBg(color){
-    document.body.style.background = color;
-}
-
-//test to see if user logged in - temp hardcoded
-const loggedIn = true; 
-
-//if loggedout out - change the color
-if (loggedIn === false) {
-  changeBodyBg('#0c1d33');
-}
 
 console.log(theme);
 

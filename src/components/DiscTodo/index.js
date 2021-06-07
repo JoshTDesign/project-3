@@ -5,9 +5,8 @@ import {CardActionArea} from '@material-ui/core';
 import {CardActions} from '@material-ui/core';
 import {CardContent} from '@material-ui/core';
 import {CardMedia} from '@material-ui/core';
-// import {Button} from '@material-ui/core';
 import {Typography} from '@material-ui/core';
-import AddActivityModal from '../../components/AddActivityModal'
+import AddActivityDialog from '../AddActivityDialog'
 
 
 const useStyles = makeStyles({
@@ -37,13 +36,15 @@ export default function DiscTodo(props) {
         </CardContent>
       </CardActionArea>
       <CardActions onClick={props.handleBtn}>
-        {/* <Button data-value={props.id} size="small" color="primary">
-          + Add to my agenda
-        </Button> */}
-        <AddActivityModal 
+        <AddActivityDialog 
           data-value={props.id} 
           createActivity={props.createActivity}
-          nameLabel={props.nameLabel} />
+          nameLabel={props.name} 
+          description={props.shortDescription} 
+          userStateToken={props.userStateToken}
+          tripId={props.tripId}
+          userStateId={props.userStateId}
+          />
 
       </CardActions>
     </Card>
