@@ -100,7 +100,7 @@ function Dashboard() {
         style={{ marginTop: "80px", marginBottom: "15px", marginLeft: "10px" }}
       >
         <Link to="/home">
-          <Typography variant="subtitle" color="primary.dark">
+          <Typography variant="subtitle2" color="secondary">
             My Trips
           </Typography>
         </Link>
@@ -116,14 +116,14 @@ function Dashboard() {
       >
         <Typography
           variant="h4"
-          color="primary.dark"
+          color="secondary"
           style={{ fontFamily: "Quando" }}
         >
           Trip to {tripState.trip?.city}
         </Typography>
         <Typography
           variant="subtitle1"
-          color="primary.dark"
+          color="secondary"
           style={{ marginLeft: "10px" }}
         >
           {tripState.trip?.start_date} until {tripState.trip?.end_date}

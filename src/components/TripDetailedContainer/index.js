@@ -89,32 +89,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TripDetailedContainer(props) {
-
   const [tripState, setTripState] = useState({
     trip: [],
     userTrips: [],
   });
   let { id } = useParams();
 
-
-
-
-    const [activityName, setActivityName] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [address, setAddress] = useState(null);
-    const [activityUrl, setActivityUrl] = useState(null);
-    const [category, setCategory] = useState(null);
-    const [cost, setCost] = useState(0);
-    const [activity_date, setActivity_date] = useState(null);
-    const [start_time, setStart_time] = useState(null);
-    const [end_time, setEnd_time] = useState(null);
-    const [token, setToken] = useState("");
-    const [UserId, setUserId] = useState("");
-    const [TripId, setTripId] = useState("");
-    const [userState, setUserState] = useState({
-      token: "",
-      user: {},
-    });
+  const [activityName, setActivityName] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [activityUrl, setActivityUrl] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [cost, setCost] = useState(0);
+  const [activity_date, setActivity_date] = useState(null);
+  const [start_time, setStart_time] = useState(null);
+  const [end_time, setEnd_time] = useState(null);
+  const [token, setToken] = useState("");
+  const [UserId, setUserId] = useState("");
+  const [TripId, setTripId] = useState("");
+  const [userState, setUserState] = useState({
+    token: "",
+    user: {},
+  });
 
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
@@ -138,7 +134,6 @@ export default function TripDetailedContainer(props) {
   //     [name]: value,
   //   });
   // };
-
 
   const deleteActivity = (event) => {
     let thisId = event.target.parentElement.id;
@@ -167,10 +162,7 @@ export default function TripDetailedContainer(props) {
     );
   };
   const history = useHistory();
-  
 
-  
-  
   const createActivity = () => {
     console.log(
       "create event function / trip id is:" +
@@ -178,8 +170,6 @@ export default function TripDetailedContainer(props) {
         " user id is:" +
         userState.user.id
     );
-
-
 
     const newActivity = {
       UserId: userState.user.id,
@@ -194,7 +184,7 @@ export default function TripDetailedContainer(props) {
       end_time: end_time,
       tripId: id,
       token: userState.token,
-    }
+    };
 
     console.log(newActivity);
 
@@ -223,15 +213,15 @@ export default function TripDetailedContainer(props) {
     setActivityUrl(null);
     setCategory(null);
     setCost(0);
-    setActivity_date(null)
-    setStart_time(null)
-    setEnd_time(null)
+    setActivity_date(null);
+    setStart_time(null);
+    setEnd_time(null);
     setToken("");
     setUserId("");
     setTripId("");
 
     handleClose();
-  }
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -270,11 +260,10 @@ export default function TripDetailedContainer(props) {
     }
   }, []);
 
-
   const classes = useStyles();
 
   const body = (
-    <div style={modalStyle} className={classes.paper} >
+    <div style={modalStyle} className={classes.paper}>
       <Typography variant="h6" id="simple-modal-title">
         Add an activity to your agenda
       </Typography>
@@ -415,15 +404,17 @@ export default function TripDetailedContainer(props) {
         />
       </div>
       <div>
-        <Button variant="contained" fullWidth="true" color="primary" onClick={createActivity}>
+        <Button
+          variant="contained"
+          fullWidth="true"
+          color="primary"
+          onClick={createActivity}
+        >
           <p>create activity</p>
         </Button>
       </div>
     </div>
   );
-
-
-
 
   return (
     <div>
@@ -434,7 +425,12 @@ export default function TripDetailedContainer(props) {
         >
           <Container maxWidth="md" style={containerStyle}>
             <div>
-              <Button variant="contained" color="primary" style={{marginLeft:'20px'}} onClick={handleOpen}>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginLeft: "20px" }}
+                onClick={handleOpen}
+              >
                 Add to my agenda
               </Button>
               <Modal
@@ -455,8 +451,7 @@ export default function TripDetailedContainer(props) {
                   id={trip.id}
                   start_time={trip.start_time}
                   date={trip.date}
-                  openActivity={(e) => {
-                  }}
+                  openActivity={(e) => {}}
                 />
               ))}
             </Card>
